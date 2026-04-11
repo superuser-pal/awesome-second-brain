@@ -1,0 +1,36 @@
+filters:
+  and:
+    - file.name == "INDEX"
+    - file.ext == "md"
+    - file.inFolder("domains")
+properties:
+  file.name:
+    displayName: Domain
+  file.folder:
+    displayName: Path
+  name:
+    displayName: Name
+  description:
+    displayName: Description
+  status:
+    displayName: Status
+  last_updated:
+    displayName: Last Updated
+views:
+  - type: table
+    name: Active Domains
+    filters:
+      and:
+        - status == "active"
+    order:
+      - name
+      - description
+      - status
+      - last_updated
+  - type: table
+    name: All Domains
+    order:
+      - name
+      - description
+      - status
+      - last_updated

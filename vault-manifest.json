@@ -1,0 +1,91 @@
+{
+  "template": "pal-second-brain",
+  "version": "0.2.1",
+  "released": "2026-04-07",
+  "infrastructure": [
+    "CLAUDE.md",
+    "dashboards/HOME.md",
+    "dashboards/TASKS.md",
+    "README.md",
+    "CHANGELOG.md",
+    "CONTRIBUTING.md",
+    "LICENSE",
+    ".gitignore",
+    ".claude/**",
+    ".claude-plugin/**",
+    ".claude/core/system/templates/**",
+    "bases/**",
+    "vault-manifest.json",
+    ".claude/core/user/SKILLS.md",
+    "work/review/competencies/README.md",
+    "thinking/README.md"
+  ],
+  "scaffold": {
+    ".claude/core/user/NORTH_STAR.md": "Personal goals — replace if source has real content",
+    ".claude/core/user/MEMORIES.md": "Memory index — replace if source has entries beyond template stubs",
+    ".claude/core/user/KEY_DECISIONS.md": "Decision log — replace if non-empty",
+    ".claude/core/user/PATTERNS.md": "Observed patterns — replace if non-empty",
+    ".claude/core/user/GOTCHAS.md": "Known gotchas — replace if non-empty",
+    "work/Index.md": "Work notes MOC — replace if has real entries",
+    "work/org/People & Context.md": "People MOC — replace if has real entries",
+    "work/review/Wins Doc.md": "Brag doc index — replace if has entries"
+  },
+  "user_content_roots": [
+    "work/active/",
+    "work/archive/",
+    "work/incidents/",
+    "work/1-1/",
+    "work/org/people/",
+    "work/org/teams/",
+    "work/review/wins/",
+    "work/review/evidence/",
+    "work/review/h*-*/",
+    "work/review/competencies/*.md",
+    ".claude/core/user/*.md",
+    "domains/*/01_PROJECTS/*.md",
+    "domains/*/02_PAGES/*.md",
+    "domains/*/05_ARCHIVE/*.md",
+    "inbox/raw/*.md",
+    "inbox/ready/*.md",
+    "plan/**/*.md",
+    "thinking/*.md"
+  ],
+  "version_fingerprints": {
+    "v1": {
+      "exists": ["claude/MEMORIES.md"],
+      "missing": [".claude/core/user/", "bases/"]
+    },
+    "v2": {
+      "exists": [".claude/core/user/", "bases/", "dashboards/HOME.md"],
+      "missing": [".claude/agents/"]
+    },
+    "v3.0": {
+      "exists": [".claude/agents/", ".claude/scripts/"],
+      "missing": [".claude/agents/review-fact-checker.md"]
+    },
+    "v3.1": {
+      "exists": [".claude/agents/review-fact-checker.md"],
+      "missing": [".claude/commands/humanize.md"]
+    },
+    "v3.2": {
+      "exists": [".claude/commands/humanize.md", ".claude/commands/weekly.md"],
+      "missing": ["vault-manifest.json"]
+    },
+    "v3.3": {
+      "exists": ["vault-manifest.json"]
+    }
+  },
+  "frontmatter_required": {
+    "global": ["date", "description", "tags"],
+    "work-note": ["date", "status", "quarter"],
+    "incident": ["date", "status", "quarter", "ticket", "severity", "role"],
+    "person": ["date", "title"],
+    "team": ["date"],
+    "1-1": ["date", "quarter"],
+    "domain-index": ["name", "description", "status", "last_updated"],
+    "domain-project": ["name", "domain", "goal", "status", "priority", "tags", "created", "last_updated"],
+    "domain-page": ["name", "domain", "type", "status", "description", "tags", "created", "last_updated"],
+    "inbox-raw": ["date", "created"],
+    "inbox-ready": ["name", "domain", "type", "status", "description", "tags", "created", "last_updated"]
+  }
+}

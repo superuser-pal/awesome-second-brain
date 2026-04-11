@@ -1,0 +1,18 @@
+filters:
+  and:
+    - file.inFolder("work/1-1")
+    - file.ext == "md"
+properties:
+  file.name:
+    displayName: Meeting
+  date:
+    displayName: Date
+  description:
+    displayName: Key Takeaways
+views:
+  - type: table
+    name: All 1:1s
+    order:
+      - file.name
+      - date
+      - description

@@ -1,0 +1,21 @@
+filters:
+  and:
+    - file.hasTag("competency")
+    - file.ext == "md"
+    - '!file.inFolder(".claude/core/system/templates")'
+formulas:
+  evidence_count: file.backlinks.length
+properties:
+  file.name:
+    displayName: Competency
+  formula.evidence_count:
+    displayName: Evidence Count
+  description:
+    displayName: Definition
+views:
+  - type: table
+    name: Competencies
+    order:
+      - file.name
+      - formula.evidence_count
+      - description

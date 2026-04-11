@@ -1,0 +1,42 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(command -v qmd)",
+      "Bash(qmd vsearch:*)",
+      "Bash(bash .claude/scripts/find-python.sh .claude/scripts/classify-message.py)",
+      "Bash(echo \"EXIT: $?\")",
+      "Bash(bash .claude/scripts/find-python.sh .claude/scripts/validate-write.py)",
+      "Bash(CLAUDE_PROJECT_DIR=/Users/rodrigocanoteran/Projects/my-second-brain bash .claude/scripts/session-start.sh)",
+      "Bash(CLAUDE_PROJECT_DIR=/Users/rodrigocanoteran/Projects/my-second-brain bash .claude/scripts/pre-compact.sh)",
+      "Bash(ls:*)",
+      "Bash(python3 .claude/scripts/classify-message.py)",
+      "Bash(python3 .claude/scripts/validate-write.py)",
+      "Bash(git commit:*)",
+      "Bash(gh pr:*)",
+      "Bash(python3:*)",
+      "Bash(gh issue:*)",
+      "Bash(git add:*)",
+      "Bash(git push:*)",
+      "Bash(git checkout:*)",
+      "Bash(gh api:*)",
+      "Bash(bash -c 'INPUT=$\\(cat\\); ACTIVE=$\\(printf \"%s\" \"$INPUT\" | bash .claude/scripts/find-python.sh -c \"import json,sys; print\\(json.load\\(sys.stdin\\).get\\(\\\\\"stop_hook_active\\\\\",False\\)\\)\" 2>/dev/null || echo False\\); [ \"$ACTIVE\" = \"True\" ] && exit 0; echo \"Session end checklist\"')",
+      "Bash(echo \"active=true: EXIT=$?\")",
+      "Bash(echo \"active=false: EXIT=$?\")",
+      "Bash(echo \"no field: EXIT=$?\")",
+      "Bash(git rebase:*)",
+      "Bash(gh run:*)",
+      "Bash(git pull:*)",
+      "Bash(git log:*)",
+      "Bash(git fetch:*)",
+      "Bash(git tag:*)",
+      "Bash(gh release:*)",
+      "Bash(echo \"Exit: $?\")",
+      "Bash(bash /Users/rodrigocanoteran/Projects/my-second-brain/.claude/scripts/find-python.sh /Users/rodrigocanoteran/Projects/my-second-brain/.claude/scripts/classify-message.py)",
+      "Bash(echo \"---EXIT: $?---\")",
+      "Bash(/bin/cat /tmp/hook_stderr)",
+      "Bash(/bin/cat:*)",
+      "Bash(/bin/rm org/people/Sarah.md org/people/Tom.md)",
+      "Bash(zip -r /tmp/pal-second-brain-v3.4.1.zip . -x \".git/*\" \".github/*\" \".claude/scripts/test_hooks.py\" \".DS_Store\" \"thinking/session-logs/*\")"
+    ]
+  }
+}

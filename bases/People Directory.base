@@ -1,0 +1,31 @@
+filters:
+  and:
+    - file.hasTag("person")
+    - file.ext == "md"
+properties:
+  file.name:
+    displayName: Name
+  team:
+    displayName: Team
+  title:
+    displayName: Role
+  description:
+    displayName: Context
+views:
+  - type: table
+    name: By Team
+    groupBy:
+      property: team
+      direction: ASC
+    order:
+      - file.name
+      - title
+      - team
+      - description
+  - type: table
+    name: All People
+    order:
+      - file.name
+      - title
+      - team
+      - description

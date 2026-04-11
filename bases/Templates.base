@@ -1,0 +1,27 @@
+templates.base: .claude/core/system/templates
+filters:
+  and:
+    - file.inFolder(".claude/core/system/templates")
+    - file.ext == "md"
+properties:
+  file.name:
+    displayName: Template
+  description:
+    displayName: Purpose
+  usable:
+    displayName: In Use
+  file.mtime:
+    displayName: Last Modified
+views:
+  - type: table
+    name: All Templates
+    order:
+      - file.name
+      - description
+      - usable
+      - file.mtime
+    sort: []
+    columnSize:
+      file.name: 174
+      note.description: 571
+      note.usable: 116

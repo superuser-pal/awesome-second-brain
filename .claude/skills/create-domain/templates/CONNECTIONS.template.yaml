@@ -1,0 +1,40 @@
+# CONNECTIONS.yaml - External Integration Configuration
+# This file tracks all external dependencies for the domain
+# Updated: {{YYYY-MM-DD}}
+
+# ============================================================
+# EXTERNAL APIs
+# APIs this domain interacts with
+# ============================================================
+apis:
+  # Example entry (uncomment and modify):
+  # - name: github-api
+  #   url: https://api.github.com
+  #   docs: https://docs.github.com/en/rest
+  #   auth_type: oauth  # Options: api_key | oauth | basic | bearer | none
+  #   rate_limit: 5000/hour
+  #   notes: Used for repository management and CI/CD integration
+
+# ============================================================
+# DOCUMENTATION SOURCES
+# External documentation this domain references
+# ============================================================
+documentation:
+  # Example entry (uncomment and modify):
+  # - name: cloudflare-workers-docs
+  #   url: https://developers.cloudflare.com/workers/
+  #   type: official  # Options: official | community | internal
+  #   notes: Primary reference for Workers development
+
+# ============================================================
+# DATA SOURCES
+# Databases, storage, and data connections
+# ============================================================
+data_sources:
+  # Example entry (uncomment and modify):
+  # - name: production-db
+  #   type: postgresql  # Options: postgresql | mysql | redis | mongodb | s3 | etc
+  #   host: db.example.com
+  #   port: 5432
+  #   database: app_production
+  #   notes: Primary application database (read replicas available)

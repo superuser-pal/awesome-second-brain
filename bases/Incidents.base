@@ -1,0 +1,32 @@
+filters:
+  and:
+    - file.hasTag("incident")
+    - file.ext == "md"
+formulas:
+  duration_info: if(date, (today() - date(date)).days.toString() + "d ago", "")
+properties:
+  file.name:
+    displayName: Incident
+  ticket:
+    displayName: Ticket
+  severity:
+    displayName: Severity
+  role:
+    displayName: Your Role
+  status:
+    displayName: Status
+  date:
+    displayName: Date
+  description:
+    displayName: Summary
+views:
+  - type: table
+    name: All Incidents
+    order:
+      - file.name
+      - date
+      - ticket
+      - severity
+      - role
+      - status
+      - description

@@ -1,0 +1,34 @@
+filters:
+  and:
+    - file.inFolder(".claude/skills")
+    - file.name == "SKILL"
+    - file.ext == "md"
+formulas:
+  skill_link: link(file.path, name)
+properties:
+  formula.skill_link:
+    displayName: Skill
+  description:
+    displayName: Purpose
+  user-invocable:
+    displayName: User Invocable
+  file.mtime:
+    displayName: Last Modified
+views:
+  - type: table
+    name: All Skills
+    order:
+      - formula.skill_link
+      - description
+      - user-invocable
+      - file.mtime
+    columnSize:
+      note.description: 806
+  - type: table
+    name: User Invocable
+    filters:
+      not:
+        - user-invocable == false
+    order:
+      - formula.skill_link
+      - description
