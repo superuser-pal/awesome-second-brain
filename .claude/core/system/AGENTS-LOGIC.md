@@ -124,13 +124,13 @@ Use these labels in Domain Agent `## 2. Activation Context`:
 |------|-----------|---------|-----------|
 | `wins-capture.md` | — | Finds uncaptured wins and competency gaps | `/wrap-up`, `/weekly` |
 | `context-loader.md` | — | Loads vault context about a person, project, or concept | Direct |
-| `cross-linker.md` | — | Finds missing wikilinks, orphans, broken backlinks | `/vault-audit` |
-| `contact-importer.md` | — | Bulk creates/updates person notes from Slack profiles | `/incident-capture` |
-| `review-fact-checker.md` | — | Verifies review draft claims against vault sources | `/self-review`, `/review-peer` |
-| `review-prep.md` | — | Aggregates performance evidence for a review period | `/review-brief` |
-| `slack-archaeologist.md` | — | Full Slack reconstruction (messages, threads, profiles) | `/incident-capture` |
-| `vault-librarian.md` | — | Deep vault maintenance — orphans, broken links, stale notes | `/vault-audit` |
-| `vault-migrator.md` | — | Classifies and migrates content from a source vault | `/vault-upgrade` |
+| `cross-linker.md` | — | Finds missing wikilinks, orphans, broken backlinks | `/audit` |
+| `contact-importer.md` | — | Bulk creates/updates person notes from Slack profiles | `/incident` |
+| `review-fact-checker.md` | — | Verifies review draft claims against vault sources | `/self`, `/peer` |
+| `review-prep.md` | — | Aggregates performance evidence for a review period | `/brief` |
+| `slack-archaeologist.md` | — | Full Slack reconstruction (messages, threads, profiles) | `/incident` |
+| `vault-librarian.md` | — | Deep vault maintenance — orphans, broken links, stale notes | `/audit` |
+| `vault-migrator.md` | — | Classifies and migrates content from a source vault | `/upgrade` |
 
 ### Domain Agents
 

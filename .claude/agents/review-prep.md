@@ -1,6 +1,6 @@
 ---
 name: review-prep
-description: "Aggregate performance review material from the vault for a given period. Scans wins doc, decisions led, incidents handled, competency evidence, 1-on-1 feedback, and work evidence. Invoke via /review-brief or when the user asks for review prep."
+description: "Aggregate performance review material from the vault for a given period. Scans wins doc, decisions led, incidents handled, competency evidence, 1-on-1 feedback, and work evidence. Invoke via /brief or when the user asks for review prep."
 tools: Read, Grep, Glob, Write, Bash
 model: sonnet
 maxTurns: 30

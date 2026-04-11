@@ -25,24 +25,24 @@ Match user intent conceptually — not by keyword. Route to the most specific ma
 |-------------|---------|
 | Morning kickoff, start of day, what should I focus on | `/standup` |
 | End of day, wrap up, session end | `/wrap-up` |
-| Plan this week, set weekly goals | `/plan-week` |
-| Close out the week, weekly retrospective | `/close-week` |
+| Plan this week, set weekly goals | `/week-prep` |
+| Close out the week, weekly retrospective | `/week-close` |
 | Full weekly lifecycle (close + plan) | `/week-cycle` |
 | Weekly synthesis, cross-session patterns | `/weekly` |
-| Quick capture / brain dump | `/dump` (all 3 stages) or `/capture` (stage 1 only) |
+| Quick capture / brain dump | `/quick-dump` (all 3 stages) or `/general` (stage 1 only) |
 | Process inbox notes | `/process` |
 | Distribute processed notes to domains | `/distribute` |
-| Capture a 1:1 meeting | `/capture-1on1` |
-| Capture an incident from Slack | `/incident-capture` |
+| Capture a 1:1 meeting | `/1-1` |
+| Capture an incident from Slack | `/incident` |
 | Scan Slack channels for evidence | `/slack-scan` |
 | Scan a peer's PRs for review prep | `/peer-scan` |
-| Write self-review / self-assessment | `/self-review` |
-| Write peer review | `/review-peer` |
-| Generate review brief | `/review-brief` |
-| Create a new domain project | `/create-project` |
-| Sync tasks to TASKS.md | `/sync-tasks` |
-| Audit vault health (orphans, broken links) | `/vault-audit` |
-| Migrate content from another vault | `/vault-upgrade` |
+| Write self-review / self-assessment | `/self` |
+| Write peer review | `/peer` |
+| Generate review brief | `/brief` |
+| Create a new domain project | `/project-create` |
+| Sync tasks to TASKS.md | `/task-sync` |
+| Audit vault health (orphans, broken links) | `/audit` |
+| Migrate content from another vault | `/upgrade` |
 | Archive a completed project | `/project-archive` |
 | Make text sound human | `/humanize` |
 | Create a domain | `create-domain` skill |
@@ -53,9 +53,9 @@ Match user intent conceptually — not by keyword. Route to the most specific ma
 
 ## 2a. Default Behavior for Unclassified Input
 
-If the user provides substantive content (not a question, not a system command) and no slash command was invoked, treat it as a `/dump` operation — classify, create/update notes, add wikilinks, update indexes.
+If the user provides substantive content (not a question, not a system command) and no slash command was invoked, treat it as a `/quick-dump` operation — classify, create/update notes, add wikilinks, update indexes.
 
-The user should never need to know `/dump` exists. The system should do the right thing by default. The `classify-message.py` hook helps by detecting `CAPTURE_INTENT` and `TASK` signals, but even without those signals, if the user is clearly sharing information to capture, route through `/dump`.
+The user should never need to know `/quick-dump` exists. The system should do the right thing by default. The `classify-message.py` hook helps by detecting `CAPTURE_INTENT` and `TASK` signals, but even without those signals, if the user is clearly sharing information to capture, route through `/quick-dump`.
 
 ---
 

@@ -4,7 +4,7 @@ domain: "{{domain}}"
 origin: manual
 type: note
 status: processed
-description: A processed knowledge note routed to a specific domain after inbox capture.
+description: A permanent knowledge page promoted from inbox into {{domain}}. Atomic — one concept per page.
 usable: true
 tags: []
 created: "{{date}}"

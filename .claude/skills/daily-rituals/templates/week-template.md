@@ -26,7 +26,7 @@ tags: [week]
 
 ### Active
 
-*(tasks selected during /plan-week)*
+*(tasks selected during /week-prep)*
 
 ### Done
 
@@ -36,7 +36,7 @@ tags: [week]
 
 ## Daily Progress
 
-*(auto-appended during /close-week)*
+*(auto-appended during /week-close)*
 
 ## Notes
 
@@ -46,4 +46,4 @@ tags: [week]
 
 ## Retrospective
 
-*(from /close-week)*
+*(from /week-close)*

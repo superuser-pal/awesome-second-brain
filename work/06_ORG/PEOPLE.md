@@ -15,7 +15,7 @@ One section per person. Add new people by appending a `## [Full Name]` section a
 - Each section: name, role, team, and any context worth keeping
 - Link work notes and 1:1s back here: `[[work/06_ORG/PEOPLE#Full Name]]`
 - See [[work/06_ORG/TEAMS|Teams]] for team-level context
-- Used by `/capture-1on1`, `contact-importer`, and `context-loader`
+- Used by `/1-1`, `/incident`, `contact-importer`, and `context-loader`
 
 ---
 

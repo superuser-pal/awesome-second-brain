@@ -11,7 +11,7 @@ blocked_tasks: 0
 
 # Tasks Dashboard
 
-> Run `/sync-tasks` to populate this dashboard from your domain projects.
+> Run `/task-sync` to populate this dashboard from your domain projects.
 
 ## Alerts
 
@@ -19,7 +19,7 @@ blocked_tasks: 0
 
 ## By Domain
 
-*No tasks loaded. Run `/sync-tasks` to aggregate tasks from all domain projects.*
+*No tasks loaded. Run `/task-sync` to aggregate tasks from all domain projects.*
 
 ## Done (recent)
 
@@ -40,4 +40,4 @@ blocked_tasks: 0
 | `[x]` | Done |
 
 ---
-*Pull: `/sync-tasks` | Push changes back: `/sync-tasks push` | New project: `/create-project`*
+*Pull: `/task-sync` | Push changes back: `/task-sync push` | New project: `/project-create`*

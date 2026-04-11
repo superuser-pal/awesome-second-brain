@@ -12,6 +12,42 @@ Every file type in the vault has a strict frontmatter schema. Properties must ap
 
 ---
 
+## 0. Note (Temporary Capture)
+
+**Location:** `inbox/raw/*.md` | `inbox/ready/*.md` | `thinking/*.md`
+
+Notes are temporary. They are created by capture commands and promoted to pages via `/distribute`. Asset class changes when the file moves — the `type` field stays the same throughout.
+
+```yaml
+date: YYYY-MM-DD
+created: YYYY-MM-DD
+status: unprocessed         # unprocessed | thinking | ready | processed
+```
+
+After `/process` adds full frontmatter:
+
+```yaml
+name: "kebab-case-topic"    # descriptive slug
+date: YYYY-MM-DD
+created: YYYY-MM-DD
+status: ready               # ready after /process; processed after /distribute
+origin: braindump           # braindump | url | doc | manual
+type: note                  # concept | decision | reference | meeting | idea | note | belief | frame | lesson | model | goal | plan | research
+domain: "DomainName"        # target domain; 'work' for cross-domain content
+description: "..."          # ~150 char summary
+tags: []
+last_updated: YYYY-MM-DD
+synthesized-from: []        # filled on split pages: wikilinks to source note(s)
+```
+
+**Status lifecycle:**
+- `unprocessed` — just captured, no domain or classification yet
+- `thinking` — moved to `thinking/`; reasoning, scratchpad, or ongoing research
+- `ready` — processed by `/process`, awaiting `/distribute`
+- `processed` — promoted to a page (kept on source note for provenance)
+
+---
+
 ## 1. Domain INDEX
 
 **Location:** `domains/[Name]/INDEX.md`
@@ -48,13 +84,15 @@ last_updated: YYYY-MM-DD
 
 **Location:** `domains/[Name]/02_PAGES/*.md`
 
+> **Asset class vs content type:** Asset class is determined by WHERE a file lives, NOT by the `type` field. A Domain Page with `type: note` is still a **page** (permanent). The `type` field describes what the page is about. It does NOT change when a note is promoted — a note of `type: concept` becomes a page of `type: concept`.
+
 ```yaml
 name: "page_name"           # kebab-case
 domain: "DomainName"        # PascalCase, matches parent directory
 origin: manual              # braindump | ai-output | manual
-type: note                  # concept | decision | reference | meeting | idea | note | belief | frame | lesson | model | goal | plan
+type: note                  # concept | decision | reference | meeting | idea | note | belief | frame | lesson | model | goal | plan | research
 # When type is "concept", also include: synthesized-from: []
-status: processed           # unprocessed | ready | processed
+status: processed           # processed | archived
 description: "..."          # ~150 char summary of content and key value
 tags: []
 created: YYYY-MM-DD
@@ -74,7 +112,7 @@ name: "concept_name"        # kebab-case
 domain: "DomainName"        # PascalCase, matches parent directory
 origin: ai-output           # always ai-output for synthesis
 type: concept               # distinguishes from other domain pages
-status: processed
+status: processed           # processed | archived
 description: "..."          # ~150 char summary
 synthesized-from: []        # list of wikilinks to source notes, e.g. ["[[source1]]", "[[source2]]"]
 tags: []
@@ -93,6 +131,7 @@ Minimal schema — raw capture, no classification yet.
 ```yaml
 date: YYYY-MM-DD
 created: YYYY-MM-DD
+status: unprocessed
 ```
 
 ---
@@ -108,7 +147,7 @@ name: "descriptive_name"    # kebab-case
 domain: "target-domain"     # PascalCase — destination domain
 origin: braindump           # braindump | ai-output | manual
 type: note                  # see Domain Page type enum
-status: ready               # unprocessed | ready | processed
+status: ready               # unprocessed | thinking | ready | processed
 description: "..."          # ~150 char summary
 tags: []
 created: YYYY-MM-DD

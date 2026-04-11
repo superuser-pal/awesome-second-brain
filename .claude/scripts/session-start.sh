@@ -50,6 +50,14 @@ else
 fi
 echo ""
 
+echo "### User Context (ABOUTME)"
+if [ -f "brain/ABOUTME.md" ]; then
+  cat "brain/ABOUTME.md" | head -20
+else
+  echo "(ABOUTME.md not found — create brain/ABOUTME.md to improve work/domain routing accuracy)"
+fi
+echo ""
+
 echo "### Recent Changes (last 48h)"
 git log --oneline --since="48 hours ago" --no-merges 2>/dev/null | head -15 || echo "(no git history)"
 echo ""

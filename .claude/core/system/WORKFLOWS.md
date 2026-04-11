@@ -51,7 +51,7 @@ description: Short action-oriented description of what this achieves.
 
 | Entity | Convention | Example |
 |--------|-----------|---------|
-| Command file | `lower-kebab-case.md` | `vault-audit.md` |
+| Command file | `lower-kebab-case.md` | `audit.md` |
 | Skill workflow | `kebab-case.md` | `create-domain.md` |
 | Workflow names | Verb-led | `create-x`, `archive-y`, `sync-z` |
 
@@ -70,28 +70,29 @@ description: Short action-oriented description of what this achieves.
 
 | Command | File | Purpose |
 |---------|------|---------|
-| `/standup` | `standup.md` | Morning kickoff — context, tasks, priorities, daily note |
-| `/wrap-up` | `wrap-up.md` | Session end — verify notes, indexes, links, suggest improvements |
-| `/plan-week` | `plan-week.md` | Weekly planning — committed tasks, weekly file in `plan/` |
-| `/close-week` | `close-week.md` | Close week — velocity, consolidate daily notes, archive |
-| `/week-cycle` | `week-cycle.md` | Full weekly lifecycle (close + plan in one shot) |
-| `/weekly` | `weekly.md` | Weekly synthesis — patterns, North Star alignment, wins |
-| `/dump` | `dump.md` | All-in-one capture: raw → classify → route |
-| `/capture` | `capture.md` | Stage 1 — raw capture to `inbox/raw/` |
-| `/process` | `process.md` | Stage 2 — frontmatter + domain classification |
-| `/distribute` | `distribute.md` | Stage 3 — route to domain, add wikilinks, update indexes |
-| `/capture-1on1` | `capture-1on1.md` | Structured 1:1 capture |
-| `/incident-capture` | `incident-capture.md` | Incident from Slack into structured vault note |
-| `/slack-scan` | `slack-scan.md` | Deep scan Slack for evidence |
-| `/peer-scan` | `peer-scan.md` | Deep scan a peer's GitHub PRs |
-| `/review-brief` | `review-brief.md` | Generate review brief (manager or peer) |
-| `/self-review` | `self-review.md` | Write self-assessment |
-| `/review-peer` | `review-peer.md` | Write peer review |
-| `/create-project` | `create-project.md` | New domain project |
-| `/sync-tasks` | `sync-tasks.md` | Aggregate tasks to `dashboards/TASKS.md` |
-| `/vault-audit` | `vault-audit.md` | Audit indexes, links, orphans |
-| `/vault-upgrade` | `vault-upgrade.md` | Import content from existing vault |
-| `/project-archive` | `project-archive.md` | Archive completed project |
+| `/standup` | `rituals/standup.md` | Morning kickoff — context, tasks, priorities, daily note |
+| `/wrap-up` | `rituals/wrap-up.md` | Session end — verify notes, indexes, links, suggest improvements |
+| `/week-prep` | `rituals/week-prep.md` | Weekly planning — committed tasks, weekly file in `plan/` |
+| `/week-close` | `rituals/week-close.md` | Close week — velocity, consolidate daily notes, archive |
+| `/week-cycle` | `rituals/week-cycle.md` | Full weekly lifecycle (close + plan in one shot) |
+| `/weekly` | `rituals/weekly.md` | Weekly synthesis — patterns, North Star alignment, wins |
+| `/brain-dump` | `capture/brain-dump.md` | Reflective capture — atomic extraction with tags |
+| `/quick-dump` | `capture/quick-dump.md` | All-in-one capture: raw → classify → route |
+| `/general` | `capture/general.md` | Stage 1 — raw capture to `inbox/raw/` |
+| `/process` | `core/process.md` | Stage 2 — frontmatter + domain classification |
+| `/distribute` | `core/distribute.md` | Stage 3 — route to domain, add wikilinks, update indexes |
+| `/1-1` | `capture/1-1.md` | Structured 1:1 capture |
+| `/incident` | `capture/incident.md` | Incident from Slack into structured vault note |
+| `/slack-scan` | `capture/slack-scan.md` | Deep scan Slack for evidence |
+| `/peer-scan` | `capture/peer-scan.md` | Deep scan a peer's GitHub PRs |
+| `/brief` | `review/brief.md` | Generate review brief (manager or peer) |
+| `/self` | `review/self.md` | Write self-assessment |
+| `/peer` | `review/peer.md` | Write peer review |
+| `/project-create` | `manage/project-create.md` | New domain project |
+| `/task-sync` | `manage/task-sync.md` | Aggregate tasks to `dashboards/TASKS.md` |
+| `/audit` | `core/audit.md` | Audit indexes, links, orphans |
+| `/upgrade` | `core/upgrade.md` | Import content from existing vault |
+| `/project-archive` | `manage/project-archive.md` | Archive completed project |
 | `/humanize` | `humanize.md` | Voice-calibrated editing |
 
 ---

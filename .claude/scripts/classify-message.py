@@ -28,7 +28,7 @@ SIGNALS = [
     },
     {
         "name": "INCIDENT",
-        "message": "INCIDENT detected — consider using /incident-capture or creating an incident note in work/03_INCIDENTS/",
+        "message": "INCIDENT detected — consider using /incident or creating an incident note in work/03_INCIDENTS/",
         "patterns": [
             "incident", "outage", "pagerduty", "severity",
             "p0", "p1", "p2", "sev1", "sev2", "postmortem", "rca",
@@ -76,7 +76,7 @@ SIGNALS = [
     },
     {
         "name": "CAPTURE_INTENT",
-        "message": "CAPTURE_INTENT detected — if no command was invoked, route through the /dump workflow (classify, create/update notes, add wikilinks, update indexes)",
+        "message": "CAPTURE_INTENT detected — if no command was invoked, route through the /quick-dump workflow (classify, create/update notes, add wikilinks, update indexes)",
         "patterns": [
             "notes from", "from today's meeting", "from the meeting",
             "i learned", "takeaway", "wanted to note",
@@ -85,7 +85,7 @@ SIGNALS = [
     },
     {
         "name": "TASK",
-        "message": "TASK detected — if no command was invoked, offer to create a task via the /task workflow",
+        "message": "TASK detected — if no command was invoked, offer to create a task via the /task-add workflow",
         "patterns": [
             "todo", "to-do", "need to", "have to",
             "remind me", "action item", "follow up on", "task:",

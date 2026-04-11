@@ -1,0 +1,95 @@
+---
+description: "Stage 3 distribution. Promote processed notes from inbox/ready/ to permanent pages in domain or work folders. Supports simple promotion, split into multiple pages, and absorb into existing pages."
+---
+
+Promote all processed notes from `inbox/ready/` to their final locations as permanent **pages**.
+
+For each `.md` file in `inbox/ready/`:
+
+1. **Read frontmatter** — Extract `domain`, `type`, `name`, and `project` fields.
+
+2. **Validate domain exists** — Check that `domains/[domain]/` exists. If domain is missing or `domain: work` (cross-domain), route to `work/04_PAGES/` instead. If domain does not exist and is not "work", ask user to create it first.
+
+   Use the user context loaded at session start (from ABOUTME.md) to determine whether ambiguous content is work-related vs domain-specific. If content is professional/work-related and no domain clearly fits, offer `work/04_PAGES/` as the default.
+
+3. **Determine destination**:
+   - Default: `domains/[domain]/02_PAGES/` (or `work/04_PAGES/` for cross-domain content)
+   - If `type` is belief, frame, lesson, model, or goal and the domain has relevant memory files: offer to append to existing memory file instead of creating a new page
+   - If `project` field is set: link from the project file after placement
+
+4. **Check for split-worthy content** — Scan the note for 3+ independent H2 sections or clearly unrelated topic blocks. Only offer to split if each topic is independently page-worthy (self-contained, atomic, useful on its own without the others). Tightly related sections that build on each other should stay as one page.
+
+   If split-worthy topics detected, present:
+   ```
+   This note covers [N] independent topics — each could be its own page:
+     1. [Topic A] → suggested page: `topic-a.md`
+     2. [Topic B] → suggested page: `topic-b.md`
+     3. [Topic C] → suggested page: `topic-c.md`
+
+   Options:
+     a) Split into [N] separate pages (recommended — preserves atomicity)
+     b) Promote as a single page
+     c) Manually choose which sections go to which pages
+   ```
+
+   If split confirmed:
+   - Create each page in the destination folder with proper frontmatter
+   - Add `synthesized-from: ["[[original-note-name]]"]` to each page's frontmatter
+   - Add bidirectional `## Related` cross-links between all split pages
+   - Mark source note `status: processed` — do NOT delete (zero data loss)
+   - Skip steps 6–8 (movement already handled per page)
+
+5. **Search for duplicates** — Use `qmd vsearch` (or `obsidian search` if QMD unavailable) to check if a closely related page already exists in the target domain.
+
+   If a duplicate is found, present explicitly:
+   ```
+   Similar page found: [[existing-page-name]]
+
+   Options:
+     a) Absorb — append new content to the existing page
+     b) Create a new linked page
+     c) Skip this note
+   ```
+
+   If absorb confirmed:
+   - Show the user what content will be appended and which section it goes under
+   - Use `obsidian append` to add the content
+   - Add a `## Related` backlink in the existing page to the source note
+   - Mark source note `status: processed`
+   - Skip steps 6–8
+
+6. **Present routing plan** to user before executing:
+   ```
+   inbox/ready/[filename] (note) → domains/[domain]/02_PAGES/[filename] (page)
+   ```
+   Wait for user confirmation.
+
+7. **On confirmation, move the file** — this is when the note becomes a page:
+   ```bash
+   git mv inbox/ready/[filename] domains/[domain]/02_PAGES/[filename]
+   ```
+   (or `work/04_PAGES/[filename]` for cross-domain content)
+
+8. **Add wikilinks** to the new page:
+   - Add `[[domains/[domain]/INDEX|[domain]]]` link to the page's `## Related` section
+   - If the page mentions people, projects, or concepts that exist as vault notes, add those wikilinks too
+   - Update the domain's INDEX.md if significant (new project reference, key knowledge)
+
+9. **Update frontmatter status**: Change `status: ready` to `status: processed`.
+
+10. **Extract actions** — If the page contains `[action]` observations, offer to create tasks in the relevant project file.
+
+11. **Cascade updates** — After placing the page, find related pages and enrich them:
+    - Use `qmd vsearch` to find 3-5 related existing pages in the target domain + `work/`
+    - Add wikilinks to related pages automatically (low risk)
+    - For content appends or contradiction flags, show proposed changes to user for confirmation
+    - Skip if the vault has fewer than 5 notes
+
+12. **Report** for each note:
+    - Source path (note) → Destination path (page)
+    - Promotion type: simple | split | absorb
+    - Wikilinks added
+    - Actions extracted (if any)
+    - INDEX.md updated (if applicable)
+
+After distributing all notes, show summary of what moved where and how (simple, split, or absorb).

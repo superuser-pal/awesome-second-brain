@@ -1,17 +1,17 @@
 #!/bin/bash
-# Update obsidian-skills from upstream (kepano/obsidian-skills)
+# Update awesome-second-brain skills from upstream (superuser-pal/awesome-second-brain)
 # Run from vault root: .claude/update-skills.sh
 
 set -e
 
-REPO="kepano/obsidian-skills"
+REPO="superuser-pal/awesome-second-brain"
 SKILLS_DIR=".claude/skills"
 TEMP_DIR=$(mktemp -d)
 
-echo "Fetching latest obsidian-skills from $REPO..."
+echo "Fetching latest awesome-second-brain skills from $REPO..."
 git clone --depth 1 "https://github.com/$REPO.git" "$TEMP_DIR" 2>/dev/null
 
-for skill in "$TEMP_DIR/skills/"*/; do
+for skill in "$TEMP_DIR/.claude/skills/"*/; do
   skill_name=$(basename "$skill")
   if [ -d "$SKILLS_DIR/$skill_name" ]; then
     echo "Updating $skill_name..."

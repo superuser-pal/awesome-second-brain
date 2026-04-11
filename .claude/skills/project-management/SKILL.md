@@ -20,8 +20,8 @@ Centralized project and task management across PAL Second Brain domains. Complem
 
 | Workflow | Trigger phrases |
 |----------|----------------|
-| `create-project` | "create project", "new project", "start project" |
-| `pull-tasks` | "pull tasks", "sync tasks", "aggregate tasks", "show tasks" |
+| `project-create` | "create project", "new project", "start project" |
+| `task-sync` | "pull tasks", "sync tasks", "aggregate tasks", "show tasks" |
 | `update-tasks` | "update tasks", "push tasks", "sync back", "update projects" |
 | `project_dashboard` | "project dashboard", "list projects", "project status", "show projects" |
 | `archive-project` | "archive project", "close project", "complete project" |

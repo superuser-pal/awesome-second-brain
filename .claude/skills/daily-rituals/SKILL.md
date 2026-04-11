@@ -22,8 +22,8 @@ Structured planning workflows that layer on top of existing PAL Second Brain com
 | `/standup` | **Enhanced** — now also creates today's daily note in `plan/` and marks focus tasks `[/]` |
 | `/wrap-up` | **Enhanced** — now also appends evening reflection to today's daily note and marks tasks done |
 | `/weekly` | **Unchanged** — analytical synthesis only, no file creation |
-| `/plan-week` | **New** — create weekly plan file, commit tasks |
-| `/close-week` | **New** — close week, consolidate daily notes, archive |
+| `/week-prep` | **New** — create weekly plan file, commit tasks |
+| `/week-close` | **New** — close week, consolidate daily notes, archive |
 | `/week-cycle` | **New** — orchestrates: close → weekly review → plan |
 
 ## File Paths
@@ -52,6 +52,6 @@ Structured planning workflows that layer on top of existing PAL Second Brain com
 |----------|-----------|
 | `morning-checkin` | `/standup` (appended steps) |
 | `evening-review` | `/wrap-up` (appended steps) |
-| `weekly-planning` | `/plan-week` |
-| `weekly-closing` | `/close-week` |
+| `week-prep` | `/week-prep` |
+| `week-close` | `/week-close` |
 | `week-cycle` | `/week-cycle` |

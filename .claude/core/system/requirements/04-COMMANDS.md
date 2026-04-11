@@ -15,7 +15,7 @@
 
 Category: Functional
 Verification: Run /standup and confirm all standup sections appear, then confirm today's daily note is created in plan/ and focus tasks are marked [/]
-Source: [standup.md](../../commands/standup.md)
+Source: [standup.md](../../commands/rituals/standup.md)
 
 ---
 
@@ -27,7 +27,7 @@ Source: [standup.md](../../commands/standup.md)
 
 Category: Functional
 Verification: Run /dump with mixed content and confirm proper routing
-Source: [dump.md](../../commands/dump.md)
+Source: [quick-dump.md](../../commands/capture/quick-dump.md)
 
 ---
 
@@ -39,7 +39,7 @@ Source: [dump.md](../../commands/dump.md)
 
 Category: Functional
 Verification: Run /wrap-up and confirm full review output, then confirm evening section is appended to today's plan/DD-MM-YY-XX.md
-Source: [wrap-up.md](../../commands/wrap-up.md)
+Source: [wrap-up.md](../../commands/rituals/wrap-up.md)
 
 ---
 
@@ -51,7 +51,7 @@ Source: [wrap-up.md](../../commands/wrap-up.md)
 
 Category: Functional
 Verification: Run /weekly and confirm synthesis output with North Star alignment
-Source: [weekly.md](../../commands/weekly.md)
+Source: [weekly.md](../../commands/rituals/weekly.md)
 
 ---
 
@@ -59,13 +59,13 @@ Source: [weekly.md](../../commands/weekly.md)
 
 ### 4.2.1 Capture Stage 1
 
-**Given** the user invokes /capture
+**Given** the user invokes /general
 **When** content is provided
 **Then** a raw note is created in inbox/raw/ with date frontmatter and optional observation categories
 
 Category: Functional
-Verification: Run /capture and confirm note in inbox/raw/
-Source: [capture.md](../../commands/capture.md)
+Verification: Run /general and confirm note in inbox/raw/
+Source: [general.md](../../commands/capture/general.md)
 
 ---
 
@@ -97,25 +97,25 @@ Source: [distribute.md](../../commands/distribute.md)
 
 ### 4.3.1 Review Brief Generation
 
-**Given** the user invokes /review-brief with "manager" or "peers"
+**Given** the user invokes /brief with "manager" or "peers"
 **When** the command executes
 **Then** all performance evidence (wins doc, work notes, decisions, incidents, 1:1 feedback, competency backlinks) is aggregated into a structured review brief
 
 Category: Functional
-Verification: Run /review-brief manager and confirm structured output
-Source: [review-brief.md](../../commands/review-brief.md)
+Verification: Run /brief manager and confirm structured output
+Source: [brief.md](../../commands/review/brief.md)
 
 ---
 
 ### 4.3.2 Vault Audit
 
-**Given** the user invokes /vault-audit
+**Given** the user invokes /audit
 **When** the command executes
 **Then** indexes are checked for consistency, orphan notes are found, frontmatter is validated, stale notes are flagged, folder placement is verified, and thinking/ is checked for leftover drafts
 
 Category: Functional
-Verification: Run /vault-audit and confirm comprehensive audit report
-Source: [vault-audit.md](../../commands/vault-audit.md)
+Verification: Run /audit and confirm comprehensive audit report
+Source: [audit.md](../../commands/core/audit.md)
 
 ---
 
@@ -127,7 +127,7 @@ Source: [vault-audit.md](../../commands/vault-audit.md)
 
 Category: Functional
 Verification: Run /project-archive on an active project and confirm it moves to 05_ARCHIVE/
-Source: [project-archive.md](../../commands/project-archive.md)
+Source: [project-archive.md](../../commands/manage/project-archive.md)
 
 ---
 
@@ -135,25 +135,25 @@ Source: [project-archive.md](../../commands/project-archive.md)
 
 ### 4.4.1 Plan Week
 
-**Given** the user invokes /plan-week
+**Given** the user invokes /week-prep
 **When** the command executes
 **Then** it warns if an active week already exists, calculates the ISO week number and dates, asks for a week goal, shows open tasks from dashboards/TASKS.md for selection (3-7 tasks), creates plan/W[week]_YYYY-MM-DD.md, and activates the week by marking committed tasks [/] in source files
 
 Category: Functional
-Verification: Run /plan-week and confirm week file created in plan/, committed tasks marked [/] in source project files
-Source: [plan-week.md](../../commands/plan-week.md)
+Verification: Run /week-prep and confirm week file created in plan/, committed tasks marked [/] in source project files
+Source: [week-prep.md](../../commands/rituals/week-prep.md)
 
 ---
 
 ### 4.4.2 Close Week
 
-**Given** the user invokes /close-week
+**Given** the user invokes /week-close
 **When** the command executes
 **Then** it loads the active week from plan/, calculates velocity (completed/planned), prompts to handle each incomplete task (carry forward/backlog/drop/pause), gathers a retrospective, consolidates daily notes from plan/ into the week file, deletes the individual daily notes, and archives the week file to plan/archive/W[week].md
 
 Category: Functional
-Verification: Run /close-week with an active week and confirm: velocity calculated, daily notes removed, week file archived to plan/archive/
-Source: [close-week.md](../../commands/close-week.md)
+Verification: Run /week-close with an active week and confirm: velocity calculated, daily notes removed, week file archived to plan/archive/
+Source: [week-close.md](../../commands/rituals/week-close.md)
 
 ---
 
@@ -165,7 +165,7 @@ Source: [close-week.md](../../commands/close-week.md)
 
 Category: Functional
 Verification: Run /week-cycle with an active week and confirm all three phases execute in sequence
-Source: [week-cycle.md](../../commands/week-cycle.md)
+Source: [week-cycle.md](../../commands/rituals/week-cycle.md)
 
 ---
 
@@ -173,37 +173,37 @@ Source: [week-cycle.md](../../commands/week-cycle.md)
 
 ### 4.5.1 Create Domain Project
 
-**Given** the user invokes /create-project
+**Given** the user invokes /project-create
 **When** the command executes
 **Then** it lists available domains, collects project name, goal, priority, and initial tasks, creates domains/[name]/02_PROJECTS/PROJECT_[NAME].md with correct frontmatter, adds the project to the domain's INDEX.md, and updates dashboards/TASKS.md
 
 Category: Functional
-Verification: Run /create-project, confirm project file exists in domains/[name]/02_PROJECTS/, domain INDEX.md is updated, and TASKS.md reflects the new project
-Source: [create-project.md](../../commands/create-project.md)
+Verification: Run /project-create, confirm project file exists in domains/[name]/02_PROJECTS/, domain INDEX.md is updated, and TASKS.md reflects the new project
+Source: [project-create.md](../../commands/manage/project-create.md)
 
 ---
 
 ### 4.5.2 Sync Tasks — Pull
 
-**Given** the user invokes /sync-tasks (no argument or "pull")
+**Given** the user invokes /task-sync (no argument or "pull")
 **When** the command executes
 **Then** it scans all domains/*/01_PROJECTS/PROJECT_*.md and work/01_PROJECTS/, extracts tasks by status, tags each task with its source, and writes the aggregated result to dashboards/TASKS.md with updated metadata (last_pulled, total counts, alerts)
 
 Category: Functional
-Verification: Add a task to a domain project, run /sync-tasks, confirm the task appears in dashboards/TASKS.md under the correct domain
-Source: [sync-tasks.md](../../commands/sync-tasks.md)
+Verification: Add a task to a domain project, run /task-sync, confirm the task appears in dashboards/TASKS.md under the correct domain
+Source: [task-sync.md](../../commands/manage/task-sync.md)
 
 ---
 
 ### 4.5.3 Sync Tasks — Push
 
-**Given** the user invokes /sync-tasks push
+**Given** the user invokes /task-sync push
 **When** the command executes
 **Then** it reads dashboards/TASKS.md, detects checkbox changes compared to source files, prompts on conflicts (source newer than last_pulled), applies non-conflicting changes to source project files, and updates last_updated frontmatter in modified files
 
 Category: Functional
-Verification: Change a task checkbox in TASKS.md, run /sync-tasks push, confirm the change is reflected in the source project file
-Source: [sync-tasks.md](../../commands/sync-tasks.md)
+Verification: Change a task checkbox in TASKS.md, run /task-sync push, confirm the change is reflected in the source project file
+Source: [task-sync.md](../../commands/manage/task-sync.md)
 
 ---
 

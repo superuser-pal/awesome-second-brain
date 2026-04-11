@@ -4,7 +4,7 @@ Push task status changes from `dashboards/TASKS.md` back to source project files
 
 ## Trigger
 
-"update tasks", "push tasks", "sync back", "update projects", `/sync-tasks push`
+"update tasks", "push tasks", "sync back", "update projects", `/task-sync push`
 
 ## Steps
 

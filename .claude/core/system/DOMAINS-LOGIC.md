@@ -22,7 +22,7 @@ domains/[Name]/
 ├── INDEX.md          # MOC — source of truth for the domain
 ├── CONNECTIONS.yaml  # External integrations config
 ├── 01_PROJECTS/      # Active project files (PROJECT_UPPER_SNAKE.md)
-├── 02_PAGES/         # General notes routed from inbox
+├── 02_PAGES/         # Permanent domain pages — promoted from inbox notes via /distribute
 └── 05_ARCHIVE/       # Completed or deprecated content
 ```
 
@@ -92,7 +92,7 @@ name: "page-name"
 domain: "DomainName"
 origin: manual          # braindump | ai-output | manual
 type: note              # concept | decision | reference | meeting | idea | note | belief | frame | lesson | model | goal | plan
-status: processed       # unprocessed | ready | processed
+status: processed       # processed | archived
 description: "~150 char summary"
 tags: []
 created: YYYY-MM-DD

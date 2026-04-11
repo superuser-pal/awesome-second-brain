@@ -1,6 +1,6 @@
 ---
 name: vault-librarian
-description: "Run vault maintenance: detect orphan notes, find broken wikilinks, validate frontmatter completeness, flag stale active notes, check cross-linking integrity. Invoke via /vault-audit or when the user asks for vault cleanup."
+description: "Run vault maintenance: detect orphan notes, find broken wikilinks, validate frontmatter completeness, flag stale active notes, check cross-linking integrity. Invoke via /audit or when the user asks for vault cleanup."
 tools: Read, Grep, Glob, Bash
 model: sonnet
 maxTurns: 25
@@ -32,7 +32,7 @@ You are the vault librarian for the PAL Second Brain vault. Run a full health ch
 
 ## Output
 
-Write the maintenance report to `thinking/vault-audit-YYYY-MM-DD.md` with:
+Write the maintenance report to `thinking/audit-YYYY-MM-DD.md` with:
 - Summary statistics (total notes, orphans found, broken links, missing frontmatter)
 - Actionable items grouped by severity (fix now / fix later / informational)
 - Do NOT auto-fix anything — list recommendations for the user to approve

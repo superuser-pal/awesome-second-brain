@@ -7,15 +7,27 @@
 
 ## 2.1 Capture (Stage 1)
 
+### 2.1.0 Initial Status Assignment
+
+**Given** any capture command creates a new note
+**When** the note is written to disk
+**Then** `status: unprocessed` MUST be set in the frontmatter (for inbox captures) or `status: thinking` (for thinking captures)
+
+Category: Validation
+Verification: Run `/general` and confirm `status: unprocessed` appears in the created file
+Source: [general.md](../../commands/capture/general.md)
+
+---
+
 ### 2.1.1 Raw Capture to Inbox
 
-**Given** the user invokes /capture with content
+**Given** the user invokes /general with content
 **When** the capture command processes the input
-**Then** a note is created at `inbox/raw/[topic]-[YYYY-MM-DD].md` with minimal frontmatter (date, created)
+**Then** a note is created at `inbox/raw/[topic]-[YYYY-MM-DD].md` with minimal frontmatter (date, created, status: unprocessed)
 
 Category: Functional
-Verification: Run `/capture some thoughts about X` and confirm file appears in inbox/raw/
-Source: [capture.md](../../commands/capture.md)
+Verification: Run `/general some thoughts about X` and confirm file appears in inbox/raw/
+Source: [general.md](../../commands/capture/general.md)
 
 ---
 
@@ -27,7 +39,7 @@ Source: [capture.md](../../commands/capture.md)
 
 Category: Functional
 Verification: Capture a braindump with mixed content and confirm categories are applied
-Source: [capture.md](../../commands/capture.md)
+Source: [general.md](../../commands/capture/general.md)
 
 ---
 
@@ -38,8 +50,8 @@ Source: [capture.md](../../commands/capture.md)
 **Then** `defuddle parse <url> --md` is used to extract clean markdown, which is included in the capture note
 
 Category: Functional
-Verification: Run `/capture https://example.com/article` and confirm extracted content appears
-Source: [capture.md](../../commands/capture.md)
+Verification: Run `/general https://example.com/article` and confirm extracted content appears
+Source: [general.md](../../commands/capture/general.md)
 
 ---
 
@@ -56,6 +68,30 @@ Source: [validate-write.py](../../scripts/validate-write.py)
 ---
 
 ## 2.2 Process (Stage 2)
+
+### 2.2.0 Thinking Content Routing
+
+**Given** a raw note is being processed by /process
+**When** the content is primarily reasoning, a scratchpad, an open question, or ongoing research
+**Then** /process MUST offer to move it to `thinking/` with `status: thinking` instead of `inbox/ready/`
+
+Category: Functional
+Verification: Create a raw note with reasoning content and confirm thinking/ route is offered
+Source: [process.md](../../commands/process.md)
+
+---
+
+### 2.2.0b Thinking Notes Reminder
+
+**Given** /process has finished processing inbox/raw/ files
+**When** there are notes in `thinking/` with `status: thinking`
+**Then** /process MUST display a passive reminder listing those notes with last_updated dates and instructions for promoting or archiving them — without interactive prompts
+
+Category: Functional
+Verification: Create a thinking/ note and run /process; confirm reminder block appears
+Source: [process.md](../../commands/process.md)
+
+---
 
 ### 2.2.1 Scan and Classify
 
@@ -152,3 +188,57 @@ Source: [distribute.md](../../commands/distribute.md)
 Category: Functional
 Verification: Distribute a note with [action] items and confirm task creation prompt
 Source: [distribute.md](../../commands/distribute.md)
+
+---
+
+### 2.3.5 Note → Page Transformation
+
+**Given** a note is successfully distributed to `domains/[domain]/02_PAGES/` or `work/04_PAGES/`
+**When** the file move completes
+**Then** the source note MUST have `status: processed` set, and the resulting file is considered a **page** (permanent). The source note is retained for provenance — not deleted.
+
+Category: Functional
+Verification: Distribute a note and confirm source gets `status: processed` and page appears in domain folder
+Source: [distribute.md](../../commands/distribute.md)
+
+---
+
+### 2.3.6 Split Promotion
+
+**Given** a note in `inbox/ready/` covers 3+ independently page-worthy topics (each self-contained and useful on its own)
+**When** /distribute processes it
+**Then** /distribute MUST detect this and offer to split into separate pages, each with:
+  - `synthesized-from: ["[[source-note]]"]` in frontmatter
+  - Bidirectional `## Related` cross-links between all split pages
+  - `status: processed` on the source note
+
+Category: Functional
+Verification: Create a multi-topic note and run /distribute; confirm split offer appears
+Source: [distribute.md](../../commands/distribute.md)
+
+---
+
+### 2.3.7 Absorb Promotion
+
+**Given** a note in `inbox/ready/` closely duplicates or extends an existing page in the target domain
+**When** /distribute finds a duplicate via semantic search
+**Then** /distribute MUST present an explicit absorb option showing the user:
+  - The existing page title
+  - The specific content that would be appended
+  - Which section it goes under
+
+Category: Functional
+Verification: Create a note that duplicates existing page content and run /distribute; confirm absorb offer
+Source: [distribute.md](../../commands/distribute.md)
+
+---
+
+### 2.3.8 Status Enum (canonical)
+
+**Given** any inbox or thinking note
+**When** its `status` field is set
+**Then** only these values are valid: `unprocessed | thinking | ready | processed | archived`
+
+Category: Validation
+Verification: Validate-write.py should warn on any other status value in inbox/ or thinking/
+Source: [ASSET-CLASSES.md](../../core/reference/ASSET-CLASSES.md)

@@ -15,7 +15,7 @@ Work evidence analysis and data extracts for performance reviews. One section pe
 - Each section covers one person and one review period (e.g. `## Jane Smith — H1 2026`)
 - Content: output volume, projects, quality signals, growth indicators, collaboration
 - Linked from [[work/05_REVIEW/WINS|Wins]] and review cycle notes
-- Used by `/review-peer` and `/review-brief` to gather supporting data
+- Used by `/peer` and `/brief` to gather supporting data
 
 ---
 

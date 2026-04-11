@@ -20,13 +20,13 @@ Task-specific agents invoked BY commands. All have `maxTurns`. Run in isolated c
 |-------|---------|---------|-----------|
 | `wins-capture` | 20 | Finds uncaptured wins and competency gaps from session activity | `/wrap-up`, `/weekly` |
 | `context-loader` | 20 | Loads all vault context about a person, project, incident, or concept | Direct |
-| `cross-linker` | 25 | Finds missing wikilinks, orphans, and broken backlinks across the vault | `/vault-audit` |
-| `contact-importer` | 30 | Bulk creates/updates person notes from Slack profiles | `/incident-capture` |
-| `review-fact-checker` | 30 | Verifies every claim in a review draft against vault source notes | `/self-review`, `/review-peer` |
-| `review-prep` | 30 | Aggregates all performance evidence for a given review period | `/review-brief` |
-| `slack-archaeologist` | 40 | Full Slack reconstruction — reads every message, thread, and profile | `/incident-capture` |
-| `vault-librarian` | 25 | Deep vault maintenance — orphan detection, broken links, stale notes | `/vault-audit` |
-| `vault-migrator` | 50 | Classifies, transforms, and migrates content from a source vault | `/vault-upgrade` |
+| `cross-linker` | 25 | Finds missing wikilinks, orphans, and broken backlinks across the vault | `/audit` |
+| `contact-importer` | 30 | Bulk creates/updates person notes from Slack profiles | `/incident` |
+| `review-fact-checker` | 30 | Verifies every claim in a review draft against vault source notes | `/self`, `/peer` |
+| `review-prep` | 30 | Aggregates all performance evidence for a given review period | `/brief` |
+| `slack-archaeologist` | 40 | Full Slack reconstruction — reads every message, thread, and profile | `/incident` |
+| `vault-librarian` | 25 | Deep vault maintenance — orphan detection, broken links, stale notes | `/audit` |
+| `vault-migrator` | 50 | Classifies, transforms, and migrates content from a source vault | `/upgrade` |
 
 **Total: 9 subagents**
 
@@ -68,32 +68,35 @@ Interactive persona agents invoked BY the user. No `maxTurns` — conversational
 
 | Command | File | Subagents Called |
 |---------|------|-----------------|
-| `/standup` | `standup.md` | — |
-| `/wrap-up` | `wrap-up.md` | `wins-capture` |
-| `/plan-week` | `plan-week.md` | — |
-| `/close-week` | `close-week.md` | — |
-| `/week-cycle` | `week-cycle.md` | — |
-| `/weekly` | `weekly.md` | `wins-capture` |
-| `/dump` | `dump.md` | — |
-| `/capture` | `capture.md` | — |
-| `/process` | `process.md` | — |
-| `/distribute` | `distribute.md` | — |
-| `/capture-1on1` | `capture-1on1.md` | — |
-| `/incident-capture` | `incident-capture.md` | `slack-archaeologist`, `contact-importer` |
-| `/slack-scan` | `slack-scan.md` | `slack-archaeologist` |
-| `/peer-scan` | `peer-scan.md` | — |
-| `/review-brief` | `review-brief.md` | `review-prep` |
-| `/self-review` | `self-review.md` | `review-fact-checker` |
-| `/review-peer` | `review-peer.md` | `review-fact-checker` |
-| `/create-project` | `create-project.md` | — |
-| `/sync-tasks` | `sync-tasks.md` | — |
-| `/vault-audit` | `vault-audit.md` | `cross-linker`, `vault-librarian` |
-| `/vault-upgrade` | `vault-upgrade.md` | `vault-migrator` |
-| `/project-archive` | `project-archive.md` | — |
+| `/standup` | `rituals/standup.md` | — |
+| `/wrap-up` | `rituals/wrap-up.md` | `wins-capture` |
+| `/week-prep` | `rituals/week-prep.md` | — |
+| `/week-close` | `rituals/week-close.md` | — |
+| `/week-cycle` | `rituals/week-cycle.md` | — |
+| `/weekly` | `rituals/weekly.md` | `wins-capture` |
+| `/brain-dump` | `capture/brain-dump.md` | — |
+| `/quick-dump` | `capture/quick-dump.md` | — |
+| `/general` | `capture/general.md` | — |
+| `/process` | `core/process.md` | — |
+| `/distribute` | `core/distribute.md` | — |
+| `/1-1` | `capture/1-1.md` | — |
+| `/incident` | `capture/incident.md` | `slack-archaeologist`, `contact-importer` |
+| `/slack-scan` | `capture/slack-scan.md` | `slack-archaeologist` |
+| `/peer-scan` | `capture/peer-scan.md` | — |
+| `/brief` | `review/brief.md` | `review-prep` |
+| `/self` | `review/self.md` | `review-fact-checker` |
+| `/peer` | `review/peer.md` | `review-fact-checker` |
+| `/project-create` | `manage/project-create.md` | — |
+| `/task-add` | `manage/task-add.md` | — |
+| `/task-sync` | `manage/task-sync.md` | — |
+| `/audit` | `core/audit.md` | `cross-linker`, `vault-librarian` |
+| `/upgrade` | `core/upgrade.md` | `vault-migrator` |
+| `/project-archive` | `manage/project-archive.md` | — |
+| `/save` | `core/save.md` | — |
+| `/onboard` | `core/onboard.md` | — |
 | `/humanize` | `humanize.md` | — |
-| `/onboard` | `onboard.md` | — |
 
-**Total: 24 commands**
+**Total: 27 commands**
 
 ---
 

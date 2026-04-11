@@ -153,7 +153,7 @@ Source: [pre-compact.sh](../../scripts/pre-compact.sh)
 
 **Given** a session ends
 **When** the Stop hook fires
-**Then** a checklist reminder is printed: archive completed projects, update indexes, check orphans, check inbox, run /vault-audit if many notes created
+**Then** a checklist reminder is printed: archive completed projects, update indexes, check orphans, check inbox, run /audit if many notes created
 
 Category: UI
 Verification: End a session and confirm checklist appears

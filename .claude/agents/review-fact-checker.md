@@ -11,7 +11,7 @@ skills:
 
 # Review Fact-Checker
 
-Takes a review draft file (self-review or peer review) and systematically verifies every factual claim against vault sources.
+Takes a review draft file (self or peer) and systematically verifies every factual claim against vault sources.
 
 ## Input
 

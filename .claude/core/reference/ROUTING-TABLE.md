@@ -20,27 +20,28 @@ For full intent routing logic, see `ORCHESTRATION.md`. For subagent details, see
 |-------------|---------|
 | Morning kickoff, start of day, what to focus on | `/standup` |
 | End of day, wrap up, close session | `/wrap-up` |
-| Plan this week, set weekly goals | `/plan-week` |
-| Close the week, weekly retrospective | `/close-week` |
+| Plan this week, set weekly goals | `/week-prep` |
+| Close the week, weekly retrospective | `/week-close` |
 | Full weekly lifecycle (close + plan) | `/week-cycle` |
 | Weekly synthesis, cross-session patterns | `/weekly` |
 | Save something, capture with light formatting | `/save` |
-| Quick capture, brain dump, dump this (power) | `/dump` |
-| Quick task, TODO, action item | `/task` |
-| Stage 1 capture only | `/capture` |
+| Reflective capture, capture my thoughts, reflection | `/brain-dump` |
+| Quick capture, brain dump, dump this (power) | `/quick-dump` |
+| Quick task, TODO, action item | `/task-add` |
+| Stage 1 capture only | `/general` |
 | Process inbox notes, add frontmatter | `/process` |
 | Route processed notes to domains | `/distribute` |
-| Capture a 1:1 meeting | `/capture-1on1` |
-| Capture an incident from Slack | `/incident-capture` |
+| Capture a 1:1 meeting | `/1-1` |
+| Capture an incident from Slack | `/incident` |
 | Scan Slack channels for evidence | `/slack-scan` |
 | Scan a peer's PRs for review prep | `/peer-scan` |
-| Generate review brief (manager or peer) | `/review-brief` |
-| Write self-assessment / self-review | `/self-review` |
-| Write peer review | `/review-peer` |
-| Create a new domain project | `/create-project` |
-| Sync tasks to TASKS.md | `/sync-tasks` |
-| Audit vault health (orphans, links, indexes) | `/vault-audit` |
-| Import content from another vault | `/vault-upgrade` |
+| Generate review brief (manager or peer) | `/brief` |
+| Write self-assessment / self-review | `/self` |
+| Write peer review | `/peer` |
+| Create a new domain project | `/project-create` |
+| Sync tasks to TASKS.md | `/task-sync` |
+| Audit vault health (orphans, links, indexes) | `/audit` |
+| Import content from another vault | `/upgrade` |
 | Archive a completed project | `/project-archive` |
 | Edit text to sound human, not AI | `/humanize` |
 
@@ -54,13 +55,13 @@ Commands that invoke subagents. Commands not listed here run without subagents.
 |---------|-----------------|-------|
 | `/wrap-up` | `wins-capture` | Scans session for uncaptured wins |
 | `/weekly` | `wins-capture` | Scans week for patterns and wins |
-| `/incident-capture` | `slack-archaeologist`, `contact-importer` | Full Slack reconstruction + person notes |
+| `/incident` | `slack-archaeologist`, `contact-importer` | Full Slack reconstruction + person notes |
 | `/slack-scan` | `slack-archaeologist` | Deep Slack scan only |
-| `/review-brief` | `review-prep` | Aggregates evidence for the review period |
-| `/self-review` | `review-fact-checker` | Verifies claims against vault sources |
-| `/review-peer` | `review-fact-checker` | Verifies peer review claims against vault sources |
-| `/vault-audit` | `cross-linker`, `vault-librarian` | Link audit + deep maintenance |
-| `/vault-upgrade` | `vault-migrator` | Full vault migration and transformation |
+| `/brief` | `review-prep` | Aggregates evidence for the review period |
+| `/self` | `review-fact-checker` | Verifies claims against vault sources |
+| `/peer` | `review-fact-checker` | Verifies peer review claims against vault sources |
+| `/audit` | `cross-linker`, `vault-librarian` | Link audit + deep maintenance |
+| `/upgrade` | `vault-migrator` | Full vault migration and transformation |
 
 ---
 
