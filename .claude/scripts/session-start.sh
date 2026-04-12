@@ -42,7 +42,7 @@ fi
 
 
 if [ -n "$NORTH_STAR_FILE" ]; then
-  cat "$NORTH_STAR_FILE" | head -30
+  cat "$NORTH_STAR_FILE" | head -60
 elif command -v obsidian &>/dev/null; then
   run_with_timeout 5 'echo "(not found)"' obsidian read file="North Star" | head -30
 else
@@ -67,6 +67,21 @@ if command -v obsidian &>/dev/null; then
   run_with_timeout 5 'echo "(CLI timed out)"' obsidian tasks daily todo | head -10
 else
   echo "(Obsidian CLI not available)"
+fi
+echo ""
+
+echo "### Active Week"
+active_week=$(ls plan/W*.md 2>/dev/null | head -1)
+if [ -n "$active_week" ]; then
+  week_label=$(basename "$active_week" .md)
+  week_goal=$(grep -m1 "^## Goal" -A1 "$active_week" 2>/dev/null | tail -1 | sed 's/^> //' || echo "(no goal set)")
+  committed=$(grep -c '^\- \[/\]' "$active_week" 2>/dev/null || echo "0")
+  done_count=$(grep -c '^\- \[x\]' "$active_week" 2>/dev/null || echo "0")
+  echo "- Week: $week_label"
+  echo "- Goal: $week_goal"
+  echo "- Tasks: ${done_count} done / ${committed} committed"
+else
+  echo "(no active week — run /week-prep to start one)"
 fi
 echo ""
 
@@ -101,6 +116,23 @@ else
   echo "(inbox empty)"
 fi
 echo ""
+
+echo "### Thinking Notes"
+thinking_count=$( (ls thinking/*.md 2>/dev/null || true) | grep -v README | wc -l | tr -d ' ')
+if [ "$thinking_count" -gt 0 ]; then
+  echo "- $thinking_count note(s) in thinking/"
+  ls thinking/*.md 2>/dev/null | grep -v README | sed 's|thinking/||;s|\.md$||' | head -5 | sed 's/^/  - /'
+else
+  echo "(no thinking notes)"
+fi
+echo ""
+
+blocked_count=$(grep -rl '^\- \[!\]' work/ domains/ 2>/dev/null | wc -l | tr -d ' ')
+if [ "$blocked_count" -gt 0 ]; then
+  echo "### Blocked Tasks"
+  echo "- $blocked_count file(s) contain blocked tasks — check TASKS.md"
+  echo ""
+fi
 
 echo "### Recently Modified (Last 10 Days)"
 find . -type f -name "*.md" -not -path "./.git/*" -not -path "./.obsidian/*" -not -path "./thinking/*" -not -path "./.claude/*" -mtime -10 | sort

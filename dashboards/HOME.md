@@ -1,4 +1,5 @@
 ---
+date: 2026-04-12
 description: "Vault entry point — embedded dashboards, quick links, current focus"
 tags:
   - index
@@ -21,7 +22,7 @@ tags:
 ## Quick Links
 
 - [[Index|Work Notes]] | [[People & Context]] | [[Brag Doc]]
-- [[MEMORIES]] | [[NORTH_STAR]] | [[SKILLS]]
+- [[MEMORIES]] | [[NORTH_STAR]] | [[REFERENCE]]
 
 ## Recent 1:1s
 

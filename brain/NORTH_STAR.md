@@ -1,6 +1,6 @@
 ---
-date:
-description: "Living document of goals, focus areas, and aspirations — read at session start, updated when direction shifts"
+date: 2026-04-12
+description: "Living document of goals, active projects, and focus — read at session start, updated when direction shifts"
 tags:
   - brain
   - north-star
@@ -11,39 +11,41 @@ aliases:
 
 # North Star
 
-A living document of goals, aspirations, and current focus areas. Both you and Claude write to this. Claude reads it at the start of meaningful work sessions and references it when making suggestions.
+A living document of goals, aspirations, and active projects. Both you and Claude write to this. Claude reads it at the start of every session and references it when making suggestions.
 
 > Identity and background context: [[ABOUTME]]
 
 ## Current Focus
 
-_What am I working toward right now?_
+_What am I orienting toward right now? (2-3 sentences max)_
 
 -
+
+## Active Projects
+
+_The main things I'm actually working on. Each links to the project file and explains why it matters._
+
+| Project | Purpose / Why it matters |
+|---------|--------------------------|
+| _(none yet)_ | _(add projects here as you create them)_ |
 
 ## Goals
 
-### Short-term (This Quarter)
+### This Quarter
 
 -
 
-### Medium-term (This Half)
+### This Half
 
 -
 
-### Long-term (This Year+)
-
--
-
-## Aspirations
-
-_What kind of professional/person am I becoming?_
+### This Year+
 
 -
 
 ## Anti-goals
 
-_What am I explicitly NOT optimizing for?_
+_What am I explicitly NOT doing or optimizing for?_
 
 -
 
@@ -53,4 +55,4 @@ Record when focus changes, with date and reason.
 
 | Date | Shift | Reason |
 |------|-------|--------|
-|      | Created North Star | Initial setup |
+| 2026-04-12 | Created North Star | Initial setup |
