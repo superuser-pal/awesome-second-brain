@@ -19,7 +19,7 @@ Every time you open an AI chat, it feels like you start from zero or with outdat
 
 ## 💡 The Solution
 
-Give your agent an **Awesome Second Brain**. 
+Give your agent an **Awesome Second Brain**.
 
 Awesome Second Brain (ASB) is an open-source framework that gives your AI **a spotless context layer**, **organized knowledge**, and **automated processing pipelines** — so your AI operates with the same goals, history, and strategic intent as you do.
 
@@ -38,6 +38,7 @@ Awesome Second Brain (ASB) is an open-source framework that gives your AI **a sp
 ## ⚡ See It In Action
 
 **Morning kickoff:**
+
 ```bash
 /standup
 # → Loads North Star, active projects, open tasks, recent git changes.
@@ -46,6 +47,7 @@ Awesome Second Brain (ASB) is an open-source framework that gives your AI **a sp
 ```
 
 **Capture any raw input:**
+
 ```bash
 /brain-dump "I've been thinking about using Redis for caching. The API is rate limited to 1000 calls/hour."
 # → Extracts atomic observations: [idea] Use Redis, [fact] API limit.
@@ -58,6 +60,7 @@ Awesome Second Brain (ASB) is an open-source framework that gives your AI **a sp
 ## 🚀 Quick Start
 
 1. **Clone this repo**:
+
    ```bash
    git clone https://github.com/superuser-pal/awesome-second-brain
    cd awesome-second-brain
@@ -66,14 +69,17 @@ Awesome Second Brain (ASB) is an open-source framework that gives your AI **a sp
 2. **Open the folder as an Obsidian vault**.
 
 3. **Install dependencies**:
+
    ```bash
    bun install
    ```
-   *(Required for system hooks and scripts)*
+
+   _(Required for system hooks and scripts)_
 
 4. **Enable the Obsidian CLI** in Settings → General (requires Obsidian 1.12+).
 
 5. **Run your agent** in the vault directory: **`claude`** or **`gemini`**.
+
    ```bash
    /setup-context
    ```
@@ -123,6 +129,7 @@ Awesome Second Brain's workspace is organized to keep focus sharp and context co
 ## 🛠️ How It Works
 
 ### The Knowledge Pipeline
+
 Capture raw information and transform it into structured knowledge automatically.
 
 | Stage             | Activity                       | Command        | Result                              |
@@ -132,6 +139,7 @@ Capture raw information and transform it into structured knowledge automatically
 | **3. Distribute** | Move to correct `/domain`      | `/distribute`  | Contextually relevant persistence   |
 
 ### Lifecycle Hooks
+
 Five automated hooks handle setting up your session context:
 
 | Hook                | When                      | What                                                                          |
@@ -201,7 +209,7 @@ Autonomous "bots" triggered by commands to perform complex background tasks.
 
 ## 📝 Author & License
 
-Created by **[Rodrigo Cano Teran](https://brennoferrari.com)** — Senior Product Manager in Brussels, building agentic workflows with Claude Code.
+Created by Rodrigo Cano Teran — Senior Product Manager in Brussels, building agentic workflows with Claude Code.
 Released under the [MIT License](LICENSE).
 
 ---
