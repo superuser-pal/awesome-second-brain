@@ -1,6 +1,6 @@
 {
   "name": "awesome-second-brain",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "The AI-assisted second brain that connects your notes, ideas, and tasks into persistent context for agentic workflows.",
   "main": "index.js",
   "scripts": {

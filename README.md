@@ -1,15 +1,14 @@
 # 🧠 Awesome Second Brain
 
-[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](docs/CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)](docs/CHANGELOG.md)
 [![Claude Code](https://img.shields.io/badge/powered%20by-Claude%20Code-orange.svg)](https://docs.anthropic.com/en/docs/claude-code)
-[![Gemini CLI](https://img.shields.io/badge/gemini%20cli-supported-4285F4)](https://github.com/google-gemini/gemini-cli)
 [![Obsidian](https://img.shields.io/badge/obsidian-1.12%2B-7C3AED)](https://obsidian.md)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 > **The AI-assisted second brain that connects your notes, ideas, and tasks into persistent context for agentic workflows.**
 
 > [!IMPORTANT]
-> Awesome Second Brain is currently at v1.0.0. We’re moving fast, so expect frequent updates and some breaking changes as the project evolves. If you’re into AI-assisted productivity, we’d love your feedback.
+> Awesome Second Brain is currently at v2.0.0. We’re moving fast, so expect frequent updates and some breaking changes as the project evolves. If you’re into AI-assisted productivity, we’d love your feedback.
 
 ---
 
@@ -34,6 +33,16 @@ Awesome Second Brain (ASB) is an open-source framework that gives your AI **a sp
 | Generic AI responses with no understanding of your specific goals and patterns.     | AI that knows your very last intent, progress on goals, and patterns of your ideas.           |
 
 ---
+
+## ✨ New in v2.0
+
+### 🔄 Arcontexta Hook System
+
+A Claude Code plugin that generates complete knowledge systems from conversation.
+
+### 🔍 [[QMD]] — On-Device Vault Search
+
+A powerful local search engine for everything you need to remember.
 
 ## ⚡ See It In Action
 
@@ -214,4 +223,4 @@ Released under the [MIT License](LICENSE).
 
 ---
 
-**Version:** 1.0.0 | **Last Updated:** 2026-04-12
+**Version:** 2.0.0 | **Last Updated:** 2026-04-12
