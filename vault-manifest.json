@@ -1,7 +1,7 @@
 {
-  "template": "pal-second-brain",
-  "version": "0.2.1",
-  "released": "2026-04-07",
+  "template": "awesome-second-brain",
+  "version": "1.0.0",
+  "released": "2026-04-12",
   "infrastructure": [
     "CLAUDE.md",
     "dashboards/HOME.md",
