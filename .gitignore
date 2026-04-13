@@ -19,6 +19,10 @@
 # Session logs (local transcripts)
 thinking/session-logs/
 
+# Local working files — not for the repo
+TESTING_PLAN.md
+IMPROVEMENTS.md
+
 # Personal vault content — never commit
 # These dirs hold user data generated during vault use.
 # Template scaffolds (.gitkeep, README.md) are kept via negation.
