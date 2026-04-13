@@ -11,9 +11,24 @@
 
 # Claude Code (local settings are personal)
 .claude/settings.local.json
+.claude/.claudian/
 
 # QMD index (local, regenerated)
 .qmd/
 
 # Session logs (local transcripts)
 thinking/session-logs/
+
+# Personal vault content — never commit
+# These dirs hold user data generated during vault use.
+# Template scaffolds (.gitkeep, README.md) are kept via negation.
+plan/*.md
+thinking/*.md
+!thinking/README.md
+work/02_1-1/*.md
+work/03_INCIDENTS/*.md
+inbox/raw/*.md
+inbox/ready/*.md
+domains/*/01_PROJECTS/*.md
+domains/*/02_PAGES/*.md
+domains/*/05_ARCHIVE/*.md
