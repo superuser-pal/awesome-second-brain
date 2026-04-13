@@ -47,16 +47,92 @@ def main():
             parts = content.split("---", 2)
             if len(parts) >= 3:
                 fm = parts[1]
-                if "tags:" not in fm and "tags :" not in fm:
-                    warnings.append("Missing `tags` in frontmatter")
-                if "description:" not in fm and "description :" not in fm:
-                    warnings.append("Missing `description` in frontmatter (~150 chars required by vault convention)")
-                if "date:" not in fm and "date :" not in fm:
-                    warnings.append("Missing `date` in frontmatter")
+                lines = fm.split("\n")
+                keys = {line.split(":")[0].strip() for line in lines if ":" in line}
 
-        # Check for wikilinks (skip very short notes)
-        if len(content) > 300 and "[[" not in content:
-            warnings.append("No [[wikilinks]] found — every note must link to at least one other note (vault convention)")
+                # 1. Global requirements (for all vault notes)
+                if "tags" not in keys:
+                    warnings.append("Missing `tags` in frontmatter")
+                if "description" not in keys and not any(p in normalized for p in ["inbox/raw", "plan/"]):
+                    warnings.append("Missing `description` (~150 chars required)")
+
+                # 2. Folder-specific requirements (ASSET-CLASSES.md)
+                
+                # --- Domain Page (02_PAGES) ---
+                if "/02_PAGES/" in normalized:
+                    required = {"name", "domain", "origin", "type", "status", "created", "last_updated"}
+                    missing = required - keys
+                    if missing:
+                        warnings.append(f"Domain Page missing fields: {', '.join(missing)}")
+                    if "date" in keys:
+                        warnings.append("Domain Page uses `created` instead of `date`")
+                    if "status" in keys and not any(s in fm for s in ["processed", "archived"]):
+                        warnings.append("Domain Page status must be `processed` or `archived`")
+
+                # --- Domain Project (01_PROJECTS) ---
+                elif "/01_PROJECTS/" in normalized and "PROJECT_" in basename:
+                    required = {"name", "domain", "goal", "status", "priority", "created", "last_updated"}
+                    missing = required - keys
+                    if missing:
+                        warnings.append(f"Project missing fields: {', '.join(missing)}")
+
+                # --- Domain INDEX ---
+                elif "/INDEX.md" in normalized and "/domains/" in normalized:
+                    required = {"name", "description", "status", "last_updated"}
+                    missing = required - keys
+                    if missing:
+                        warnings.append(f"Domain INDEX missing fields: {', '.join(missing)}")
+
+                # --- Inbox Raw ---
+                elif "inbox/raw/" in normalized:
+                    required = {"date", "created", "status"}
+                    missing = required - keys
+                    if missing:
+                        warnings.append(f"Inbox Raw missing fields: {', '.join(missing)}")
+                    if "status" in keys and "unprocessed" not in fm:
+                        warnings.append("Inbox Raw status must be `unprocessed`")
+
+                # --- Inbox Ready ---
+                elif "inbox/ready/" in normalized:
+                    required = {"name", "domain", "origin", "type", "status", "description", "created", "last_updated"}
+                    missing = required - keys
+                    if missing:
+                        warnings.append(f"Inbox Ready missing fields: {', '.join(missing)}")
+                    if "status" in keys and "ready" not in fm:
+                        warnings.append("Inbox Ready status must be `ready`")
+
+                # --- Plan: Daily ---
+                elif "plan/" in normalized and any(d in basename for d in ["-MO", "-TU", "-WE", "-TH", "-FR", "-SA", "-SU"]):
+                    if "date" not in keys:
+                        warnings.append("Daily note missing `date`")
+                    if "daily" not in fm:
+                        warnings.append("Daily note missing `daily` tag")
+
+                # --- Plan: Weekly ---
+                elif "plan/" in normalized and basename.startswith("W"):
+                    required = {"week", "date", "goal"}
+                    missing = required - keys
+                    if missing:
+                        warnings.append(f"Weekly plan missing fields: {', '.join(missing)}")
+                    if "weekly" not in fm:
+                        warnings.append("Weekly plan missing `weekly` tag")
+
+                # --- Work Notes (Cross-domain) ---
+                elif "work/" in normalized and not any(s in normalized for s in ["01_PROJECTS", "07_ARCHIVE"]):
+                    # Generic work notes (1-1s, incidents, etc.)
+                    if "/03_INCIDENTS/" in normalized:
+                        if "severity" not in keys or "status" not in keys:
+                            warnings.append("Incident note missing `severity` or `status`")
+                    elif "/02_1-1/" in normalized:
+                        if "person" not in keys or "date" not in keys:
+                            warnings.append("1:1 note missing `person` or `date`")
+                    else:
+                        if "quarter" not in keys:
+                            warnings.append("Work note missing `quarter` field (e.g. Q1-2026)")
+
+        # Check for wikilinks (skip very short notes and plans)
+        if len(content) > 300 and "[[" not in content and "plan/" not in normalized:
+            warnings.append("No [[wikilinks]] found — every note must link to at least one other note")
 
     except Exception:
         sys.exit(0)

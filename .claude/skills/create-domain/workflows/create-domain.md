@@ -28,6 +28,9 @@ mkdir -p domains/[Name]/01_PROJECTS
 mkdir -p domains/[Name]/02_PAGES
 mkdir -p domains/[Name]/05_ARCHIVE
 ```
+### Step 3a: Create AD_HOC_TASKS.md
+
+Create `domains/[Name]/01_PROJECTS/AD_HOC_TASKS.md` using the template at `.claude/skills/create-domain/templates/AD_HOC_TASKS.template.md`. Replace `{{DomainName}}` with the PascalCase domain name.
 
 ## Step 4: Create INDEX.md
 
