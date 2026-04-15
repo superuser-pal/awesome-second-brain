@@ -26,7 +26,7 @@ Check that `domains/[Name]/` does not already exist.
 ```bash
 mkdir -p domains/[Name]/01_PROJECTS
 mkdir -p domains/[Name]/02_PAGES
-mkdir -p domains/[Name]/05_ARCHIVE
+mkdir -p domains/[Name]/03_ARCHIVE
 ```
 ### Step 3a: Create AD_HOC_TASKS.md
 
@@ -80,7 +80,7 @@ Domain created. Ready for planning.
 
 - [Projects](01_PROJECTS/) - Active project files
 - [Pages](02_PAGES/) - Knowledge processed and archived within the domain, routed from the inbox
-- [Archive](05_ARCHIVE/) - Deprecated content
+- [Archive](03_ARCHIVE/) - Deprecated content
 
 ## Related
 - [[dashboards/HOME|Home]]
@@ -121,7 +121,7 @@ Expected:
 - `CONNECTIONS.yaml`
 - `01_PROJECTS/`
 - `02_PAGES/`
-- `05_ARCHIVE/`
+- `03_ARCHIVE/`
 
 ## Step 7: Register Domain
 
@@ -154,11 +154,11 @@ Append a new domain entry to the **Domains** section in `.claude/core/reference/
 **Exclude Patterns:** (leave empty by default)
 ```
 
-### 7c: Remind About classify-message.py
+### 7c: Remind About classify-message.ts
 
 Print reminder:
 
-> To enable automatic domain detection in future messages, add signal patterns for this domain to `.claude/scripts/classify-message.py`.
+> To enable automatic domain detection in future messages, add signal patterns for this domain to `.claude/scripts/hooks/lib/signals.ts` (the `SIGNALS` array).
 
 ## Step 8: Final Checklist
 
@@ -167,7 +167,7 @@ Print reminder:
 - [ ] INDEX.md has at least one wikilink
 - [ ] INDEX.md has Knowledge Baseline, Active Work, Pages Index, Quick Links, and Related sections
 - [ ] CONNECTIONS.yaml exists at domain root
-- [ ] 01_PROJECTS/, 02_PAGES/, 05_ARCHIVE/ directories exist
+- [ ] 01_PROJECTS/, 02_PAGES/, 03_ARCHIVE/ directories exist
 - [ ] Domain registered in CLAUDE.md
 
 ## Done

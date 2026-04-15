@@ -26,7 +26,7 @@ last_updated: "{{date}}"
 
 - [[{{domain-name}}/01_PROJECTS/|Projects]]
 - [[{{domain-name}}/02_PAGES/|Pages]]
-- [[{{domain-name}}/05_ARCHIVE/|Archive]]
+- [[{{domain-name}}/03_ARCHIVE/|Archive]]
 
 ## Related
 -

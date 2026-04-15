@@ -12,7 +12,7 @@ All agents live in `.claude/agents/`. The **presence or absence of `maxTurns`** 
 
 | Type | `maxTurns` | Invocation | Purpose |
 |------|-----------|-----------|---------|
-| **Subagent** | Yes (required) | By commands (e.g., `/wrap-up` calls `wins-capture`) | Task-bound, isolated context window, bounded turns |
+| **Subagent** | Yes (required) | By commands (e.g., `/close-day` calls `wins-capture`) | Task-bound, isolated context window, bounded turns |
 | **Domain Agent** | No (prohibited) | By user via `/agent:[name]` command | Conversational, domain-bound, interactive sessions |
 
 ---
@@ -86,7 +86,7 @@ domain: DomainName
 - [AUTO] `domains/[Name]/INDEX.md`
 - [REF] `domains/[Name]/01_PROJECTS/`
 - [REF] `domains/[Name]/02_PAGES/`
-- [REF] `domains/[Name]/05_ARCHIVE/`
+- [REF] `domains/[Name]/03_ARCHIVE/`
 
 ## 3. Custom Commands
 4. `*custom` — description → action
@@ -122,7 +122,7 @@ Use these labels in Domain Agent `## 2. Activation Context`:
 
 | File | `maxTurns` | Purpose | Invoked by |
 |------|-----------|---------|-----------|
-| `wins-capture.md` | — | Finds uncaptured wins and competency gaps | `/wrap-up`, `/weekly` |
+| `wins-capture.md` | — | Finds uncaptured wins and competency gaps | `/close-day`, `/weekly` |
 | `context-loader.md` | — | Loads vault context about a person, project, or concept | Direct |
 | `cross-linker.md` | — | Finds missing wikilinks, orphans, broken backlinks | `/audit` |
 | `contact-importer.md` | — | Bulk creates/updates person notes from Slack profiles | `/incident` |

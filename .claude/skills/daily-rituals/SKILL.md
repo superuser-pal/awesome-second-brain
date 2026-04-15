@@ -1,6 +1,6 @@
 ---
 name: daily-rituals
-description: Structured daily and weekly planning cycle. Enhances /standup and /wrap-up with daily notes in plan/. Adds weekly planning, closing, and the full week-cycle orchestrator.
+description: Structured daily and weekly planning cycle. Enhances /open-day and /close-day with daily notes in plan/. Adds weekly planning, closing, and the full week-cycle orchestrator.
 version: 1.0.0
 ---
 
@@ -19,8 +19,8 @@ Structured planning workflows that layer on top of existing PAL Second Brain com
 
 | Command | Role |
 |---------|------|
-| `/standup` | **Enhanced** — now also creates today's daily note in `plan/` and marks focus tasks `[/]` |
-| `/wrap-up` | **Enhanced** — now also appends evening reflection to today's daily note and marks tasks done |
+| `/open-day` | **Enhanced** — now also creates today's daily note in `plan/` and marks focus tasks `[/]` |
+| `/close-day` | **Enhanced** — now also appends evening reflection to today's daily note and marks tasks done |
 | `/weekly` | **Unchanged** — analytical synthesis only, no file creation |
 | `/week-prep` | **New** — create weekly plan file, commit tasks |
 | `/week-close` | **New** — close week, consolidate daily notes, archive |
@@ -50,8 +50,8 @@ Structured planning workflows that layer on top of existing PAL Second Brain com
 
 | Workflow | Invoked by |
 |----------|-----------|
-| `morning-checkin` | `/standup` (appended steps) |
-| `evening-review` | `/wrap-up` (appended steps) |
+| `morning-checkin` | `/open-day` (appended steps) |
+| `evening-review` | `/close-day` (appended steps) |
 | `week-prep` | `/week-prep` |
 | `week-close` | `/week-close` |
 | `week-cycle` | `/week-cycle` |

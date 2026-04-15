@@ -2,7 +2,7 @@
 description: "Weekly synthesis — cross-session review of vault activity, North Star alignment, patterns, uncaptured wins, and forward priorities."
 ---
 
-Cross-session synthesis of the past week. Bridges daily standup (lightweight) and quarterly review brief (comprehensive). This is ANALYSIS, not verification — find patterns, surface drift, detect uncaptured work.
+Cross-session synthesis of the past week. Bridges daily open-day (lightweight) and quarterly review brief (comprehensive). This is ANALYSIS, not verification — find patterns, surface drift, detect uncaptured work.
 
 ## Subagent
 
@@ -83,5 +83,5 @@ After presenting, offer:
 - This is transient analysis by default — do NOT create a file unless the user asks.
 - Keep the tone analytical, not cheerful. This is a status check, not a celebration.
 - Be honest about drift and silent goals — the value is in surfacing what's NOT happening, not just what is.
-- Don't duplicate standup (daily, what's next) or wrap-up (session, verify quality). This is SYNTHESIS across days.
+- Don't duplicate open-day (daily, what's next) or close-day (session, verify quality). This is SYNTHESIS across days.
 - If it was a light week (few commits, no new notes), say so. Don't pad the analysis.

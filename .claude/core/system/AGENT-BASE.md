@@ -84,7 +84,7 @@ Standard domain activation context:
 
 [REF] domains/[Name]/01_PROJECTS/
 [REF] domains/[Name]/02_PAGES/
-[REF] domains/[Name]/05_ARCHIVE/
+[REF] domains/[Name]/03_ARCHIVE/
 ```
 
 ---

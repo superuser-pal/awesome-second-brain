@@ -18,7 +18,7 @@ Aggregate tasks from all project sources into `dashboards/TASKS.md`.
 ### 1. Discover All Projects
 
 ```bash
-find domains/ \( -name "PROJECT_*.md" -o -name "AD_HOC_TASKS.md" \) -not -path "*/05_ARCHIVE/*"
+find domains/ \( -name "PROJECT_*.md" -o -name "AD_HOC_TASKS.md" \) -not -path "*/03_ARCHIVE/*"
 ```
 
 Also list `work/01_PROJECTS/*.md` and `plan/*.md` (excluding `plan/archive/*`).
@@ -26,9 +26,12 @@ Also list `work/01_PROJECTS/*.md` and `plan/*.md` (excluding `plan/archive/*`).
 ### 2. Extract Tasks Per Source
 
 For each project file, extract:
-- Active tasks: lines matching `- [ ]`, `- [/]`
-- Inactive tasks: lines matching `- [!]`, `- [?]`, `- [I]`, `- [-]`
+- Open tasks: lines matching `- [ ]` (must carry `#todo` tag)
+- In-progress tasks: lines matching `- [/]`
+- Blocked/paused tasks: lines matching `- [!]`, `- [?]`, `- [I]`, `- [-]`
 - Done tasks: lines matching `- [x]` (recent only — last 7 days by `last_updated`)
+
+Preserve all inline metadata when aggregating: `#todo`, `#tag`, `📅 YYYY-MM-DD` emoji dates, `✅ YYYY-MM-DD` completions.
 
 Tag each task with its source: `#Domain/ProjectName` or `#work/01_PROJECTS/filename`.
 

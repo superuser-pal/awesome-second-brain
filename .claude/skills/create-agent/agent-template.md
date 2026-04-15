@@ -31,7 +31,7 @@ skills:
 **Reference (load on demand):**
 - [REF] `domains/[Name]/01_PROJECTS/` — Active projects
 - [REF] `domains/[Name]/02_PAGES/` — Domain notes
-- [REF] `domains/[Name]/05_ARCHIVE/` — Completed content
+- [REF] `domains/[Name]/03_ARCHIVE/` — Completed content
 
 ---
 

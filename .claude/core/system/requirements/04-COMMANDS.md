@@ -7,15 +7,15 @@
 
 ## 4.1 Daily Workflow Commands
 
-### 4.1.1 Standup Morning Kickoff
+### 4.1.1 Open Day Morning Kickoff
 
-**Given** the user invokes /standup
+**Given** the user invokes /open-day
 **When** the command executes
 **Then** it reads dashboards/HOME.md, North Star, work/INDEX.md, daily notes, open tasks, and recent git activity — presents a structured summary — then runs the morning-checkin workflow: checks active week in plan/, creates today's daily note (plan/DD-MM-YY-XX.md) if absent, asks for top 1-3 focus areas, and marks selected tasks [/] in source files
 
 Category: Functional
-Verification: Run /standup and confirm all standup sections appear, then confirm today's daily note is created in plan/ and focus tasks are marked [/]
-Source: [standup.md](../../commands/rituals/standup.md)
+Verification: Run /open-day and confirm all open-day sections appear, then confirm today's daily note is created in plan/ and focus tasks are marked [/]
+Source: [open-day.md](../../commands/rituals/open-day.md)
 
 ---
 
@@ -31,15 +31,15 @@ Source: [quick-dump.md](../../commands/capture/quick-dump.md)
 
 ---
 
-### 4.1.3 Wrap-Up Session Review
+### 4.1.3 Close Day Session Review
 
-**Given** the user invokes /wrap-up (or says "wrap up")
+**Given** the user invokes /close-day (or says "wrap up", "close day")
 **When** the command executes
 **Then** it verifies all notes have frontmatter, links are complete, indexes are updated, wins-capture agent runs — then runs the evening-review workflow: prompts for accomplishments and learnings, marks done tasks [x] in source files and active week file, suggests tomorrow's priorities, and appends the evening review section to today's daily note in plan/
 
 Category: Functional
-Verification: Run /wrap-up and confirm full review output, then confirm evening section is appended to today's plan/DD-MM-YY-XX.md
-Source: [wrap-up.md](../../commands/rituals/wrap-up.md)
+Verification: Run /close-day and confirm full review output, then confirm evening section is appended to today's plan/DD-MM-YY-XX.md
+Source: [close-day.md](../../commands/rituals/close-day.md)
 
 ---
 
@@ -126,7 +126,7 @@ Source: [audit.md](../../commands/core/audit.md)
 **Then** the completed project is moved from work/01_PROJECTS/ to work/07_ARCHIVE/YYYY/, status is set to completed, and work/INDEX.md is updated
 
 Category: Functional
-Verification: Run /project-archive on an active project and confirm it moves to 05_ARCHIVE/
+Verification: Run /project-archive on an active project and confirm it moves to 03_ARCHIVE/
 Source: [project-archive.md](../../commands/manage/project-archive.md)
 
 ---

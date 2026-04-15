@@ -11,7 +11,7 @@ last_updated: 2026-04-05
 A Domain is an isolated knowledge area under `domains/`. It MUST contain a valid `INDEX.md` at its root.
 
 - **Directory naming:** `PascalCase` (e.g., `LaraLou/`, `PalFramework/`)
-- **Subfolders:** Numbered ALL CAPS (`01_PROJECTS/`, `02_PAGES/`, `05_ARCHIVE/`)
+- **Subfolders:** Numbered ALL CAPS (`01_PROJECTS/`, `02_PAGES/`, `03_ARCHIVE/`)
 
 ---
 
@@ -23,7 +23,7 @@ domains/[Name]/
 ├── CONNECTIONS.yaml  # External integrations config
 ├── 01_PROJECTS/      # Active project files (PROJECT_UPPER_SNAKE.md)
 ├── 02_PAGES/         # Permanent domain pages — promoted from inbox notes via /distribute
-└── 05_ARCHIVE/       # Completed or deprecated content
+└── 03_ARCHIVE/       # Completed or deprecated content
 ```
 
 ---
@@ -107,7 +107,7 @@ last_updated: YYYY-MM-DD
 |-----------|------------|
 | `01_PROJECTS/` | `PROJECT_UPPER_SNAKE.md` |
 | `02_PAGES/` | `kebab-case.md` |
-| `05_ARCHIVE/` | Preserve original name |
+| `03_ARCHIVE/` | Preserve original name |
 
 ---
 

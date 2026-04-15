@@ -24,9 +24,11 @@ tags: [week]
 
 ## Committed Tasks
 
-### Active
+### To Do
 
 *(tasks selected during /week-prep)*
+
+### In Progress
 
 ### Done
 

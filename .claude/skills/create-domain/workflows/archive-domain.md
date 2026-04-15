@@ -14,8 +14,8 @@ ls domains/
 
 | Scope | User Says | Action |
 |-------|-----------|--------|
-| **Single File** | "archive this project" | Move one file to 05_ARCHIVE/ |
-| **Multiple Files** | "archive all completed projects" | Move multiple files to 05_ARCHIVE/ |
+| **Single File** | "archive this project" | Move one file to 03_ARCHIVE/ |
+| **Multiple Files** | "archive all completed projects" | Move multiple files to 03_ARCHIVE/ |
 | **Entire Domain** | "archive this domain" | Mark domain as archived |
 
 ---
@@ -48,7 +48,7 @@ original_location: "01_PROJECTS/ | 02_PAGES/"
 Always use `git mv` for zero data loss:
 
 ```bash
-git mv domains/[Name]/[folder]/[file.md] domains/[Name]/05_ARCHIVE/[file.md]
+git mv domains/[Name]/[folder]/[file.md] domains/[Name]/03_ARCHIVE/[file.md]
 ```
 
 ### Step A4: Update INDEX.md
@@ -103,7 +103,7 @@ archive_reason: "[User's reason]"
 
 If any projects were in progress:
 1. Offer to move to a different domain's `01_PROJECTS/`
-2. Or mark them as cancelled in `05_ARCHIVE/`
+2. Or mark them as cancelled in `03_ARCHIVE/`
 
 ### Step B5: Update DOMAINS-REGISTRY.md
 
@@ -124,7 +124,7 @@ Add below the table:
 ## Step 3: Verify Archive
 
 ```bash
-ls -la domains/[Name]/05_ARCHIVE/
+ls -la domains/[Name]/03_ARCHIVE/
 head -10 domains/[Name]/INDEX.md
 ```
 
@@ -142,4 +142,4 @@ original_location: "[original folder path]"
 
 ## Done
 
-Content archived. INDEX.md updated. Archived content remains in 05_ARCHIVE/ for reference — delete only if explicitly requested.
+Content archived. INDEX.md updated. Archived content remains in 03_ARCHIVE/ for reference — delete only if explicitly requested.

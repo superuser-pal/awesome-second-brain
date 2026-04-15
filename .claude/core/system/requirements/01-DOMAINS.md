@@ -11,7 +11,7 @@
 
 **Given** the user requests a new domain
 **When** the create-domain workflow executes
-**Then** a directory `domains/[name]/` is created with: INDEX.md, CONNECTIONS.yaml, 01_PROJECTS/, 02_PAGES/, 05_ARCHIVE/
+**Then** a directory `domains/[name]/` is created with: INDEX.md, CONNECTIONS.yaml, 01_PROJECTS/, 02_PAGES/, 03_ARCHIVE/
 
 Category: Functional
 Verification: Run create-domain skill and confirm all 4 sub-folders + INDEX.md exist
@@ -61,7 +61,7 @@ Source: [create-domain.md](../../skills/create-domain/workflows/create-domain.md
 
 **Given** a domain exists
 **When** the validate-domain workflow runs
-**Then** it checks for: INDEX.md, CONNECTIONS.yaml, 01_PROJECTS/, 02_PAGES/, 05_ARCHIVE/ — and reports missing components
+**Then** it checks for: INDEX.md, CONNECTIONS.yaml, 01_PROJECTS/, 02_PAGES/, 03_ARCHIVE/ — and reports missing components
 
 Category: Validation
 Verification: Delete a sub-folder and run validate, confirm it's flagged
@@ -149,10 +149,10 @@ Source: [map-domain.md](../../skills/create-domain/workflows/map-domain.md)
 
 **Given** a file in a domain needs archiving
 **When** the archive-domain workflow runs for a single file
-**Then** a deprecation header (deprecated date, reason, original_location) is added and the file is moved to 05_ARCHIVE/ via `git mv`
+**Then** a deprecation header (deprecated date, reason, original_location) is added and the file is moved to 03_ARCHIVE/ via `git mv`
 
 Category: Functional
-Verification: Archive a project file and confirm deprecation header + 05_ARCHIVE/ location
+Verification: Archive a project file and confirm deprecation header + 03_ARCHIVE/ location
 Source: [archive-domain.md](../../skills/create-domain/workflows/archive-domain.md)
 
 ---
@@ -192,7 +192,7 @@ Source: [archive-domain.md](../../skills/create-domain/workflows/archive-domain.
 
 Category: Validation
 Verification: Write INDEX.md missing `status` and confirm warning
-Source: [validate-write.py](../../scripts/validate-write.py)
+Source: [validate-write.ts](../../scripts/hooks/validate-write.ts)
 
 ---
 
@@ -204,4 +204,4 @@ Source: [validate-write.py](../../scripts/validate-write.py)
 
 Category: Validation
 Verification: Write a project file missing `priority` and confirm warning
-Source: [validate-write.py](../../scripts/validate-write.py)
+Source: [validate-write.ts](../../scripts/hooks/validate-write.ts)

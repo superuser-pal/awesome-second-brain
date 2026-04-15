@@ -77,7 +77,37 @@ When multiple domains score ≥70%, present a choice. Non-selected domains can b
 
 ## Domains
 
-*(Empty — domains are registered here when created via the `create-domain` skill.)*
+### AwesomeSecondBrain
+
+| Field | Value |
+|-------|-------|
+| **Name** | `AwesomeSecondBrain` |
+| **Path** | `domains/AwesomeSecondBrain/` |
+| **Agent** | `null` |
+| **Status** | `active` |
+
+**Primary Signals:** `"awesome second brain"`, `"vault template"`, `"obsidian skill"`, `"PAL framework"`, `"open source"`
+
+**Secondary Signals:** `"claude code"`, `"slash command"`, `"vault"`, `"obsidian"`, `"skill workflow"`
+
+**Exclude Patterns:** `"moro-tech"`, `"toyota"`, `"souvenir"`, `"brussels shop"`
+
+---
+
+### BrusselsShop
+
+| Field | Value |
+|-------|-------|
+| **Name** | `BrusselsShop` |
+| **Path** | `domains/BrusselsShop/` |
+| **Agent** | `null` |
+| **Status** | `active` |
+
+**Primary Signals:** `"brussels shop"`, `"souvenir shop"`, `"souvenir"`, `"retail brussels"`
+
+**Secondary Signals:** `"tourist"`, `"brussels"`, `"shop inventory"`, `"retail"`, `"e-commerce"`
+
+**Exclude Patterns:** `"moro-tech"`, `"toyota"`, `"awesome second brain"`, `"vault"`
 
 ---
 

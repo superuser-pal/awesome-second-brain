@@ -33,7 +33,7 @@ Centralized project and task management across PAL Second Brain domains. Complem
 | Ad-hoc tasks | `domains/[name]/01_PROJECTS/AD_HOC_TASKS.md` or `work/01_PROJECTS/AD_HOC_TASKS.md` |
 | Master task list | `dashboards/TASKS.md` |
 | Plan files | `plan/*.md` |
-| Domain archive | `domains/[name]/05_ARCHIVE/PROJECT_*.md` |
+| Domain archive | `domains/[name]/03_ARCHIVE/PROJECT_*.md` |
 | Domain index | `domains/[name]/INDEX.md` |
 
 ## Task Status Symbols
@@ -52,4 +52,4 @@ Centralized project and task management across PAL Second Brain domains. Complem
 
 - `/project-archive` — handles `work/01_PROJECTS/` cross-domain work. Do NOT use this skill to archive those.
 - `Work Dashboard.base` — dynamic Obsidian Base view of projects. TASKS.md is the text-based complement for task-level tracking.
-- `/standup` — reads TASKS.md as part of context loading.
+- `/open-day` — reads TASKS.md as part of context loading.

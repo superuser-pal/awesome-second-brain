@@ -27,7 +27,10 @@ Ask: "What's the one-sentence goal for this week?" (theme, not a task list)
 
 ### 4. Select Committed Tasks
 
-Read `dashboards/TASKS.md` — show all open tasks (`[ ]`, `[!]`, `[?]`) grouped by domain/project.
+Read `dashboards/TASKS.md` — show all trackable tasks grouped by domain/project in this order:
+1. `[!]` ON_HOLD (blocked) — surface first; these need unblocking decisions
+2. `[/]` In Progress — already underway; likely carry forward as committed
+3. `[ ]` To Do — available to commit
 
 Ask user to select 3-7 tasks to commit to this week.
 
@@ -37,7 +40,7 @@ Optionally collect stretch goals (tasks to attempt if time allows).
 
 ### 5. Create Week File
 
-Write `plan/W[week]_YYYY-MM-DD.md` from `templates/week_template.md`.
+Write `plan/W[week]_YYYY-MM-DD.md` from `templates/week-template.md`.
 
 Fill:
 - `week_number`, `year`, `start_date`, `end_date`
@@ -45,7 +48,8 @@ Fill:
 - `planned_capacity`: count of committed tasks
 - `status: planning`
 
-Populate "Committed Tasks — Active" section with selected tasks.
+Populate "Committed Tasks — To Do" section with selected `[ ]` tasks (preserve `#todo` tag).
+Populate "Committed Tasks — In Progress" section with any `[/]` tasks carried forward (preserve `#todo` tag).
 
 ### 6. Activate Week
 
@@ -53,8 +57,10 @@ Ask: "Activate this week now?"
 
 If yes:
 - Set `status: active` in week file
-- Mark each committed task `[/]` in its source project file
+- Do NOT change task status in source files — tasks stay `[ ]` until `/open-day` picks them as today's focus
 - Run `update-tasks` to sync to `dashboards/TASKS.md`
+
+> **Rule:** Week-prep only declares intent. Task status moves from `[ ]` → `[/]` only when the user selects a task as a daily focus during `/open-day`.
 
 ### 7. Confirm
 

@@ -23,6 +23,10 @@ thinking/session-logs/
 TESTING_PLAN.md
 IMPROVEMENTS.md
 
+# Hook script dependencies (installed via bun install)
+.claude/scripts/node_modules/
+.claude/scripts/bun.lockb
+
 # Personal vault content — never commit
 # These dirs hold user data generated during vault use.
 # Template scaffolds (.gitkeep, README.md) are kept via negation.

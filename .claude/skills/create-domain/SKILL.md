@@ -18,7 +18,7 @@ domains/[DomainName]/
 ├── CONNECTIONS.yaml  # External integrations config (APIs, docs, data sources)
 ├── 01_PROJECTS/      # Active project files (PROJECT_*.md)
 ├── 02_PAGES/         # Knowledge processed and archived within the domain, routed from the inbox
-└── 05_ARCHIVE/       # Completed/deprecated content
+└── 03_ARCHIVE/       # Completed/deprecated content
 ```
 
 ## Naming Conventions
@@ -49,7 +49,7 @@ domains/[DomainName]/
 User: "Create a domain for my Substack project"
 -> Invokes create-domain workflow
 -> Asks for name + description
--> Creates domains/Substack/ with 01_PROJECTS/, 02_PAGES/, 05_ARCHIVE/ and CONNECTIONS.yaml
+-> Creates domains/Substack/ with 01_PROJECTS/, 02_PAGES/, 03_ARCHIVE/ and CONNECTIONS.yaml
 -> Generates INDEX.md with frontmatter + MOC structure + wikilinks
 -> Updates CLAUDE.md domain registry
 ```

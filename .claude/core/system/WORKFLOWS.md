@@ -70,8 +70,8 @@ description: Short action-oriented description of what this achieves.
 
 | Command | File | Purpose |
 |---------|------|---------|
-| `/standup` | `rituals/standup.md` | Morning kickoff — context, tasks, priorities, daily note |
-| `/wrap-up` | `rituals/wrap-up.md` | Session end — verify notes, indexes, links, suggest improvements |
+| `/open-day` | `rituals/open-day.md` | Morning kickoff — context, tasks, priorities, daily note |
+| `/close-day` | `rituals/close-day.md` | Session end — verify notes, indexes, links, suggest improvements |
 | `/week-prep` | `rituals/week-prep.md` | Weekly planning — committed tasks, weekly file in `plan/` |
 | `/week-close` | `rituals/week-close.md` | Close week — velocity, consolidate daily notes, archive |
 | `/week-cycle` | `rituals/week-cycle.md` | Full weekly lifecycle (close + plan in one shot) |

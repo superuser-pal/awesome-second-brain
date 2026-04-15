@@ -18,7 +18,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash .claude/scripts/find-python.sh .claude/scripts/pre-tool-use.py",
+            "command": "bun run .claude/scripts/hooks/pre-tool-use.ts",
             "timeout": 10
           }
         ]
@@ -29,7 +29,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash .claude/scripts/find-python.sh .claude/scripts/classify-message.py",
+            "command": "bun run .claude/scripts/hooks/classify-message.ts",
             "timeout": 10
           }
         ]
@@ -41,7 +41,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash .claude/scripts/find-python.sh .claude/scripts/validate-write.py",
+            "command": "bun run .claude/scripts/hooks/validate-write.ts",
             "timeout": 15
           }
         ]

@@ -1,14 +1,14 @@
-# Wrap Up
+# Close Day
 
 Full session review before ending. Review context, ways of working, files modified, consistency, and suggest improvements.
 
 ## Usage
 
 ```
-/wrap-up
+/close-day
 ```
 
-Triggered when the user says "wrap up", "let's wrap", "wrapping up", or similar. Claude should invoke this automatically.
+Triggered when the user says "close day", "wrap up", "let's wrap", "wrapping up", or similar. Claude should invoke this automatically.
 
 ## Subagent
 

@@ -46,9 +46,21 @@ domain: [domain-name]
 goal: "[goal text]"
 status: planning
 priority: [priority]
+due_date:              # optional — ask user if they have a target date
+completion_date:       # leave blank; set on archive
 tags: []
 created: [today YYYY-MM-DD]
 last_updated: [today YYYY-MM-DD]
+```
+
+All open tasks in the `### To Do` section must include the `#todo` tag:
+```markdown
+### To Do
+- [ ] Task description #todo
+
+### In Progress
+
+### Done
 ```
 
 ### 4. Update Domain INDEX.md

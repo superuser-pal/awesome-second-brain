@@ -1,5 +1,5 @@
 #!/bin/bash
-set -eo pipefail
+# set -eo pipefail # Disabled to prevent immediate crash on empty matches (e.g. no active week or blocked tasks)
 cd "${CLAUDE_PROJECT_DIR:-$(pwd)}"
 
 # Persist vault path for the session
@@ -50,11 +50,28 @@ else
 fi
 echo ""
 
-echo "### User Context (ABOUTME)"
+# Load ABOUTME into context quietly (no section header)
+# Only show content if user has filled in real data under "# About Me"
 if [ -f "brain/ABOUTME.md" ]; then
-  cat "brain/ABOUTME.md" | head -20
+  real_content=$(awk '/^# About Me/{found=1} found{print}' "brain/ABOUTME.md" \
+    | grep -v '^\s*<!--' \
+    | grep -v '^\s*-->' \
+    | grep -v '^\s*#' \
+    | grep -v '^\s*---' \
+    | grep -v '^\s*$' \
+    | grep -Fv 'setup-context' \
+    | grep -Fv 'See [[' \
+    | grep -Fv 'Run /' \
+    | head -3)
+  if [ -n "$real_content" ]; then
+    echo "---"
+    echo "### About Me"
+    cat "brain/ABOUTME.md" | head -80
+  else
+    echo "> ABOUTME: not configured — run /setup-context to personalize"
+  fi
 else
-  echo "(ABOUTME.md not found — create brain/ABOUTME.md to improve work/domain routing accuracy)"
+  echo "> ABOUTME: not configured — run /setup-context to personalize"
 fi
 echo ""
 
@@ -62,16 +79,23 @@ echo "### Recent Changes (last 48h)"
 git log --oneline --since="48 hours ago" --no-merges 2>/dev/null | head -15 || echo "(no git history)"
 echo ""
 
-echo "### Open Tasks"
+echo "### Projects Open Tasks"
 if command -v obsidian &>/dev/null; then
   run_with_timeout 5 'echo "(CLI timed out)"' obsidian tasks daily todo | head -10
 else
-  echo "(Obsidian CLI not available)"
+  # Filesystem fallback: grep only PROJECT_*.md files for open checkboxes
+  project_tasks=$(grep -rh '^\- \[ \]' work/01_PROJECTS/PROJECT_*.md domains/*/01_PROJECTS/PROJECT_*.md 2>/dev/null | grep -v '^$' | sed 's/^- \[ \] //' | head -10)
+  if [ -n "$project_tasks" ]; then
+    echo "$project_tasks" | sed 's/^/- [ ] /'
+  else
+    echo "(no open project tasks)"
+  fi
 fi
 echo ""
 
 echo "### Active Week"
-active_week=$(ls plan/W*.md 2>/dev/null | head -1)
+# Robust check for weekly files to avoid shell expansion errors
+active_week=$(find plan -maxdepth 1 -name "W*.md" 2>/dev/null | head -1 || echo "")
 if [ -n "$active_week" ]; then
   week_label=$(basename "$active_week" .md)
   week_goal=$(grep -m1 "^## Goal" -A1 "$active_week" 2>/dev/null | tail -1 | sed 's/^> //' || echo "(no goal set)")
@@ -85,9 +109,41 @@ else
 fi
 echo ""
 
-echo "### Active Work"
-# Supports both 01_PROJECTS and 01-projects
-(ls work/01*/PROJECT_*.md work/01*/*.md 2>/dev/null || true) | grep -v "INDEX.md" | sed 's|work/[^/]*/||;s|\.md$||' | head -10 || echo "(none)"
+echo "### Active Projects"
+{
+  ls work/01_PROJECTS/PROJECT_*.md 2>/dev/null || true
+  ls domains/*/01_PROJECTS/PROJECT_*.md 2>/dev/null || true
+} | sed 's|^\./||' | while IFS= read -r f; do
+  [ -z "$f" ] && continue
+  if echo "$f" | grep -q '^domains/'; then
+    domain=$(echo "$f" | cut -d'/' -f2)
+  else
+    domain="work"
+  fi
+  name=$(basename "$f" .md | sed 's/^PROJECT_//' | tr '_' ' ')
+  echo "- [$domain] $name"
+done | head -15
+# If nothing printed, show "(none)"
+{ ls work/01_PROJECTS/PROJECT_*.md domains/*/01_PROJECTS/PROJECT_*.md 2>/dev/null | head -1 | grep -q .; } || echo "(none)"
+echo ""
+
+echo "### Ad-hoc Tasks"
+adhoc_files=""
+[ -f "work/01_PROJECTS/AD_HOC_TASKS.md" ] && adhoc_files="$adhoc_files work/01_PROJECTS/AD_HOC_TASKS.md"
+for f in domains/*/01_PROJECTS/AD_HOC_TASKS.md; do
+  [ -f "$f" ] && adhoc_files="$adhoc_files $f"
+done
+if [ -n "$adhoc_files" ]; then
+  # shellcheck disable=SC2086
+  adhoc_tasks=$(grep '^\- \[ \]' $adhoc_files 2>/dev/null | sed 's|.*:- \[ \] ||;s|^- \[ \] ||' | head -10)
+  if [ -n "$adhoc_tasks" ]; then
+    echo "$adhoc_tasks" | sed 's/^/- /'
+  else
+    echo "(no open ad-hoc tasks)"
+  fi
+else
+  echo "(no AD_HOC_TASKS.md files found)"
+fi
 echo ""
 
 echo "### Domains"
@@ -127,7 +183,8 @@ else
 fi
 echo ""
 
-blocked_count=$(grep -rl '^\- \[!\]' work/ domains/ 2>/dev/null | wc -l | tr -d ' ')
+blocked_count=$(grep -rl '^\- \[!\]' work/ domains/ 2>/dev/null | wc -l || echo "0")
+blocked_count=$(echo $blocked_count | tr -d ' ')
 if [ "$blocked_count" -gt 0 ]; then
   echo "### Blocked Tasks"
   echo "- $blocked_count file(s) contain blocked tasks — check TASKS.md"

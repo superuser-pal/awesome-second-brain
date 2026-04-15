@@ -22,39 +22,39 @@ Defined in `.claude/commands/`. See [[SKILLS]] for full documentation.
 
 ## Vault Structure
 
-| Folder                            | Purpose                                                                                                                | Key Files                                                                                                                             |
-| --------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| `dashboards/`                     | **Navigation dashboards**                                                                                              | `HOME.md` (vault entry point), `TASKS.md` (master task list)                                                                          |
-| `vault-manifest.json`             | **Template metadata** -- version, infrastructure vs user content boundaries, frontmatter schemas, version fingerprints | Used by `/upgrade` for migration                                                                                                |
-| `CHANGELOG.md`                    | **Version history** -- tracks template releases (v1--v3.3) with what changed                                           | Reference for upgrade paths                                                                                                           |
-| `inbox/`                          | **Capture entry point** -- all input lands here first                                                                  | See Inbox & Capture Flow below                                                                                                        |
-| `inbox/raw/`                      | Unprocessed captures (braindumps, URLs, docs)                                                                          | Minimal metadata (date only)                                                                                                          |
-| `inbox/ready/`                    | Processed notes awaiting distribution                                                                                  | Full frontmatter, domain classified                                                                                                   |
-| `domains/`                        | **Organized knowledge areas** -- each domain is an isolated workspace                                                  | Created via create-domain skill                                                                                                       |
-| `domains/[name]/INDEX.md`         | Domain entry point (MOC with wikilinks)                                                                                | One per domain                                                                                                                        |
-| `domains/[Name]/CONNECTIONS.yaml` | External integrations config (APIs, docs, data sources)                                                                | One per domain                                                                                                                        |
-| `domains/[Name]/01_PROJECTS/`     | Active project files                                                                                                   | `PROJECT_UPPER_SNAKE.md`                                                                                                              |
-| `domains/[Name]/02_PAGES/`        | Permanent domain **pages** — knowledge items promoted from inbox notes via `/distribute`                               | `kebab-case.md`                                                                                                                       |
-| `domains/[Name]/05_ARCHIVE/`      | Completed/deprecated content                                                                                           | Preserve original name                                                                                                                |
-| `bases/`                          | **All Bases centralized** -- dynamic views for navigation                                                              | `Work Dashboard`, `Incidents`, `People Directory`, `1-1 History`, `Review Evidence`, `Competency Map`, `Domain Overview`, `Templates` |
-| `work/`                           | **Cross-domain work** -- incidents, 1-1s, decisions that span domains                                                  | `INDEX.md` (detailed MOC)                                                                                                             |
-| `work/CONNECTIONS.yaml`           | External integrations config (APIs, docs, data sources)                                                                | One per work area                                                                                                                     |
-| `work/01_PROJECTS/`               | **Current projects and ad-hoc tasks**                                                                                  | `PROJECT_NAME.md`, `AD_HOC_TASKS.md`                                                                                                  |
-| `work/02_1-1/`                    | 1:1 meeting notes (accumulate weekly)                                                                                  | Named `<Person> YYYY-MM-DD.md`                                                                                                        |
-| `work/03_INCIDENTS/`              | Incident docs — one `.md` file per incident                                                                            | Named by ticket or descriptive title                                                                                                  |
-| `work/04_PAGES/`                  | Permanent cross-domain **pages** — knowledge items promoted from inbox notes (work-related content per ABOUTME.md context) | `kebab-case.md`                                                                                                                   |
-| `work/05_REVIEW/`                 | Performance framework — wins, competencies, evidence, review briefs                                                    | `WINS.md`, `COMPETENCIES.md`, `EVIDENCE.md`, `<CYCLE>.md`                                                                             |
-| `work/06_ORG/`                    | Organizational knowledge — people and teams                                                                            | `PEOPLE.md`, `TEAMS.md`                                                                                                               |
-| `work/07_ARCHIVE/`                | Completed work organized by year                                                                                       | Grows over time                                                                                                                       |
-| `brain/`                          | Claude's operational knowledge                                                                                         | `MEMORIES.md`, `KEY_DECISIONS.md`, `PATTERNS.md`, `GOTCHAS.md`, `SKILLS.md`, `NORTH_STAR.md`                                          |
-| `thinking/`                       | Temporary **notes** — reasoning scratchpads, ongoing research, agent outputs, session logs (`status: thinking`)        | Named `YYYY-MM-DD-topic.md`                                                                                                           |
-| `plan/`                           | Daily notes and weekly planning files                                                                                  | `DD-MM-YY.md` (daily), `W[x]_YYYY-MM-DD.md` (weekly), `archive/` (closed weeks)                                                       |
-| `.claude/core/system/templates/`  | Obsidian templates                                                                                                     | `Work Note.md`, `Decision Record.md`, etc.                                                                                            |
-| `.claude/commands/`               | 27 slash commands (nested by skill)                                                                                   | See command folders for specifics                                                                                                     |
-| `.claude/agents/`                 | 9 subagents                                                                                                            | See subagents table below                                                                                                             |
-| `.claude/scripts/`                | Hook scripts                                                                                                           | `session-start.sh`, `classify-message.py`, `validate-write.py`, `pre-compact.sh`                                                      |
-| `.claude/skills/`                 | Obsidian + QMD + domain skills                                                                                         | Loaded automatically via Skill tool                                                                                                   |
-| `.claude/skills/create-domain/`   | Domain lifecycle management                                                                                            | Create, validate, map, archive domains                                                                                                |
+| Folder                            | Purpose                                                                                                                    | Key Files                                                                                                                             |
+| --------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `dashboards/`                     | **Navigation dashboards**                                                                                                  | `HOME.md` (vault entry point), `TASKS.md` (master task list)                                                                          |
+| `vault-manifest.json`             | **Template metadata** -- version, infrastructure vs user content boundaries, frontmatter schemas, version fingerprints     | Used by `/upgrade` for migration                                                                                                      |
+| `CHANGELOG.md`                    | **Version history** -- tracks template releases (v1--v3.3) with what changed                                               | Reference for upgrade paths                                                                                                           |
+| `inbox/`                          | **Capture entry point** -- all input lands here first                                                                      | See Inbox & Capture Flow below                                                                                                        |
+| `inbox/raw/`                      | Unprocessed captures (braindumps, URLs, docs)                                                                              | Minimal metadata (date only)                                                                                                          |
+| `inbox/ready/`                    | Processed notes awaiting distribution                                                                                      | Full frontmatter, domain classified                                                                                                   |
+| `domains/`                        | **Organized knowledge areas** -- each domain is an isolated workspace                                                      | Created via create-domain skill                                                                                                       |
+| `domains/[name]/INDEX.md`         | Domain entry point (MOC with wikilinks)                                                                                    | One per domain                                                                                                                        |
+| `domains/[Name]/CONNECTIONS.yaml` | External integrations config (APIs, docs, data sources)                                                                    | One per domain                                                                                                                        |
+| `domains/[Name]/01_PROJECTS/`     | Active project files                                                                                                       | `PROJECT_UPPER_SNAKE.md`                                                                                                              |
+| `domains/[Name]/02_PAGES/`        | Permanent domain **pages** — knowledge items promoted from inbox notes via `/distribute`                                   | `kebab-case.md`                                                                                                                       |
+| `domains/[Name]/05_ARCHIVE/`      | Completed/deprecated content                                                                                               | Preserve original name                                                                                                                |
+| `bases/`                          | **All Bases centralized** -- dynamic views for navigation                                                                  | `Work Dashboard`, `Incidents`, `People Directory`, `1-1 History`, `Review Evidence`, `Competency Map`, `Domain Overview`, `Templates` |
+| `work/`                           | **Cross-domain work** -- incidents, 1-1s, decisions that span domains                                                      | `INDEX.md` (detailed MOC)                                                                                                             |
+| `work/CONNECTIONS.yaml`           | External integrations config (APIs, docs, data sources)                                                                    | One per work area                                                                                                                     |
+| `work/01_PROJECTS/`               | **Current projects and ad-hoc tasks**                                                                                      | `PROJECT_NAME.md`, `AD_HOC_TASKS.md`                                                                                                  |
+| `work/02_1-1/`                    | 1:1 meeting notes (accumulate weekly)                                                                                      | Named `<Person> YYYY-MM-DD.md`                                                                                                        |
+| `work/03_INCIDENTS/`              | Incident docs — one `.md` file per incident                                                                                | Named by ticket or descriptive title                                                                                                  |
+| `work/04_PAGES/`                  | Permanent cross-domain **pages** — knowledge items promoted from inbox notes (work-related content per ABOUTME.md context) | `kebab-case.md`                                                                                                                       |
+| `work/05_REVIEW/`                 | Performance framework — wins, competencies, evidence, review briefs                                                        | `WINS.md`, `COMPETENCIES.md`, `EVIDENCE.md`, `<CYCLE>.md`                                                                             |
+| `work/06_ORG/`                    | Organizational knowledge — people and teams                                                                                | `PEOPLE.md`, `TEAMS.md`                                                                                                               |
+| `work/07_ARCHIVE/`                | Completed work organized by year                                                                                           | Grows over time                                                                                                                       |
+| `brain/`                          | Claude's operational knowledge                                                                                             | `MEMORIES.md`, `KEY_DECISIONS.md`, `PATTERNS.md`, `GOTCHAS.md`, `SKILLS.md`, `NORTH_STAR.md`                                          |
+| `thinking/`                       | Temporary **notes** — reasoning scratchpads, ongoing research, agent outputs, session logs (`status: thinking`)            | Named `YYYY-MM-DD-topic.md`                                                                                                           |
+| `plan/`                           | Daily notes and weekly planning files                                                                                      | `DD-MM-YY.md` (daily), `W[x]_YYYY-MM-DD.md` (weekly), `archive/` (closed weeks)                                                       |
+| `.claude/core/system/templates/`  | Obsidian templates                                                                                                         | `Work Note.md`, `Decision Record.md`, etc.                                                                                            |
+| `.claude/commands/`               | 27 slash commands (nested by skill)                                                                                        | See command folders for specifics                                                                                                     |
+| `.claude/agents/`                 | 9 subagents                                                                                                                | See subagents table below                                                                                                             |
+| `.claude/scripts/`                | Hook scripts                                                                                                               | `session-start.sh`, `hooks/classify-message.ts`, `hooks/validate-write.ts`, `hooks/pre-tool-use.ts`, `pre-compact.sh`                 |
+| `.claude/skills/`                 | Obsidian + QMD + domain skills                                                                                             | Loaded automatically via Skill tool                                                                                                   |
+| `.claude/skills/create-domain/`   | Domain lifecycle management                                                                                                | Create, validate, map, archive domains                                                                                                |
 
 ## Domains
 
@@ -83,11 +83,11 @@ domains/[Name]/
 
 The vault distinguishes three kinds of content by lifecycle, not by topic.
 
-| Type | Where it lives | Lifecycle |
-|------|---------------|-----------|
-| **Note** | `inbox/raw/`, `inbox/ready/`, `thinking/` | Temporary. Created by capture commands with `status: unprocessed`. Promoted to pages via `/distribute`, or moved to `thinking/` for ongoing work. |
-| **Page** | `domains/[Name]/02_PAGES/`, `work/04_PAGES/` | Permanent. Promoted from notes. Atomic — one concept per page. Asset class is determined by location, not by the `type` field. |
-| **Planning note** | `plan/` | Separate lifecycle. Created by `/standup`, closed by `/wrap-up`. Never promoted. |
+| Type              | Where it lives                               | Lifecycle                                                                                                                                         |
+| ----------------- | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Note**          | `inbox/raw/`, `inbox/ready/`, `thinking/`    | Temporary. Created by capture commands with `status: unprocessed`. Promoted to pages via `/distribute`, or moved to `thinking/` for ongoing work. |
+| **Page**          | `domains/[Name]/02_PAGES/`, `work/04_PAGES/` | Permanent. Promoted from notes. Atomic — one concept per page. Asset class is determined by location, not by the `type` field.                    |
+| **Planning note** | `plan/`                                      | Separate lifecycle. Created by `/standup`, closed by `/wrap-up`. Never promoted.                                                                  |
 
 ### Promotion Flows (Note → Page)
 
@@ -100,12 +100,12 @@ When a note is ready to become permanent knowledge, choose the flow that fits:
 
 ### Note Status Lifecycle
 
-| Status | Set by | Meaning |
-|--------|--------|---------|
-| `unprocessed` | Any capture command | Newly captured, no frontmatter classification yet |
-| `thinking` | `/capture` or `/process` | Moved to `thinking/` for ongoing work |
-| `ready` | `/process` | Frontmatter complete, awaiting distribution |
-| `processed` | `/distribute` | Promoted to a page in a domain (source note kept for provenance) |
+| Status        | Set by                   | Meaning                                                          |
+| ------------- | ------------------------ | ---------------------------------------------------------------- |
+| `unprocessed` | Any capture command      | Newly captured, no frontmatter classification yet                |
+| `thinking`    | `/capture` or `/process` | Moved to `thinking/` for ongoing work                            |
+| `ready`       | `/process`               | Frontmatter complete, awaiting distribution                      |
+| `processed`   | `/distribute`            | Promoted to a page in a domain (source note kept for provenance) |
 
 ---
 
@@ -115,11 +115,11 @@ All user input enters through `inbox/`. Three stages move notes from raw capture
 
 ### Stages
 
-| Stage         | Command       | Location                                                       | What happens                                                                                 |
-| ------------- | ------------- | -------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| 1. Capture    | `/capture`    | `inbox/raw/` (or `thinking/`)                                  | Raw note saved with `status: unprocessed`. No classification yet.                            |
-| 2. Process    | `/process`    | `inbox/raw/` → `inbox/ready/` (or `thinking/`)                 | Frontmatter added (domain, type, tags, description). Multi-topic notes flagged. Thinking notes offered `status: thinking`. Also scans `thinking/` and shows promotion reminder. |
-| 3. Distribute | `/distribute` | `inbox/ready/` → `domains/[Name]/02_PAGES/` or `work/04_PAGES/` | Note promoted to a **page**. Split offered for multi-topic notes. Absorb offered if duplicate found. Wikilinks added. User confirms. |
+| Stage         | Command       | Location                                                        | What happens                                                                                                                                                                    |
+| ------------- | ------------- | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1. Capture    | `/capture`    | `inbox/raw/` (or `thinking/`)                                   | Raw note saved with `status: unprocessed`. No classification yet.                                                                                                               |
+| 2. Process    | `/process`    | `inbox/raw/` → `inbox/ready/` (or `thinking/`)                  | Frontmatter added (domain, type, tags, description). Multi-topic notes flagged. Thinking notes offered `status: thinking`. Also scans `thinking/` and shows promotion reminder. |
+| 3. Distribute | `/distribute` | `inbox/ready/` → `domains/[Name]/02_PAGES/` or `work/04_PAGES/` | Note promoted to a **page**. Split offered for multi-topic notes. Absorb offered if duplicate found. Wikilinks added. User confirms.                                            |
 
 `/dump` is a power shortcut that does all 3 stages in one shot for high-confidence routing.
 
@@ -173,7 +173,7 @@ obsidian orphans                                   # Unlinked notes
 
 ### Creating Notes
 
-1. **Always use correct YAML frontmatter:** Consult `.claude/core/reference/ASSET-CLASSES.md` for exact schemas. The PreToolUse hook (`validate-write.py`) will automatically enforce compliance and warn you if required fields (like `date`, `description`, or `tags`) are missing.
+1. **Always use correct YAML frontmatter:** Consult `.claude/core/reference/ASSET-CLASSES.md` for exact schemas. The PostToolUse hook (`validate-write.ts`) will automatically enforce compliance via Zod schemas and warn you if required fields (like `date`, `description`, or `tags`) are missing.
 2. **Use templates** from `.claude/core/system/templates/`. Fill `{{placeholders}}` with real values.
 3. **Place files correctly**: Adhere strictly to the Vault Structure table defined above.
 4. **Naming conventions**: Use descriptive titles for normal notes. For projects, use `PROJECT_UPPER_SNAKE.md`. For ad-hoc tasks not tied to a project, use `AD_HOC_TASKS.md`. For index/review files, use `ALL_CAPS.md` (e.g. `WINS.md`).
@@ -273,6 +273,7 @@ Beyond tags, use these frontmatter properties to enable search and Bases views:
 **All memories live in the vault.** Never create additional memory files in the `~/.claude/projects/` memory directory, as those paths are not version-tracked.
 
 When explicitly asked to "remember" something:
+
 1. Find or create the appropriate `brain/` topic note (e.g., `GOTCHAS.md`, `PATTERNS.md`, `KEY_DECISIONS.md`).
 2. Add the knowledge there with a wikilink pointing to the original source or context.
 
@@ -303,17 +304,17 @@ Two types of agents live in `.claude/agents/`. They have different formats and p
 
 Task-specific agents invoked BY commands. Run in isolated context windows with bounded turns.
 
-| Agent                 | Purpose                                                          | Invoked by                     |
-| --------------------- | ---------------------------------------------------------------- | ------------------------------ |
-| `wins-capture`        | Finds uncaptured wins and competency gaps                        | `/wrap-up`, `/weekly`          |
-| `context-loader`      | Loads all vault context about a person, project, or concept      | Direct                         |
-| `cross-linker`        | Finds missing wikilinks, orphans, broken backlinks               | `/audit`                       |
-| `contact-importer`    | Bulk creates/updates person notes from Slack profiles            | `/incident`                    |
-| `review-prep`         | Aggregates all performance evidence for a review period          | `/brief`                       |
-| `slack-archaeologist` | Full Slack reconstruction -- every message, thread, profile      | `/incident`                    |
-| `vault-librarian`     | Deep vault maintenance -- orphans, broken links, stale notes     | `/audit`                       |
-| `review-fact-checker` | Verifies every claim in a review draft against vault sources     | `/self`, `/peer`               |
-| `vault-migrator`      | Classifies, transforms, and migrates content from a source vault | `/upgrade`                     |
+| Agent                 | Purpose                                                          | Invoked by            |
+| --------------------- | ---------------------------------------------------------------- | --------------------- |
+| `wins-capture`        | Finds uncaptured wins and competency gaps                        | `/wrap-up`, `/weekly` |
+| `context-loader`      | Loads all vault context about a person, project, or concept      | Direct                |
+| `cross-linker`        | Finds missing wikilinks, orphans, broken backlinks               | `/audit`              |
+| `contact-importer`    | Bulk creates/updates person notes from Slack profiles            | `/incident`           |
+| `review-prep`         | Aggregates all performance evidence for a review period          | `/brief`              |
+| `slack-archaeologist` | Full Slack reconstruction -- every message, thread, profile      | `/incident`           |
+| `vault-librarian`     | Deep vault maintenance -- orphans, broken links, stale notes     | `/audit`              |
+| `review-fact-checker` | Verifies every claim in a review draft against vault sources     | `/self`, `/peer`      |
+| `vault-migrator`      | Classifies, transforms, and migrates content from a source vault | `/upgrade`            |
 
 ### Domain Agents
 

@@ -20,7 +20,7 @@ Verify these components exist:
 | `CONNECTIONS.yaml` | Yes | At domain root |
 | `01_PROJECTS/` | Yes | Directory exists |
 | `02_PAGES/` | Yes | Directory exists |
-| `05_ARCHIVE/` | Yes | Directory exists |
+| `03_ARCHIVE/` | Yes | Directory exists |
 
 ```bash
 ls -la domains/[Name]/
@@ -61,7 +61,7 @@ INDEX.md must contain at least one `[[wikilink]]`. Orphan INDEX files are bugs.
 | Domain directory | `PascalCase` | `my-domain/` | `MyDomain/` |
 | 01_PROJECTS/ files | `PROJECT_UPPER_SNAKE.md` | `feature_x.md` | `PROJECT_FEATURE_X.md` |
 | 02_PAGES/ files | `kebab-case.md` | `MyNotes.md` | `my-notes.md` |
-| 05_ARCHIVE/ files | Preserve original | — | — |
+| 03_ARCHIVE/ files | Preserve original | — | — |
 
 ## Step 5: Check Nesting Depth
 
@@ -80,7 +80,7 @@ Maximum depth: 3 levels below domain root.
 - [ ] CONNECTIONS.yaml exists
 - [ ] 01_PROJECTS/ exists
 - [ ] 02_PAGES/ exists
-- [ ] 05_ARCHIVE/ exists
+- [ ] 03_ARCHIVE/ exists
 
 ### INDEX.md Check
 - [ ] Valid YAML frontmatter

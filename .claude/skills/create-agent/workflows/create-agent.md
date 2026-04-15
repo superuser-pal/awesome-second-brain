@@ -54,7 +54,7 @@ Fill in all 5 sections:
 
 **§2 Activation Context:**
 - Always include `[AUTO]` for `domains/[Name]/INDEX.md`
-- Add `[REF]` for `01_PROJECTS/`, `02_PAGES/`, `05_ARCHIVE/`
+- Add `[REF]` for `01_PROJECTS/`, `02_PAGES/`, `03_ARCHIVE/`
 - Add any additional `[AUTO]` files critical for this domain (e.g., a key memory file)
 
 **§3 Domain Knowledge:**
@@ -108,7 +108,7 @@ Update the domain agents total count at the bottom of that table.
 - [ ] YAML has `name`, `description`, `domain`, `tools`, `model`, `skills` — and NO `maxTurns`
 - [ ] `domain:` field uses PascalCase matching the directory name
 - [ ] All 5 sections present
-- [ ] §2 has `[AUTO]` for INDEX.md, `[REF]` for `01_PROJECTS/`, `02_PAGES/`, `05_ARCHIVE/`
+- [ ] §2 has `[AUTO]` for INDEX.md, `[REF]` for `01_PROJECTS/`, `02_PAGES/`, `03_ARCHIVE/`
 - [ ] §4 custom menu items start at 4 (1-3 are inherited)
 - [ ] §5 has 3+ routing examples including at least one out-of-scope case
 - [ ] AGENT-BASE.md referenced in document header

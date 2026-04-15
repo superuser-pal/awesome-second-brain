@@ -2,7 +2,7 @@
 title: PAL Second Brain Security Guardrails
 version: 1.0.0
 layer: SECURITY
-purpose: Execution constraints enforced by pre-tool-use.py — BLOCK / WARN / ALLOW model
+purpose: Execution constraints enforced by pre-tool-use.ts — BLOCK / WARN / ALLOW model
 last_updated: 2026-04-05
 ---
 
@@ -10,7 +10,7 @@ last_updated: 2026-04-05
 
 Three-tier model: **BLOCK** (operation halted) | **WARN** (operation allowed with notice) | **ALLOW** (safe, no action needed).
 
-Enforced by `.claude/scripts/pre-tool-use.py` at every tool execution. Claude should also apply these rules proactively before writing.
+Enforced by `.claude/scripts/hooks/pre-tool-use.ts` at every tool execution. Claude should also apply these rules proactively before writing.
 
 ---
 
@@ -125,4 +125,4 @@ These rules are specific to PAL Second Brain and enforced by convention (Claude 
 
 ---
 
-**Related Files:** `ARCHITECTURE.md`, `MEMORY-LOGIC.md`, `.claude/scripts/pre-tool-use.py`
+**Related Files:** `ARCHITECTURE.md`, `MEMORY-LOGIC.md`, `.claude/scripts/hooks/pre-tool-use.ts`, `.claude/scripts/hooks/lib/security.ts`

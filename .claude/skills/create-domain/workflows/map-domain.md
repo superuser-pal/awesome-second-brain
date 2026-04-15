@@ -17,7 +17,7 @@ Scan all content folders for files:
 ```bash
 ls domains/[Name]/01_PROJECTS/
 ls domains/[Name]/02_PAGES/
-ls domains/[Name]/05_ARCHIVE/
+ls domains/[Name]/03_ARCHIVE/
 ```
 
 ## Step 3: Check Naming Conventions
@@ -28,7 +28,7 @@ For each file found, check against expected format:
 |----------|-----------------|-------------------|-------------|
 | 01_PROJECTS/ | `PROJECT_UPPER_SNAKE.md` | `feature_x.md` | `PROJECT_FEATURE_X.md` |
 | 02_PAGES/ | `kebab-case.md` | `MyDoc.md` | `my-doc.md` |
-| 05_ARCHIVE/ | Preserve original | — | — |
+| 03_ARCHIVE/ | Preserve original | — | — |
 
 ## Step 4: Apply Fixes (With Confirmation)
 
@@ -97,7 +97,7 @@ Verify:
 ### Files Scanned
 - 01_PROJECTS/: [X] files
 - 02_PAGES/: [X] files
-- 05_ARCHIVE/: [X] files
+- 03_ARCHIVE/: [X] files
 
 ### CONNECTIONS.yaml
 - [present | MISSING — flagged]

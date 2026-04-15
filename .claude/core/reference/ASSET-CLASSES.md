@@ -2,13 +2,13 @@
 title: PAL Second Brain Asset Classes
 version: 1.0.0
 layer: REFERENCE
-purpose: Canonical frontmatter schemas for all vault file types — authoritative source for validate-write.py
+purpose: Canonical frontmatter schemas for all vault file types — authoritative source for validate-write.ts and hooks/lib/schemas.ts
 last_updated: 2026-04-05
 ---
 
 # Asset Classes
 
-Every file type in the vault has a strict frontmatter schema. Properties must appear in the order listed. `validate-write.py` uses this file as its authoritative reference.
+Every file type in the vault has a strict frontmatter schema. Properties must appear in the order listed. `hooks/validate-write.ts` uses this file as its authoritative reference — schemas are implemented as Zod objects in `hooks/lib/schemas.ts`.
 
 ---
 
@@ -73,10 +73,44 @@ domain: "DomainName"        # PascalCase, matches parent directory
 goal: "..."                 # What success looks like
 status: planning            # planning | in_progress | blocked | completed | cancelled
 priority: medium            # low | medium | high | critical
+due_date: YYYY-MM-DD        # optional — target delivery date
+completion_date: YYYY-MM-DD # set when archiving; omit if not completed
 tags: []
 created: YYYY-MM-DD
 last_updated: YYYY-MM-DD
 ```
+
+**Task format:** All open and in-progress tasks must use `#todo` tag (the Tasks plugin global filter). Optional inline due date with `📅 YYYY-MM-DD`.
+
+```markdown
+### To Do
+- [ ] Task description #todo
+- [ ] Task with due date #todo 📅 2026-04-30
+
+### In Progress
+- [/] Task currently being worked on #todo
+
+### Done
+- [x] Completed task ✅ 2026-04-13
+```
+
+**Status symbol → Tasks plugin type mapping:**
+
+| Symbol | Meaning | Tasks plugin type |
+|--------|---------|-------------------|
+| `[ ]` | To Do | `TODO` |
+| `[/]` | In Progress | `IN_PROGRESS` |
+| `[!]` | Blocked | `ON_HOLD` *(must be registered as custom status in plugin settings)* |
+| `[?]` | Paused | `ON_HOLD` |
+| `[I]` | Backlog | `TODO` |
+| `[-]` | Not Doing | `CANCELLED` |
+| `[x]` | Done | `DONE` |
+
+**`completion_date` vs task-level done date:**
+- `completion_date` (frontmatter) = when the **project** was completed — set during archive
+- `✅ YYYY-MM-DD` (inline on task line) = when an individual **task** was completed — appended automatically by the Tasks plugin on toggle. Do not set manually.
+
+**Archived projects** move to `brain/MASTER_ARCHIVE/projects/` (not `domains/[Name]/03_ARCHIVE/`).
 
 ---
 
@@ -180,7 +214,32 @@ team: Backend               # Team name
 
 ---
 
-## 8. Plan — Daily Note
+## 8. 1:1 Meeting Note
+
+**Location:** `work/02_1-1/<Person>.md`
+
+One file per person. Meetings accumulate newest-first under `## Meetings` as `### YYYY-MM-DD — Topic` sections. The `date` field always reflects the most recent meeting.
+
+```yaml
+person: "Full Name"          # who the 1:1 is with
+date: YYYY-MM-DD             # most recent meeting date
+description: "..."           # ~150 char rolling summary (updated each session)
+tags:
+  - 1-1
+  - work-note
+status: active               # active | archived
+```
+
+**Body requirements:**
+- `## Latest Summary` — one-paragraph rolling summary, updated each meeting
+- `## Meetings` — reverse-chronological `### YYYY-MM-DD — Topic` sections
+- `## Related` — wikilinks to PEOPLE.md entry and relevant work notes
+
+**Promotion rule (via `/distribute`):** Never create a new file per meeting. Instead, prepend a new `### YYYY-MM-DD — Topic` section to the existing person file, update `## Latest Summary`, and update the `date` frontmatter field.
+
+---
+
+## 9. Plan — Daily Note
 
 **Location:** `plan/DD-MM-YY-XX.md`
 
@@ -194,7 +253,7 @@ tags:
 
 ---
 
-## 9. Plan — Weekly File
+## 10. Plan — Weekly File
 
 **Location:** `plan/W[x]_YYYY-MM-DD.md`
 
@@ -223,4 +282,4 @@ tags:
 
 ---
 
-**Related Files:** `DOMAINS-LOGIC.md`, `.claude/scripts/validate-write.py`, `.claude/core/system/templates/`
+**Related Files:** `DOMAINS-LOGIC.md`, `.claude/scripts/hooks/validate-write.ts`, `.claude/scripts/hooks/lib/schemas.ts`, `.claude/core/system/templates/`

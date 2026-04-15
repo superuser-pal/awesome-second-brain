@@ -2,7 +2,7 @@
 description: "Morning kickoff. Load today's context, review yesterday, surface open tasks, identify priorities, and create today's daily note in plan/."
 ---
 
-Run the morning standup:
+Run the open-day kickoff:
 
 1. Read `dashboards/HOME.md` for current dashboard state
 2. Read `brain/NORTH_STAR.md` for current goals
@@ -12,7 +12,7 @@ Run the morning standup:
 6. Check recent git activity: `git log --oneline --since="24 hours ago" --no-merges`
 7. Check for any unlinked notes or inbox items needing processing
 
-Present a structured standup summary:
+Present a structured open-day summary:
 - **Yesterday**: What got done (from git log and daily note)
 - **Active Work**: Current projects in work/01_PROJECTS/ with their status
 - **Open Tasks**: Pending items
@@ -25,7 +25,7 @@ Keep it concise. This is a quick orientation, not a deep dive.
 
 ## Daily Note (morning-checkin)
 
-After the standup summary, run the `morning-checkin` workflow from the `daily-rituals` skill:
+After the open-day summary, run the `morning-checkin` workflow from the `daily-rituals` skill:
 
 8. Check for an active week in `plan/` (show week goal + progress if found)
 9. Check if today's daily note exists (`plan/DD-MM-YY-XX.md`) — create from template if not

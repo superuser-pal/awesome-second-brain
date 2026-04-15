@@ -14,7 +14,7 @@ PAL Second Brain operates across 3 layers:
 |-------|---------|-----------|
 | **VAULT** | User content — notes, projects, decisions, reviews | `work/`, `plan/`, `domains/`, `inbox/`, `thinking/`, `dashboards/`, `bases/` |
 | **CLAUDE** | Behavior layer — agents, skills, commands, scripts, core docs | `.claude/agents/`, `.claude/skills/`, `.claude/commands/`, `.claude/scripts/`, `.claude/core/` |
-| **HOOK** | Automation layer — lifecycle scripts that fire at events | `.claude/scripts/` (session-start, classify-message, validate-write, pre-tool-use, pre-compact) |
+| **HOOK** | Automation layer — lifecycle scripts that fire at events | `.claude/scripts/` (session-start.sh, hooks/classify-message.ts, hooks/validate-write.ts, hooks/pre-tool-use.ts, pre-compact.sh) |
 
 ---
 
@@ -27,7 +27,7 @@ PAL Second Brain operates across 3 layers:
                                   ↓
 ┌─────────────────────────────────────────────────────────────────────┐
 │                     UserPromptSubmit Hook                           │
-│         classify-message.py — content type + domain routing hints  │
+│         classify-message.ts — content type + domain routing hints  │
 └─────────────────────────────────────────────────────────────────────┘
                                   ↓
 ┌─────────────────────────────────────────────────────────────────────┐
@@ -39,22 +39,22 @@ PAL Second Brain operates across 3 layers:
           ↓                       ↓                       ↓
     ┌───────────┐           ┌───────────┐         ┌───────────────┐
     │  COMMANDS │           │  SKILLS   │         │ DOMAIN AGENTS │
-    │ /standup  │           │ create-   │         │ /agent:[name] │
+    │ /open-day │           │ create-   │         │ /agent:[name] │
     │ /dump     │           │ domain    │         │ (interactive) │
-    │ /wrap-up  │           │ daily-    │         └───────────────┘
+    │ /close-day│           │ daily-    │         └───────────────┘
     │ etc.      │           │ rituals   │
     └───────────┘           └───────────┘
           ↓                       ↓
     ┌────────────────────────────────────────────────────────┐
     │                   PreToolUse Hook                       │
-    │         pre-tool-use.py — security validation          │
+    │         pre-tool-use.ts — security validation          │
     └────────────────────────────────────────────────────────┘
                                   ↓
                            [ WRITE / EDIT ]
                                   ↓
     ┌────────────────────────────────────────────────────────┐
     │                  PostToolUse Hook                       │
-    │   validate-write.py — frontmatter + wikilink checks   │
+    │   validate-write.ts — frontmatter + wikilink checks   │
     └────────────────────────────────────────────────────────┘
                                   ↓
     ┌────────────────────────────────────────────────────────┐
@@ -81,7 +81,7 @@ PAL Second Brain vault/
 │   ├── review/          # Performance framework, wins doc, evidence
 │   └── org/             # People and teams
 ├── domains/             # Isolated knowledge areas
-│   └── [Name]/          # PascalCase (INDEX.md + 01_PROJECTS, 02_PAGES, 05_ARCHIVE)
+│   └── [Name]/          # PascalCase (INDEX.md + 01_PROJECTS, 02_PAGES, 03_ARCHIVE)
 ├── plan/                # Daily notes + weekly planning files
 ├── thinking/            # Scratchpad — drafts, reasoning
 ├── bases/               # Obsidian Bases views
@@ -96,7 +96,7 @@ PAL Second Brain vault/
 - **Domain Agents** (`.claude/agents/`): Create per `AGENTS-LOGIC.md`. Inherit from `AGENT-BASE.md`. Conversational, no `maxTurns`.
 - **Subagents** (`.claude/agents/`): Task-bound, invoked by commands. Must declare `maxTurns` in frontmatter.
 - **Commands** (`.claude/commands/`): Slash commands, each a single markdown file with numbered steps.
-- **Scripts** (`.claude/scripts/`): Hook scripts in shell or Python. See `TOOLBOX.md`.
+- **Scripts** (`.claude/scripts/`): Session/compact hooks in shell. Hook scripts (classify, validate, security) in TypeScript/Bun under `hooks/`. See `TOOLBOX.md`.
 
 ---
 

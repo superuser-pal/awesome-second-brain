@@ -4,6 +4,8 @@ domain: domain-name
 goal: "One sentence describing the objective"
 status: planning
 priority: medium
+due_date:
+completion_date:
 tags: []
 created: {{date}}
 last_updated: {{date}}
@@ -17,11 +19,11 @@ last_updated: {{date}}
 
 ## Tasks
 
-### Active
+### To Do
 
-- [ ] First task
+- [ ] First task #todo
 
-### Inactive
+### In Progress
 
 ### Done
 

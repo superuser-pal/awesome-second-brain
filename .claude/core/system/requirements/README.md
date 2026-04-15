@@ -21,7 +21,7 @@ All requirements use the **Given-When-Then** format (BDD/Gherkin style).
 | [01_DOMAINS.md](01_DOMAINS.md) | `1.X.Y` | Domain creation, validation, mapping, archiving |
 | [02_INBOX.md](02_INBOX.md) | `2.X.Y` | Inbox capture flow (capture, process, distribute) |
 | [03_HOOKS.md](03_HOOKS.md) | `3.X.Y` | Hooks (SessionStart, UserPromptSubmit, PostToolUse, PreToolUse, PreCompact, Stop) |
-| [04_COMMANDS.md](04_COMMANDS.md) | `4.X.Y` | Slash commands (standup, wrap-up, weekly, week-prep, week-close, week-cycle, project-create, task-sync, etc.) |
+| [04_COMMANDS.md](04_COMMANDS.md) | `4.X.Y` | Slash commands (open-day, close-day, weekly, week-prep, week-close, week-cycle, project-create, task-sync, etc.) |
 
 ---
 

@@ -16,6 +16,27 @@ For each `.md` file in `inbox/ready/`:
    - Default: `domains/[domain]/02_PAGES/` (or `work/04_PAGES/` for cross-domain content)
    - If `type` is belief, frame, lesson, model, or goal and the domain has relevant memory files: offer to append to existing memory file instead of creating a new page
    - If `project` field is set: link from the project file after placement
+   - **If `type: 1-1`**: route to `work/02_1-1/` using the per-person accumulating pattern — see step 3a below.
+
+   **3a. 1:1 routing (accumulating file pattern)**
+
+   1-1 notes do NOT create a new file per meeting. Instead:
+
+   a. Extract `person` field from frontmatter (e.g., `"Babis Pagonis"`).
+   b. Check if `work/02_1-1/[Person].md` already exists.
+   c. If the file **exists** — absorb mode:
+      - Extract the meeting date and topic from the note content
+      - Prepend a new `### [date] — [topic]` section immediately after `## Meetings` heading
+      - Update `## Latest Summary` with the new meeting context
+      - Update the `date` frontmatter field to the new meeting date
+      - Update `description` frontmatter with a fresh ~150-char rolling summary
+      - Mark source note `status: processed`
+      - Archive source to `brain/MASTER_ARCHIVE/` and log to `brain/INGEST_LOG.md` with destination `[[work/02_1-1/[Person]|[Person]]] ([date] section)`
+      - Skip the file-move steps (file already exists at destination)
+   d. If the file **does not exist** — create mode:
+      - Create `work/02_1-1/[Person].md` using the 1:1 Note schema from ASSET-CLASSES.md
+      - Structure: `## Latest Summary` + `## Meetings` with the first `### [date] — [topic]` section + `## Related` with PEOPLE.md wikilink
+      - Proceed with normal archive + log steps
 
 4. **Check for split-worthy content** — Scan the note for 3+ independent H2 sections or clearly unrelated topic blocks. Only offer to split if each topic is independently page-worthy (self-contained, atomic, useful on its own without the others). Tightly related sections that build on each other should stay as one page.
 
@@ -64,11 +85,25 @@ For each `.md` file in `inbox/ready/`:
    ```
    Wait for user confirmation.
 
-7. **On confirmation, move the file** — this is when the note becomes a page:
-   ```bash
-   git mv inbox/ready/[filename] domains/[domain]/02_PAGES/[filename]
-   ```
-   (or `work/04_PAGES/[filename]` for cross-domain content)
+7. **On confirmation, promote and archive**:
+
+   a. **Copy source to archive** — preserve the processed note as provenance:
+      ```bash
+      cp inbox/ready/[filename] brain/MASTER_ARCHIVE/[filename]
+      ```
+      Add `distributed_to` and `distributed_at` fields to the archive copy's frontmatter.
+
+   b. **Move file to destination** — this is when the note becomes a page:
+      ```bash
+      git mv inbox/ready/[filename] domains/[domain]/02_PAGES/[filename]
+      ```
+      (or `work/04_PAGES/[filename]`, `work/02_1-1/`, `work/03_INCIDENTS/` as appropriate)
+
+   c. **Log to ingest log** — prepend a new row (newest first) to the table in `brain/INGEST_LOG.md`:
+      ```
+      | [date] | [type] | [domain] | [source filename] | [[destination|Display Name]] | |
+      ```
+      The `Notes` column is always left blank — it is reserved for user input only.
 
 8. **Add wikilinks** to the new page:
    - Add `[[domains/[domain]/INDEX|[domain]]]` link to the page's `## Related` section

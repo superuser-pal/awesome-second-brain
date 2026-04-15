@@ -63,7 +63,7 @@ Source: [general.md](../../commands/capture/general.md)
 
 Category: Validation
 Verification: Write a raw capture without `date` and confirm warning
-Source: [validate-write.py](../../scripts/validate-write.py)
+Source: [validate-write.ts](../../scripts/hooks/validate-write.ts)
 
 ---
 
@@ -240,5 +240,5 @@ Source: [distribute.md](../../commands/distribute.md)
 **Then** only these values are valid: `unprocessed | thinking | ready | processed | archived`
 
 Category: Validation
-Verification: Validate-write.py should warn on any other status value in inbox/ or thinking/
+Verification: validate-write.ts should warn on any other status value in inbox/ or thinking/
 Source: [ASSET-CLASSES.md](../../core/reference/ASSET-CLASSES.md)

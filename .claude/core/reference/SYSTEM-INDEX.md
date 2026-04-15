@@ -18,7 +18,7 @@ Task-specific agents invoked BY commands. All have `maxTurns`. Run in isolated c
 
 | Agent | maxTurns | Purpose | Invoked By |
 |-------|---------|---------|-----------|
-| `wins-capture` | 20 | Finds uncaptured wins and competency gaps from session activity | `/wrap-up`, `/weekly` |
+| `wins-capture` | 20 | Finds uncaptured wins and competency gaps from session activity | `/close-day`, `/weekly` |
 | `context-loader` | 20 | Loads all vault context about a person, project, incident, or concept | Direct |
 | `cross-linker` | 25 | Finds missing wikilinks, orphans, and broken backlinks across the vault | `/audit` |
 | `contact-importer` | 30 | Bulk creates/updates person notes from Slack profiles | `/incident` |
@@ -68,8 +68,8 @@ Interactive persona agents invoked BY the user. No `maxTurns` — conversational
 
 | Command | File | Subagents Called |
 |---------|------|-----------------|
-| `/standup` | `rituals/standup.md` | — |
-| `/wrap-up` | `rituals/wrap-up.md` | `wins-capture` |
+| `/open-day` | `rituals/open-day.md` | — |
+| `/close-day` | `rituals/close-day.md` | `wins-capture` |
 | `/week-prep` | `rituals/week-prep.md` | — |
 | `/week-close` | `rituals/week-close.md` | — |
 | `/week-cycle` | `rituals/week-cycle.md` | — |

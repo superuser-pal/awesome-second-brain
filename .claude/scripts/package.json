@@ -1,0 +1,16 @@
+{
+  "name": "pal-hooks",
+  "version": "1.0.0",
+  "description": "PAL Second Brain Claude Code hook scripts (TypeScript/Bun)",
+  "private": true,
+  "scripts": {
+    "test": "bun test tests/"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
+}

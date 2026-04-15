@@ -45,7 +45,7 @@ Check all sections present and properly structured:
 | Section | Check |
 |---------|-------|
 | §1 Identity & Persona | Present, describes role |
-| §2 Activation Context | Has `[AUTO]` and `[REF]` labels; INDEX.md is [AUTO]; 01_PROJECTS/, 02_PAGES/, 05_ARCHIVE/ are [REF] |
+| §2 Activation Context | Has `[AUTO]` and `[REF]` labels; INDEX.md is [AUTO]; 01_PROJECTS/, 02_PAGES/, 03_ARCHIVE/ are [REF] |
 | §3 Domain Knowledge | Present, atomic bullets |
 | §4 Custom Behaviors | Present; custom menu items start at 4; no duplicate of base menu items (*menu, *context, *dismiss) |
 | §5 Routing Examples | Present; 3+ examples; includes at least one out-of-scope case |

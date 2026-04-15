@@ -41,19 +41,19 @@ Source: [session-start.sh](../../scripts/session-start.sh)
 
 Category: Functional
 Verification: Send "we decided to go with option B" and confirm DECISION hint appears
-Source: [classify-message.py](../../scripts/classify-message.py)
+Source: [classify-message.ts](../../scripts/hooks/classify-message.ts)
 
 ---
 
 ### 3.2.2 Domain Detection
 
-**Given** domains are registered in classify-message.py's DOMAIN_PATTERNS
+**Given** domains are registered in classify-message.ts's signal patterns (via `hooks/lib/signals.ts`)
 **When** a message matches domain signal words
 **Then** a DOMAIN routing hint is injected (e.g., "DOMAIN: laralou detected — route to domains/laralou/")
 
 Category: Functional
 Verification: Register a domain's signals, send a matching message, confirm domain hint
-Source: [classify-message.py](../../scripts/classify-message.py)
+Source: [classify-message.ts](../../scripts/hooks/classify-message.ts)
 
 ---
 
@@ -67,7 +67,7 @@ Source: [classify-message.py](../../scripts/classify-message.py)
 
 Category: Validation
 Verification: Write a note without description and confirm warning appears
-Source: [validate-write.py](../../scripts/validate-write.py)
+Source: [validate-write.ts](../../scripts/hooks/validate-write.ts)
 
 ---
 
@@ -79,7 +79,7 @@ Source: [validate-write.py](../../scripts/validate-write.py)
 
 Category: Validation
 Verification: Write a domain project without `priority` field and confirm specific warning
-Source: [validate-write.py](../../scripts/validate-write.py)
+Source: [validate-write.ts](../../scripts/hooks/validate-write.ts)
 
 ---
 
@@ -91,7 +91,7 @@ Source: [validate-write.py](../../scripts/validate-write.py)
 
 Category: Validation
 Verification: Write a long note without wikilinks and confirm warning
-Source: [validate-write.py](../../scripts/validate-write.py)
+Source: [validate-write.ts](../../scripts/hooks/validate-write.ts)
 
 ---
 
@@ -105,7 +105,7 @@ Source: [validate-write.py](../../scripts/validate-write.py)
 
 Category: Security
 Verification: Attempt to write `ghp_abcdefghijklmnopqrstuvwxyz012345678` and confirm block
-Source: [pre-tool-use.py](../../scripts/pre-tool-use.py)
+Source: [pre-tool-use.ts](../../scripts/hooks/pre-tool-use.ts)
 
 ---
 
@@ -117,7 +117,7 @@ Source: [pre-tool-use.py](../../scripts/pre-tool-use.py)
 
 Category: Security
 Verification: Attempt `rm -rf ~/` and confirm block
-Source: [pre-tool-use.py](../../scripts/pre-tool-use.py)
+Source: [pre-tool-use.ts](../../scripts/hooks/pre-tool-use.ts)
 
 ---
 
@@ -129,7 +129,7 @@ Source: [pre-tool-use.py](../../scripts/pre-tool-use.py)
 
 Category: Security
 Verification: Attempt to write to `/etc/test.md` and confirm block
-Source: [pre-tool-use.py](../../scripts/pre-tool-use.py)
+Source: [pre-tool-use.ts](../../scripts/hooks/pre-tool-use.ts)
 
 ---
 

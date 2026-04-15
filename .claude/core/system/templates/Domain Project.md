@@ -6,6 +6,8 @@ usable: true
 goal:
 status: planning
 priority: medium
+due_date:
+completion_date:
 tags: []
 created: "{{date}}"
 last_updated: "{{date}}"
@@ -17,8 +19,8 @@ last_updated: "{{date}}"
 
 ## Tasks
 
-### Open
-- [ ]
+### To Do
+- [ ] #todo
 
 ### In Progress
 

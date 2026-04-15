@@ -27,6 +27,12 @@ views:
       - description
       - status
       - last_updated
+    sort:
+      - property: status
+        direction: ASC
+    columnSize:
+      note.name: 211
+      note.description: 678
   - type: table
     name: All Domains
     order:

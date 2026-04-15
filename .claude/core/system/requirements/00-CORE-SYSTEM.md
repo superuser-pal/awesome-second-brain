@@ -50,7 +50,7 @@ Source: [CLAUDE.md](../../../CLAUDE.md)
 **Then** daily notes are saved as `plan/DD-MM-YY-XX.md` (day suffix: MO/TU/WE/TH/FR/SA/SU) and weekly files as `plan/W[week]_YYYY-MM-DD.md` — closed weeks are archived to `plan/archive/W[week].md`
 
 Category: Functional
-Verification: Run /standup and confirm daily note is created in `plan/`, run /plan-week and confirm week file is created in `plan/`
+Verification: Run /open-day and confirm daily note is created in `plan/`, run /plan-week and confirm week file is created in `plan/`
 Source: [.claude/skills/daily-rituals/SKILL.md](../../skills/daily-rituals/SKILL.md)
 
 ---
@@ -87,7 +87,7 @@ Source: [CLAUDE.md](../../../CLAUDE.md)
 
 Category: Validation
 Verification: Write a note without frontmatter and confirm PostToolUse warns
-Source: [validate-write.py](../../scripts/validate-write.py)
+Source: [validate-write.ts](../../scripts/hooks/validate-write.ts)
 
 ---
 
@@ -113,18 +113,18 @@ Source: [session-start.sh](../../scripts/session-start.sh)
 
 Category: Functional
 Verification: Send "we decided to use PostgreSQL" and confirm DECISION routing hint appears
-Source: [classify-message.py](../../scripts/classify-message.py)
+Source: [classify-message.ts](../../scripts/hooks/classify-message.ts)
 
 ---
 
-### 0.2.3 Wrap-Up on Session End
+### 0.2.3 Close Day on Session End
 
-**Given** the user says "wrap up", "let's wrap", or similar
-**When** Claude detects the wrap-up signal
-**Then** the /wrap-up command is automatically invoked to verify notes, indexes, links, and suggest improvements
+**Given** the user says "close day", "wrap up", "let's wrap", or similar
+**When** Claude detects the close-day signal
+**Then** the /close-day command is automatically invoked to verify notes, indexes, links, and suggest improvements
 
 Category: Functional
-Verification: Say "let's wrap up" and confirm /wrap-up workflow starts
+Verification: Say "let's wrap up" and confirm /close-day workflow starts
 Source: [CLAUDE.md](../../../CLAUDE.md)
 
 ---
@@ -165,7 +165,7 @@ Source: [session-start.sh](../../scripts/session-start.sh)
 
 Category: Security
 Verification: Attempt to write a file containing `sk_live_test1234567890abcdef` and confirm it's blocked
-Source: [pre-tool-use.py](../../scripts/pre-tool-use.py)
+Source: [pre-tool-use.ts](../../scripts/hooks/pre-tool-use.ts)
 
 ---
 
@@ -177,7 +177,7 @@ Source: [pre-tool-use.py](../../scripts/pre-tool-use.py)
 
 Category: Security
 Verification: Attempt `rm -rf /tmp/test` and confirm it's blocked
-Source: [pre-tool-use.py](../../scripts/pre-tool-use.py)
+Source: [pre-tool-use.ts](../../scripts/hooks/pre-tool-use.ts)
 
 ---
 
@@ -189,7 +189,7 @@ Source: [pre-tool-use.py](../../scripts/pre-tool-use.py)
 
 Category: Security
 Verification: Attempt to write to `~/.ssh/test.md` and confirm it's blocked
-Source: [pre-tool-use.py](../../scripts/pre-tool-use.py)
+Source: [pre-tool-use.ts](../../scripts/hooks/pre-tool-use.ts)
 
 ---
 
@@ -201,7 +201,7 @@ Source: [pre-tool-use.py](../../scripts/pre-tool-use.py)
 
 Category: Security
 Verification: Write an email address to a work note and confirm warning appears
-Source: [pre-tool-use.py](../../scripts/pre-tool-use.py)
+Source: [pre-tool-use.ts](../../scripts/hooks/pre-tool-use.ts)
 
 ---
 
@@ -235,7 +235,7 @@ Source: [CLAUDE.md](../../../CLAUDE.md)
 
 **Given** a new domain is being created
 **When** the domain directory is named
-**Then** domain directories use PascalCase (e.g., `domains/LaraLou/`, `domains/PalFramework/`) and internal subfolders use numbered ALL CAPS (`01_PROJECTS/`, `02_PAGES/`, `05_ARCHIVE/`)
+**Then** domain directories use PascalCase (e.g., `domains/LaraLou/`, `domains/PalFramework/`) and internal subfolders use numbered ALL CAPS (`01_PROJECTS/`, `02_PAGES/`, `03_ARCHIVE/`)
 
 Category: Validation
 Verification: Run create-domain skill and confirm PascalCase directory is created with numbered subfolders

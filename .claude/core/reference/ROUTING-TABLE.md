@@ -18,8 +18,8 @@ For full intent routing logic, see `ORCHESTRATION.md`. For subagent details, see
 
 | User Intent | Command |
 |-------------|---------|
-| Morning kickoff, start of day, what to focus on | `/standup` |
-| End of day, wrap up, close session | `/wrap-up` |
+| Morning kickoff, start of day, what to focus on | `/open-day` |
+| End of day, wrap up, close session | `/close-day` |
 | Plan this week, set weekly goals | `/week-prep` |
 | Close the week, weekly retrospective | `/week-close` |
 | Full weekly lifecycle (close + plan) | `/week-cycle` |
@@ -53,7 +53,7 @@ Commands that invoke subagents. Commands not listed here run without subagents.
 
 | Command | Subagents Called | Notes |
 |---------|-----------------|-------|
-| `/wrap-up` | `wins-capture` | Scans session for uncaptured wins |
+| `/close-day` | `wins-capture` | Scans session for uncaptured wins |
 | `/weekly` | `wins-capture` | Scans week for patterns and wins |
 | `/incident` | `slack-archaeologist`, `contact-importer` | Full Slack reconstruction + person notes |
 | `/slack-scan` | `slack-archaeologist` | Deep Slack scan only |

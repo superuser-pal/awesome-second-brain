@@ -8,7 +8,7 @@ tags: [daily]
 
 # {{date_readable}}
 
-## Morning Check-in
+## Check-in
 
 **Inbox health:** {{inbox_count}} unprocessed items
 
@@ -16,10 +16,22 @@ tags: [daily]
 
 **Week progress:** {{completed_count}}/{{planned_count}} tasks done
 
-### Today's Focus
+---
 
-- [/] 
+## Tasks
 
-## Evening Review
+### Open
 
-*(filled during /wrap-up)*
+- [/] #todo
+
+### Closed
+
+*(tasks completed today — move here from Open or copy-paste from source)*
+
+---
+
+## Notes
+
+> [!note] These notes persist — write freely, this section is never touched by open-day or close-day.
+
+- 

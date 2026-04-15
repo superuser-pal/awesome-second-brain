@@ -23,8 +23,8 @@ Match user intent conceptually — not by keyword. Route to the most specific ma
 
 | User Intent | Route To |
 |-------------|---------|
-| Morning kickoff, start of day, what should I focus on | `/standup` |
-| End of day, wrap up, session end | `/wrap-up` |
+| Morning kickoff, start of day, what should I focus on | `/open-day` |
+| End of day, wrap up, session end | `/close-day` |
 | Plan this week, set weekly goals | `/week-prep` |
 | Close out the week, weekly retrospective | `/week-close` |
 | Full weekly lifecycle (close + plan) | `/week-cycle` |
@@ -47,7 +47,7 @@ Match user intent conceptually — not by keyword. Route to the most specific ma
 | Make text sound human | `/humanize` |
 | Create a domain | `create-domain` skill |
 | Create a domain agent | `create-agent` skill |
-| Daily or weekly planning (standup/planning enrichment) | `daily-rituals` skill |
+| Daily or weekly planning (open-day/planning enrichment) | `daily-rituals` skill |
 
 ---
 
@@ -55,7 +55,7 @@ Match user intent conceptually — not by keyword. Route to the most specific ma
 
 If the user provides substantive content (not a question, not a system command) and no slash command was invoked, treat it as a `/quick-dump` operation — classify, create/update notes, add wikilinks, update indexes.
 
-The user should never need to know `/quick-dump` exists. The system should do the right thing by default. The `classify-message.py` hook helps by detecting `CAPTURE_INTENT` and `TASK` signals, but even without those signals, if the user is clearly sharing information to capture, route through `/quick-dump`.
+The user should never need to know `/quick-dump` exists. The system should do the right thing by default. The `classify-message.ts` hook helps by detecting `CAPTURE_INTENT` and `TASK` signals, but even without those signals, if the user is clearly sharing information to capture, route through `/quick-dump`.
 
 ---
 

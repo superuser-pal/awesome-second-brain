@@ -46,18 +46,18 @@ Five hooks fire at defined events:
 | Hook | Script | Event | Required Actions |
 |------|--------|-------|-----------------|
 | **SessionStart** | `session-start.sh` | On startup or resume | Inject date, North Star, active work, recent git log, open tasks, domain summary, inbox status, full file listing |
-| **UserPromptSubmit** | `classify-message.py` | Every user message | Classify content type (decision, incident, win, 1:1, architecture, person, project update) and inject domain routing hints |
-| **PostToolUse** | `validate-write.py` | After any `.md` file is written | Validate: YAML frontmatter exists, required fields present, at least one wikilink in content area notes, folder placement correct |
-| **PreToolUse** | `pre-tool-use.py` | Before any tool executes | Block: hardcoded credentials, restricted paths, destructive commands (rm -rf /, git push --force main, DROP TABLE). Warn: PII outside exception paths |
+| **UserPromptSubmit** | `hooks/classify-message.ts` | Every user message | Classify content type (decision, incident, win, 1:1, architecture, person, project update) and inject domain routing hints |
+| **PostToolUse** | `hooks/validate-write.ts` | After any `.md` file is written | Validate: YAML frontmatter exists, required fields present per Zod schema, at least one wikilink in content area notes, folder placement correct |
+| **PreToolUse** | `hooks/pre-tool-use.ts` | Before any tool executes | Block: hardcoded credentials, restricted paths, destructive commands (rm -rf /, git push --force main, DROP TABLE). Warn: PII outside exception paths |
 | **PreCompact** | `pre-compact.sh` | Before context compaction | Back up session transcript to `thinking/session-logs/` |
 
-The Stop hook is a lightweight checklist reminder (archive, update indexes, check orphans). For thorough session close, use `/wrap-up` instead.
+The Stop hook is a lightweight checklist reminder (archive, update indexes, check orphans). For thorough session close, use `/close-day` instead.
 
 ---
 
 ## 4. Frontmatter Validation Rules (PostToolUse)
 
-`validate-write.py` enforces these rules on write:
+`hooks/validate-write.ts` enforces these rules on write (using Zod schemas from `hooks/lib/schemas.ts`):
 
 | File type | Required fields |
 |-----------|----------------|
