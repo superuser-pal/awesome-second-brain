@@ -1,0 +1,25 @@
+# CONNECTIONS.yaml - External Integration Configuration
+# This file tracks all external dependencies for the domain
+# Updated: 2026-04-13
+
+# ============================================================
+# EXTERNAL APIs
+# ============================================================
+apis:
+  # Example entry (uncomment and modify):
+  # - name: shopify-api
+  #   url: https://shopify.dev/docs/api
+  #   auth_type: api_key
+  #   notes: Potential e-commerce platform for online store
+
+# ============================================================
+# DOCUMENTATION SOURCES
+# ============================================================
+documentation:
+  # Add entries as documentation sources are identified
+
+# ============================================================
+# DATA SOURCES
+# ============================================================
+data_sources:
+  # Add entries as data connections are established

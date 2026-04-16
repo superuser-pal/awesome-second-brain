@@ -1,6 +1,6 @@
-# PAL Second Brain
+# Awesome Second Brain
 
-PAL Second Brain vault — Obsidian-based personal knowledge system for work notes, decisions, performance tracking, and Claude context.
+Awesome Second Brain vault — Obsidian-based personal knowledge system for work notes, decisions, performance tracking, and Claude context.
 
 ## Skills & Capabilities
 

@@ -21,6 +21,7 @@ thinking/session-logs/
 
 # Local working files — not for the repo
 TESTING_PLAN.md
+TESTING_PLAN_V2.md
 IMPROVEMENTS.md
 
 # Hook script dependencies (installed via bun install)
