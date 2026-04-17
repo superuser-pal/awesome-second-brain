@@ -23,14 +23,33 @@ Read `work/05_REVIEW/WINS.md`. Build a list of what's ALREADY captured in the cu
 
 ### 3. Scan for Uncaptured Wins
 
+**MANDATORY: Start with QMD before any manual file scanning.**
+
+Run these queries and review the returned notes for uncaptured wins:
+- `qmd query "shipped delivered launched completed achieved" -n 20`
+- `qmd query "positive feedback recognition kudos" -n 10`
+- `qmd query "resolved fixed root cause incident" -n 10`
+
+Cross-reference results against what's already captured in the wins doc (Step 2). Then continue with the manual scan below for any gaps.
+
 Check these sources for achievements not yet in the wins doc:
 
-**Work notes (work/01_PROJECTS/ and work/07_ARCHIVE/):**
+**Cross-domain work notes (`work/01_PROJECTS/` and `work/07_ARCHIVE/`):**
 - Notes with `status: completed` from the current or recent quarter
 - Look for: shipped features, delivered projects, significant fixes
 - Check: is this project mentioned in the wins doc?
 
-**Incident notes (work/03_INCIDENTS/):**
+**Domain projects and pages (`domains/*/01_PROJECTS/` and `domains/*/02_PAGES/`):**
+- Projects with `status: completed` in any domain
+- Domain pages with recent `last_updated` dates — promoted knowledge is evidence of expertise growth
+- Check: are domain-level deliverables captured in the wins doc?
+
+**Daily and weekly plan notes (`plan/`):**
+- Scan recent daily notes (`plan/DD-MM-YY.md`) for completed tasks and accomplishments
+- Scan weekly files (`plan/W[x]_YYYY-MM-DD.md`) for delivered goals and retrospective wins
+- Check: are weekly goals that were marked done captured in the wins doc?
+
+**Incident notes (`work/03_INCIDENTS/`):**
 - Incidents from the current period
 - Look for: root cause identified, fix delivered, post-mortem managed
 - These are STRONG wins items — check if captured

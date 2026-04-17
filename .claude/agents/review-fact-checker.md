@@ -29,12 +29,14 @@ The user provides a file path to a review draft.
    - A characterization ("self-initiated", "without being asked", "autonomously")
    - A day-of-week implication ("weekend", "same day", "overnight")
 
-3. For each claim, search the vault:
+3. For each claim, **MANDATORY:** first run `qmd query "<claim text>" -n 5` to surface any vault note that could verify or contradict it. Use the returned file paths as the primary search results. Then do targeted reads for high-confidence sources:
    - `work/05_REVIEW/EVIDENCE.md` for work evidence data
    - `work/05_REVIEW/<CYCLE>.md` for review briefs
    - `work/05_REVIEW/WINS.md` for quarterly wins
    - `work/05_REVIEW/COMPETENCIES.md` for competency criteria
-   - `work/01_PROJECTS/` and `work/07_ARCHIVE/` for project notes
+   - `work/01_PROJECTS/` and `work/07_ARCHIVE/` for cross-domain project notes
+   - `domains/*/01_PROJECTS/` and `domains/*/02_PAGES/` for domain-scoped work and knowledge
+   - `plan/` for daily notes (`DD-MM-YY.md`) and weekly files (`W[x]_YYYY-MM-DD.md`) that may log completed work
    - `work/06_ORG/PEOPLE.md` for person context
    - `brain/` for operational context
 

@@ -15,6 +15,9 @@
 settings.local.json
 .claude/.claudian/
 
+# Private backup (local only)
+.private_backup/
+
 # QMD index (local, regenerated)
 .qmd/
 
@@ -31,18 +34,28 @@ IMPROVEMENTS.md
 .claude/scripts/bun.lockb
 
 # Personal vault content — never commit
-# These dirs hold user data generated during vault use.
-# Template scaffolds (.gitkeep, README.md) are kept via negation.
-plan/*.md
-thinking/*.md
+# We ignore all markdown in these roots to prevent accidental disclosure.
+# Structural files like README.md and INDEX.md can be negated.
+plan/**/*.md
+!plan/.gitkeep
+
+thinking/**/*.md
 !thinking/README.md
-work/02_1-1/*.md
-work/03_INCIDENTS/*.md
-inbox/raw/*.md
-inbox/ready/*.md
-domains/*/01_PROJECTS/*.md
-domains/*/02_PAGES/*.md
-domains/*/05_ARCHIVE/*.md
+!thinking/.gitkeep
+
+inbox/**/*.md
+!inbox/.gitkeep
+
+work/**/*.md
+!work/INDEX.md
+!work/.gitkeep
+
+domains/**/*.md
+!domains/**/INDEX.md
+!domains/**/.gitkeep
+
+# Exclude specific files that were part of original tracked set but are personal
+brain/MASTER_ARCHIVE/
 
 # Project specific exclusions
 _spec-kit/

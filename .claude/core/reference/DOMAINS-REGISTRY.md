@@ -90,24 +90,24 @@ When multiple domains score ≥70%, present a choice. Non-selected domains can b
 
 **Secondary Signals:** `"claude code"`, `"slash command"`, `"vault"`, `"obsidian"`, `"skill workflow"`
 
-**Exclude Patterns:** `"moro-tech"`, `"toyota"`, `"souvenir"`, `"brussels shop"`
+**Exclude Patterns:** `"demo-domain"`, `"personal-project"`
 
 ---
 
-### BrusselsShop
+### DemoDomain
 
 | Field | Value |
 |-------|-------|
-| **Name** | `BrusselsShop` |
-| **Path** | `domains/BrusselsShop/` |
+| **Name** | `DemoDomain` |
+| **Path** | `domains/DemoDomain/` |
 | **Agent** | `null` |
 | **Status** | `active` |
 
-**Primary Signals:** `"brussels shop"`, `"souvenir shop"`, `"souvenir"`, `"retail brussels"`
+**Primary Signals:** `"demo domain"`, `"example area"`, `"test domain"`
 
-**Secondary Signals:** `"tourist"`, `"brussels"`, `"shop inventory"`, `"retail"`, `"e-commerce"`
+**Secondary Signals:** `"demonstration"`, `"sample"`, `"placeholder"`
 
-**Exclude Patterns:** `"moro-tech"`, `"toyota"`, `"awesome second brain"`, `"vault"`
+**Exclude Patterns:** `"awesome second brain"`, `"vault"`
 
 ---
 

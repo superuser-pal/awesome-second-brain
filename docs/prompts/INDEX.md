@@ -25,10 +25,10 @@ A searchable library of atomic prompt patterns. Each page has `status: dormant` 
 
 | Category | Count | Description |
 |---|---|---|
-| `writing` | 66 | `write_*`, `create_*`, `draft_*` |
+| `writing` | 69 | `write_*`, `create_*`, `draft_*` |
 | `utility` | 63 | All other patterns (no verb-prefix match) |
 | `extraction` | 44 | `extract_*` |
-| `analysis` | 34 | `analyze_*` |
+| `analysis` | 35 | `analyze_*` |
 | `synthesis` | 14 | `summarize_*`, `create_summary_*` |
 | `discovery` | 10 | `find_*`, `identify_*`, `detect_*` |
 | `explanation` | 6 | `explain_*`, `describe_*`, `define_*` |
@@ -39,6 +39,6 @@ A searchable library of atomic prompt patterns. Each page has `status: dormant` 
 | `ai` | 1 | `ai_*` |
 | `assessment` | 1 | `create_quiz_*`, `generate_questions_*` |
 | `engineering` | 1 | `code_*`, `review_code_*`, `debug_*` |
-| **Total** | **251** | |
+| **Total** | **255** | |
 
 See [[.claude/skills/prompts/references/category-rules|Category Rules]] for full prefix → category mapping.

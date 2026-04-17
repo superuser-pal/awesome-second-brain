@@ -24,22 +24,26 @@ A topic to load context for:
 
 ### 1. Semantic Search
 
-If QMD is available:
-- `qmd query "<topic>" --json -n 15` — find all related notes
-- `qmd vsearch "<topic>" --json -n 10` — find conceptually related content
+**MANDATORY: Always start with QMD before reading any files.**
 
-If QMD unavailable:
-- Grep for the topic across the vault
-- Check for wikilinks: `[[Topic Name]]`
+Run both commands first:
+- `qmd query "<topic>" --json -n 15` — hybrid search, finds all related notes
+- `qmd vsearch "<topic>" --json -n 10` — semantic-only, finds conceptually related content
+
+Use the returned file paths as the primary source list for steps 2–4. Only fall back to grep/glob if `qmd` binary is not found.
 
 ### 2. Direct Note Lookup
 
 Check if the topic has a primary note:
 - Person → section `## <Name>` in `work/06_ORG/PEOPLE.md`
-- Project → `work/01_PROJECTS/<Name>.md` or `work/07_ARCHIVE/**/<Name>.md`
+- Cross-domain project → `work/01_PROJECTS/<Name>.md` or `work/07_ARCHIVE/**/<Name>.md`
+- Domain project → `domains/[Name]/01_PROJECTS/PROJECT_*.md`
+- Domain page → `domains/[Name]/02_PAGES/<slug>.md` (permanent knowledge promoted from inbox)
 - Incident → `work/03_INCIDENTS/<Name>.md`
 - Team → section `## <Name>` in `work/06_ORG/TEAMS.md`
-- Concept → search `brain/`, `domains/`
+- Concept → search `brain/`, `domains/*/02_PAGES/`
+- Daily note → `plan/DD-MM-YY.md` (e.g. `17-04-26.md`)
+- Weekly plan → `plan/W[x]_YYYY-MM-DD.md` or `plan/archive/W[x].md` (closed weeks)
 
 If found, read the full note.
 

@@ -1,3 +1,16 @@
+---
+type: prompt
+status: dormant
+category: writing
+description: "Write a peer review for a colleague — project feedback, principles, strengths, development areas — fact-checked against vault evidence, within character limits."
+tags:
+  - prompt
+  - writing
+  - review
+---
+
+## Prompt
+
 # Peer Review Writer
 
 Write a peer review for a colleague on your company's review tool. Produces project feedback, principles, and performance summary — all within 1000-char limits, fact-checked against vault evidence.
@@ -5,7 +18,7 @@ Write a peer review for a colleague on your company's review tool. Produces proj
 ## Usage
 
 ```
-/peer <Name>
+/prompts:write_peer_review <Name>
 ```
 
 ## Context: Review System
@@ -22,7 +35,7 @@ Adapt to your company's review system. Common patterns:
 
 Load in order:
 1. Person section from `work/06_ORG/PEOPLE.md` (`## <Name>`)
-2. Work evidence from `work/05_REVIEW/EVIDENCE.md` (`## <Name> — <cycle>` section) — run `/peer-scan` if missing
+2. Work evidence from `work/05_REVIEW/EVIDENCE.md` (`## <Name> — <cycle>` section) — run `analyze_peer_work` if missing
 3. Peer review notes from `work/01_PROJECTS/` (any active review writing notes)
 4. Any brag sheet or impact overview the person shared (user provides)
 5. Relevant work notes (search vault for their name)
@@ -100,3 +113,7 @@ After submission, promote to `work/05_REVIEW/<CYCLE>-Peer-Review-<Full Name>.md`
 - No emojis, no corporate buzzwords, no "synergy"
 - If you wouldn't say it in a 1:1 conversation, don't write it
 - It's OK for some sections to be 600 chars if that's all you need to say — don't pad
+
+## Related
+
+> [[docs/prompts/INDEX|Prompts Index]]

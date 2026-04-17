@@ -26,8 +26,10 @@ Glob all linkable notes and build a lookup:
 - `work/06_ORG/PEOPLE.md` — every person name (parse by `## [Name]` headings)
 - `work/06_ORG/TEAMS.md` — every team name (parse by `## [Name]` headings)
 - `work/05_REVIEW/COMPETENCIES.md` — every competency name (parse by `## [Name]` headings)
-- `work/01_PROJECTS/*.md`, `work/07_ARCHIVE/**/*.md` — every project name
+- `work/01_PROJECTS/*.md`, `work/07_ARCHIVE/**/*.md` — cross-domain project names
 - `work/03_INCIDENTS/*.md` — every incident name
+- `domains/*/01_PROJECTS/*.md` — domain project names (from all domains)
+- `domains/*/02_PAGES/*.md` — domain page names (permanent knowledge; high-value link targets)
 
 ### 2. Scan for Missing Links
 
@@ -49,7 +51,7 @@ For each note:
 Find notes with ZERO incoming links:
 - Grep the entire vault for `[[Note Name]]` references.
 - Notes with no incoming links are orphans.
-- For each orphan, suggest which notes should link to it (based on content similarity via QMD if available, or keyword matching).
+- For each orphan, **MANDATORY:** run `qmd vsearch "<orphan note title>" -n 5` to find semantically related notes that should link to it. Fall back to keyword matching only if `qmd` is not installed.
 
 ### 5. Check Related Sections
 

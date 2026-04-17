@@ -61,10 +61,12 @@ Report the detected shape to the parent command so it can include it in the plan
 | File in folder named `incidents/`, `postmortems/`, `outages/` | Incident | `work/03_INCIDENTS/` |
 | File in folder named `1-1/`, `one-on-ones/`, `meetings/` | 1:1 | `work/02_1-1/` |
 | File in folder named `05_ARCHIVE/`, `04_ARCHIVE/`, `completed/`, `done/` | Archived work | `work/07_ARCHIVE/YYYY/` |
-| File in folder named `01_PROJECTS/`, `02_PROJECTS/`, `active/`, `wip/` | Active work | `work/01_PROJECTS/` |
+| File in folder named `01_PROJECTS/`, `02_PROJECTS/`, `active/`, `wip/` | Active work | `work/01_PROJECTS/` or `domains/[Name]/01_PROJECTS/` (prefer domain if content is domain-scoped) |
 | File in folder named `brag/`, `wins/`, `achievements/` | Brag | section in `work/05_REVIEW/WINS.md` |
 | File in folder named `evidence/`, `pr-scans/` | Evidence | section in `work/05_REVIEW/EVIDENCE.md` |
+| File in folder named `pages/`, `02_PAGES/`, `knowledge/`, `permanent/`, `evergreen/` | Domain page | `domains/[Name]/02_PAGES/` (permanent, atomic knowledge — use `type: concept\|note\|reference` etc.) |
 | File in folder named `brain/`, `docs/`, `architecture/` | Reference | `brain/` |
+| File in folder named `plan/`, `daily/`, `journal/`, `planning/` with date-named files | Plan note | `plan/DD-MM-YY.md` (daily) or `plan/W[x]_YYYY-MM-DD.md` (weekly) |
 | File in folder named `templates/` | Template | SKIP (target has its own) |
 
 **Common Obsidian vault patterns:**
@@ -104,10 +106,13 @@ Parse YAML frontmatter first. If no frontmatter exists, scan the first 20 lines 
 | `tags` contains `person` or `people` | Person → section in `work/06_ORG/PEOPLE.md` |
 | `tags` contains `team` | Team → section in `work/06_ORG/TEAMS.md` |
 | `tags` contains `incident` or has `severity`/`ticket` field | Incident → `work/03_INCIDENTS/` |
-| `tags` contains `work-note` or `project` and `status: active` | Active work → `work/01_PROJECTS/` |
+| `tags` contains `work-note` or `project` and `status: active` | Active work → `work/01_PROJECTS/` or `domains/[Name]/01_PROJECTS/` |
 | `tags` contains `work-note` or `project` and `status: completed`/`done` | Archived work → `work/07_ARCHIVE/YYYY/` |
 | `tags` contains `competency` or `skill` | Competency → section in `work/05_REVIEW/COMPETENCIES.md` |
 | `tags` contains `brain` or `north-star` or `goals` | Brain note → `brain/` |
+| Has `domain:` field with a known domain name | Domain page → `domains/[domain]/02_PAGES/` |
+| `tags` contains `daily` and filename matches `DD-MM-YY.md` or `YYYY-MM-DD.md` | Daily plan note → `plan/DD-MM-YY.md` |
+| `tags` contains `weekly` or filename matches `W[x]_YYYY-MM-DD.md` | Weekly plan → `plan/W[x]_YYYY-MM-DD.md` |
 | `tags` contains `decision` or `adr` | Decision → `work/01_PROJECTS/` or `work/07_ARCHIVE/YYYY/` |
 | `tags` contains `meeting` or `1-on-1` or `1:1` | 1:1 → `work/02_1-1/` |
 | `tags` contains `review` or has `cycle` field | Review artifact → `work/05_REVIEW/<CYCLE>.md` |
@@ -175,6 +180,7 @@ For arbitrary vaults, expect 5-15% of files to land here. That's fine — the pl
 1. Read `vault-manifest.json` from the target vault
 2. Glob the target vault to know what already exists (for conflict detection)
 3. Build a rename map: source filenames that differ from target equivalents
+4. **MANDATORY:** For each source file being migrated, run `qmd query "<source file title or key terms>" -n 3` to detect semantic duplicates in the target vault that filename matching would miss. Flag any high-similarity matches as potential conflicts before writing. Fall back to grep only if `qmd` is not installed.
 
 ### Step 2: Process Each File
 

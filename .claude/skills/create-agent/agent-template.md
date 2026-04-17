@@ -1,5 +1,5 @@
 ---
-name: [kebab-case_name]
+name: [domain-purpose]
 description: "[What this agent does and what domain it covers — 1 sentence]"
 domain: [PascalCase]
 tools: Read, Write, Edit, Grep, Glob, Bash

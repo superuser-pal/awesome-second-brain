@@ -15,17 +15,21 @@ You are the review prep agent for the PAL Second Brain vault. When invoked with 
 
 1. **Wins**: Read `work/05_REVIEW/WINS.md` — find the section(s) covering the specified period. Extract all achievements with their evidence links.
 
-2. **Decisions Led**: Search `work/` for decision records where the user was the owner/driver. Use `qmd query "decision" --json` filtered by date if available, or grep frontmatter for `tags: [decision]` within the date range.
+2. **Decisions Led**: Search for decision records where the user was the owner/driver — across both `work/` AND `domains/*/02_PAGES/` (domain-scoped decisions live there). **MANDATORY:** Run `qmd query "decision led owned drove" --json -n 20` first, then filter results by date range. Fall back to grepping frontmatter for `tags: [decision]` only if `qmd` is not installed.
 
 3. **Incidents Handled**: Read all notes in `work/03_INCIDENTS/` from the period. Extract severity, role played, outcome, and learnings.
 
-4. **Competency Evidence**: Read `work/05_REVIEW/COMPETENCIES.md`. For each competency section, search for backlinks from work notes in the period. Use `obsidian backlinks file="COMPETENCIES"` or grep.
+4. **Competency Evidence**: Read `work/05_REVIEW/COMPETENCIES.md`. For each competency section, **MANDATORY:** run `qmd query "<competency name>" --json -n 15` to find all related work notes, then filter by date range. Supplement with `obsidian backlinks file="COMPETENCIES"` or grep if needed.
 
 5. **1-on-1 Feedback**: Read 1-on-1 notes in `work/02_1-1/` from the period. Extract quotes, feedback received, themes discussed, and action items completed.
 
 6. **Work Evidence**: Read `work/05_REVIEW/EVIDENCE.md` — find section(s) for the period. These may include PR analysis, document reviews, portfolio reviews, or other contribution evidence.
 
-7. **Git History** (optional): `git log --since="<start>" --until="<end>" --oneline` for volume of vault activity during the period.
+7. **Domain Work**: Scan `domains/*/01_PROJECTS/` for projects within the period (by `created` and `last_updated`). Scan `domains/*/02_PAGES/` for pages created or updated in the period — these represent domain knowledge built and may serve as evidence of expertise or delivery.
+
+8. **Plan Files** (optional context): Scan `plan/W[x]_YYYY-MM-DD.md` weekly files and `plan/archive/` for the period. Weekly retrospectives often contain goal completions and delivery notes not captured elsewhere.
+
+9. **Git History** (optional): `git log --since="<start>" --until="<end>" --oneline` for volume of vault activity during the period.
 
 ## Output
 

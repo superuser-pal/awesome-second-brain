@@ -243,9 +243,8 @@ Autonomous "bots" triggered by commands to perform complex background tasks.
 
 ---
 
-## 📝 Author & License
+## 📝 License
 
-Created by Rodrigo Cano Teran — Senior Product Manager in Brussels, building agentic workflows with Claude Code.
 Released under the [MIT License](LICENSE).
 
 ---

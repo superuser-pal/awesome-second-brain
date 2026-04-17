@@ -33,6 +33,7 @@ For each URL:
 For every unique user ID encountered:
 - Use `slack_read_user_profile` to get their name, title, team, timezone.
 - Build a people map: `{user_id: {name, title, display_name}}`.
+- **MANDATORY:** For each person, run `qmd query "<person name>" -n 5` to find any existing vault notes beyond PEOPLE.md (work notes, incidents, 1:1s). Fall back to grep only if `qmd` is not installed.
 - Flag people who don't have a `## <Name>` section in `work/06_ORG/PEOPLE.md`.
 
 ### 3. Build the Timeline

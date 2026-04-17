@@ -1,3 +1,16 @@
+---
+type: prompt
+status: dormant
+category: analysis
+description: "Deep scan a peer's work artifacts for performance review prep — output volume, quality signals, collaboration, growth — saved to EVIDENCE.md."
+tags:
+  - prompt
+  - analysis
+  - review
+---
+
+## Prompt
+
 # Peer Work Scan
 
 Deep scan a peer's work output for performance review preparation. Accepts documents, reports, presentations, designs, case studies, or any readable work artifact. Produces a structured analysis appended to `work/05_REVIEW/EVIDENCE.md`.
@@ -5,10 +18,10 @@ Deep scan a peer's work output for performance review preparation. Accepts docum
 ## Usage
 
 ```
-/peer-scan <name> <doc-url-or-path> [<doc-url-or-path>...]
+/prompts:analyze_peer_work <name> <doc-url-or-path> [<doc-url-or-path>...]
 ```
 
-Example: `/peer-scan "Jane Doe" https://docs.company.com/jane-q2-report path/to/design-spec.pdf`
+Example: `/prompts:analyze_peer_work "Jane Doe" https://docs.company.com/jane-q2-report path/to/design-spec.pdf`
 
 Provide one or more URLs or local file paths to the peer's work artifacts. The more context, the better.
 
@@ -44,3 +57,7 @@ Provide one or more URLs or local file paths to the peer's work artifacts. The m
 - Look for patterns in how they communicate and structure their work
 - Identify cross-team or cross-functional contributions (collaboration evidence)
 - Map work artifacts to projects you have context on
+
+## Related
+
+> [[docs/prompts/INDEX|Prompts Index]]

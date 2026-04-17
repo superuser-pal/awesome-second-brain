@@ -1,3 +1,16 @@
+---
+type: prompt
+status: dormant
+category: writing
+description: "Generate a performance review context-transfer document (manager or peer audience) from vault data — wins, evidence, competencies, formatted as markdown, HTML, and PDF."
+tags:
+  - prompt
+  - writing
+  - review
+---
+
+## Prompt
+
 # Generate Review Brief
 
 Generate a performance review context transfer document from vault data. Supports manager version (PO-friendly) and peer version (project-focused).
@@ -5,12 +18,12 @@ Generate a performance review context transfer document from vault data. Support
 ## Usage
 
 ```
-/brief <audience> [period]
+/prompts:write_review_brief <audience> [period]
 ```
 
 Examples:
-- `/brief manager "Q3 2024 + Q4 2024"`
-- `/brief peers "Q3 2024 + Q4 2024"`
+- `/prompts:write_review_brief manager "Q3 2024 + Q4 2024"`
+- `/prompts:write_review_brief peers "Q3 2024 + Q4 2024"`
 
 ## Subagent
 
@@ -66,3 +79,7 @@ Read these vault sources:
 - When updating, update BOTH private + shared versions
 - Manager version: no wikilinks, non-technical language, professional formatting
 - Peer version: project-focused, accessible language
+
+## Related
+
+> [[docs/prompts/INDEX|Prompts Index]]

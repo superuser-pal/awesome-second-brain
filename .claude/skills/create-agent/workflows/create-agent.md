@@ -28,13 +28,15 @@ If missing: **STOP**. Invoke the `create-domain` skill first.
 
 ## Step 4: Determine Agent Name
 
-Convert domain + purpose to `kebab-case`:
+All agents are named `domain-purpose` in `kebab-case` so users immediately know which domain they belong to:
 
 | Domain | Purpose | Agent Name |
 |--------|---------|-----------|
-| LaraLou | Content strategy | `laralou-agent` |
-| PalFramework | System building | `pal_agent` |
-| ToyotaEv | Product management | `toyota_ev_agent` |
+| LaraLou | Content strategy | `laralou-content` |
+| PalFramework | System building | `palframework-system` |
+| DemoDomain | Data analysis | `demodomain-analysis` |
+
+The `domain-` prefix is **required** — never omit it.
 
 Check for conflicts:
 ```bash
@@ -104,7 +106,7 @@ Update the domain agents total count at the bottom of that table.
 
 ## Step 9: Final Checklist
 
-- [ ] Agent file uses `kebab-case.md` naming
+- [ ] Agent file uses `domain-purpose` kebab-case naming (e.g. `demodomain-analysis.md`)
 - [ ] YAML has `name`, `description`, `domain`, `tools`, `model`, `skills` — and NO `maxTurns`
 - [ ] `domain:` field uses PascalCase matching the directory name
 - [ ] All 5 sections present

@@ -1,3 +1,16 @@
+---
+type: prompt
+status: dormant
+category: writing
+description: "Write your self-assessment — project impact, competency self-ratings, principles, growth plan — strategically calibrated, fact-checked, within character limits."
+tags:
+  - prompt
+  - writing
+  - review
+---
+
+## Prompt
+
 # Self-Review Writer
 
 Write your self-assessment for your company's review tool. Produces project impact descriptions, competency self-assessments (current level / next level), principles, and growth plan — all within character limits, fact-checked, strategically calibrated.
@@ -5,7 +18,7 @@ Write your self-assessment for your company's review tool. Produces project impa
 ## Usage
 
 ```
-/self [cycle]
+/prompts:write_self_review [cycle]
 ```
 
 Default cycle: current review period.
@@ -30,7 +43,7 @@ Read in order:
 4. `work/05_REVIEW/WINS.md` — wins covering the period (relevant sections)
 5. `work/05_REVIEW/COMPETENCIES.md` — all competency sections
 6. `work/05_REVIEW/Performance Framework.md` — evaluation structure (if exists)
-8. Key work notes for submitted projects
+7. Key work notes for submitted projects
 
 ### 2. Draft Projects
 
@@ -112,3 +125,7 @@ After submission, promote to `work/05_REVIEW/<CYCLE>-Self-Review.md`.
 3. **Watch special characters** — some review tools count em-dashes and en-dashes as multiple characters.
 4. **Peer reviews feed into your ratings.** What peers write about you is visible. What you write about peers builds your reputation as a thoughtful evaluator.
 5. **Fact-check before submitting.** Plan mode for verification catches fabricated claims, wrong dates, and references that shouldn't appear in a review.
+
+## Related
+
+> [[docs/prompts/INDEX|Prompts Index]]

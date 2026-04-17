@@ -29,7 +29,9 @@ For each person:
 
 ### 2. Check Vault
 
-Read `work/06_ORG/PEOPLE.md`. For each person:
+**MANDATORY:** For each person, first run `qmd query "<person name>" -n 8` to find all scattered vault mentions (work notes, incidents, 1:1s) before reading PEOPLE.md directly. Fall back to grep only if `qmd` is not installed.
+
+Then read `work/06_ORG/PEOPLE.md`. For each person:
 - Check if a `## <Real Name>` section exists.
 - If exists: read the current section, check if role/title matches Slack profile.
 - If doesn't exist: flag for creation.
