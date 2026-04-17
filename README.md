@@ -1,13 +1,3 @@
----
-date: "2026-04-17"
-created: "2026-04-17"
-status: unprocessed
-description: "Draft v2.0 README for Awesome Second Brain — problem/solution/before-after/why sections stitched from selected options in READMEV2_OPTIONS.md."
-tags:
-  - draft
-  - readme
----
-
 <p align="center">
   <img src="docs/assets/asb-github.header.svg" alt="Awesome Second Brain — AI-assisted personal knowledge system" width="100%" />
 </p>
@@ -38,16 +28,16 @@ Awesome Second Brain (ASB) is an open-source framework that gives your AI **a sp
 
 ### Before ASB vs After ASB
 
-| Before ASB                                       | With ASB                                              |
-| ------------------------------------------------ | ----------------------------------------------------- |
-| Re-explain your project every session            | Claude loads last session, decisions, next steps      |
-| Notes scattered across five apps                 | One vault. Everything queryable. Nothing lost.        |
-| AI gives generic answers                         | AI that knows your projects, decisions, and history   |
-| Context resets on every new chat                 | Context compounds across sessions                     |
-| Decisions buried in old chat logs                | Decisions indexed, linked, and recallable             |
-| Tasks scattered across Notes, Todoist, Slack     | One master task list, synced from every domain        |
-| Ideas captured but never processed               | `/brain-dump` routes ideas to the right project       |
-| Your vault is passive storage                    | Your vault is an active collaborator that executes    |
+| Before ASB                                   | With ASB                                            |
+| -------------------------------------------- | --------------------------------------------------- |
+| Re-explain your project every session        | Claude loads last session, decisions, next steps    |
+| Notes scattered across five apps             | One vault. Everything queryable. Nothing lost.      |
+| AI gives generic answers                     | AI that knows your projects, decisions, and history |
+| Context resets on every new chat             | Context compounds across sessions                   |
+| Decisions buried in old chat logs            | Decisions indexed, linked, and recallable           |
+| Tasks scattered across Notes, Todoist, Slack | One master task list, synced from every domain      |
+| Ideas captured but never processed           | `/brain-dump` routes ideas to the right project     |
+| Your vault is passive storage                | Your vault is an active collaborator that executes  |
 
 ---
 
@@ -55,14 +45,14 @@ Awesome Second Brain (ASB) is an open-source framework that gives your AI **a sp
 
 > ASB v2.0 — Core features are stable; workflows and documentation are maturing.
 
-| Component                | Count | What They Do                                                              |
-| ------------------------ | ----- | ------------------------------------------------------------------------- |
-| **Canonical Commands**   | 27    | Slash commands for structured interactions                                |
-| **Workflows**            | 38+   | Step-by-step processes within skills                                      |
-| **Agents**               | 9     | Specialized AI personas for focused work                                  |
-| **Hooks**                | 5     | Automated lifecycle actions (security, context, logging)                  |
-| **Atomic Prompts**       | 257   | Dormant reusable prompts — activate on demand, no autocomplete bloat.     |
-| **Thinking Strategies**  | 22    | Pluggable reasoning modes (CoT, ToT, Reflexion…) for targeted task shapes.|
+| Component               | Count | What They Do                                                               |
+| ----------------------- | ----- | -------------------------------------------------------------------------- |
+| **Canonical Commands**  | 27    | Slash commands for structured interactions                                 |
+| **Workflows**           | 38+   | Step-by-step processes within skills                                       |
+| **Agents**              | 9     | Specialized AI personas for focused work                                   |
+| **Hooks**               | 5     | Automated lifecycle actions (security, context, logging)                   |
+| **Atomic Prompts**      | 257   | Dormant reusable prompts — activate on demand, no autocomplete bloat.      |
+| **Thinking Strategies** | 22    | Pluggable reasoning modes (CoT, ToT, Reflexion…) for targeted task shapes. |
 
 ---
 
@@ -144,16 +134,18 @@ A powerful local search engine for everything you need to remember.
 **Setup time: ~10 minutes.**
 
 **Mac / Linux:**
+
 ```bash
 curl -fsSL https://raw.githubusercontent.com/superuser-pal/awesome-second-brain/main/install.sh | bash
 ```
 
 **Windows (PowerShell):**
+
 ```powershell
 irm https://raw.githubusercontent.com/superuser-pal/awesome-second-brain/main/install.ps1 | iex
 ```
 
-The installer checks prerequisites, asks where you want your vault, installs dependencies, and configures hooks automatically. 
+The installer checks prerequisites, asks where you want your vault, installs dependencies, and configures hooks automatically.
 
 **To update:** Simply run the installer command again or `git pull` in your vault directory.
 
@@ -202,26 +194,26 @@ qmd update && qmd embed
 
 ### Minimum setup (Starter tier)
 
-| What | Why |
-|------|-----|
-| [Obsidian](https://obsidian.md) 1.12+ | Note UI and vault management. **Requires "Obsidian CLI" enabled in Settings.** |
-| [Claude Code](https://docs.anthropic.com/en/docs/claude-code) | AI agent that powers the system. |
+| What                                                          | Why                                                                            |
+| ------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| [Obsidian](https://obsidian.md) 1.12+                         | Note UI and vault management. **Requires "Obsidian CLI" enabled in Settings.** |
+| [Claude Code](https://docs.anthropic.com/en/docs/claude-code) | AI agent that powers the system.                                               |
 
 ### Full setup (Standard tier — recommended)
 
-| What | Why |
-|------|-----|
-| Everything above | — |
-| [Bun](https://bun.sh) | Activates hook scripts: security, write validation, message classification. |
-| [Git](https://git-scm.com/) | Version history and zero-data-loss representation. |
+| What                        | Why                                                                         |
+| --------------------------- | --------------------------------------------------------------------------- |
+| Everything above            | —                                                                           |
+| [Bun](https://bun.sh)       | Activates hook scripts: security, write validation, message classification. |
+| [Git](https://git-scm.com/) | Version history and zero-data-loss representation.                          |
 
 ### Power tier
 
-| What | Why |
-|------|-----|
-| Everything above | — |
+| What                                                     | Why                                                                           |
+| -------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| Everything above                                         | —                                                                             |
 | [Obsidian CLI](https://github.com/Yakitrak/obsidian-cli) | Vault-aware reads, search, backlinks, and property management from the agent. |
-| [QMD](https://github.com/tobi/qmd) | Semantic search across your vault. |
+| [QMD](https://github.com/tobi/qmd)                       | Semantic search across your vault.                                            |
 
 ---
 
@@ -289,13 +281,13 @@ Run these directly in your AI agent. Symbols in parentheses are "nicknames" for 
 
 **14 domain skills** bundled into ASB, loaded on demand by your agent via the Skill tool. Skills are reusable capabilities — they encapsulate references, workflows, and examples for a specific domain so your agent doesn't re-derive them every session.
 
-| Category            | Skills                                                                                          |
-| ------------------- | ----------------------------------------------------------------------------------------------- |
-| **Obsidian native** | `obsidian-markdown`, `obsidian-cli`, `obsidian-bases`, `json-canvas`                            |
-| **Search & ingest** | `qmd` (semantic search), `defuddle` (web → clean markdown)                                      |
-| **Vault lifecycle** | `create-domain`, `create-agent`, `create-skill`, `project-management`, `daily-rituals`          |
-| **Libraries**       | `prompts` (257 atomic prompts), `strategy` (9 reasoning strategies)                             |
-| **Voice**           | `caveman` (token-compressed output mode)                                                        |
+| Category            | Skills                                                                                 |
+| ------------------- | -------------------------------------------------------------------------------------- |
+| **Obsidian native** | `obsidian-markdown`, `obsidian-cli`, `obsidian-bases`, `json-canvas`                   |
+| **Search & ingest** | `qmd` (semantic search), `defuddle` (web → clean markdown)                             |
+| **Vault lifecycle** | `create-domain`, `create-agent`, `create-skill`, `project-management`, `daily-rituals` |
+| **Libraries**       | `prompts` (257 atomic prompts), `strategy` (9 reasoning strategies)                    |
+| **Voice**           | `caveman` (token-compressed output mode)                                               |
 
 ---
 
@@ -303,24 +295,24 @@ Run these directly in your AI agent. Symbols in parentheses are "nicknames" for 
 
 **22 pluggable reasoning strategies that turn ASB into the best brain sparring partner** live in `docs/strategies/`, each a dormant page you can activate for a session. CoT is pre-promoted at setup. Pick one when the task calls for a specific thinking shape, or let `/thinking:eval` choose for you.
 
-| Strategy              | Command                  | Use when…                                                                |
-| --------------------- | ------------------------ | ------------------------------------------------------------------------ |
-| **Standard**          | `/thinking:standard`     | Direct answer, no visible reasoning. Fastest output.                     |
-| **Chain-of-Thought**  | `/thinking:cot`          | Step-by-step reasoning before the answer. (Pre-promoted.)                |
-| **Chain-of-Draft**    | `/thinking:cod`          | Step-by-step, but each step ≤5 words. Compact reasoning.                 |
-| **Atom-of-Thought**   | `/thinking:aot`          | Decompose into smallest independent sub-problems, solve, synthesize.     |
-| **Least-to-Most**     | `/thinking:ltm`          | Order sub-problems easiest → hardest, answer each before advancing.      |
-| **Tree-of-Thought**   | `/thinking:tot`          | Generate multiple branches, select the best one.                         |
-| **Self-Consistency**  | `/thinking:self-consistent` | Multiple independent paths, pick the most consistent answer.          |
-| **Self-Refinement**   | `/thinking:self-refine`  | Initial answer → brief self-critique → refined answer.                   |
-| **Reflexion**         | `/thinking:reflexion`    | Answer concisely, critique own reasoning, produce refined answer.        |
+| Strategy             | Command                     | Use when…                                                            |
+| -------------------- | --------------------------- | -------------------------------------------------------------------- |
+| **Standard**         | `/thinking:standard`        | Direct answer, no visible reasoning. Fastest output.                 |
+| **Chain-of-Thought** | `/thinking:cot`             | Step-by-step reasoning before the answer. (Pre-promoted.)            |
+| **Chain-of-Draft**   | `/thinking:cod`             | Step-by-step, but each step ≤5 words. Compact reasoning.             |
+| **Atom-of-Thought**  | `/thinking:aot`             | Decompose into smallest independent sub-problems, solve, synthesize. |
+| **Least-to-Most**    | `/thinking:ltm`             | Order sub-problems easiest → hardest, answer each before advancing.  |
+| **Tree-of-Thought**  | `/thinking:tot`             | Generate multiple branches, select the best one.                     |
+| **Self-Consistency** | `/thinking:self-consistent` | Multiple independent paths, pick the most consistent answer.         |
+| **Self-Refinement**  | `/thinking:self-refine`     | Initial answer → brief self-critique → refined answer.               |
+| **Reflexion**        | `/thinking:reflexion`       | Answer concisely, critique own reasoning, produce refined answer.    |
 
 **Standing controls (always available):**
 
-| Command              | Purpose                                                           |
-| -------------------- | ----------------------------------------------------------------- |
-| `/thinking:eval`     | Recommend the best strategy for your stated goal.                 |
-| `/thinking:reset`    | Clear the active strategy and return to default.                  |
+| Command           | Purpose                                           |
+| ----------------- | ------------------------------------------------- |
+| `/thinking:eval`  | Recommend the best strategy for your stated goal. |
+| `/thinking:reset` | Clear the active strategy and return to default.  |
 
 ---
 
@@ -330,12 +322,12 @@ Run these directly in your AI agent. Symbols in parentheses are "nicknames" for 
 
 ### Management commands (from the `prompts` skill)
 
-| Command / trigger                       | What it does                                                                            |
-| --------------------------------------- | --------------------------------------------------------------------------------------- |
-| "Find a prompt about X"                 | **Search** — QMD query across all 257 dormant prompts, returns top matches + status.    |
-| "Promote `<slug>`"                      | **Promote** — flips `status: active`, generates `/prompts:<slug>` command stub.         |
-| "Demote `<slug>`"                       | **Demote** — deletes the command stub, flips back to `status: dormant`.                 |
-| `/prompts:<slug>`                       | Run a promoted prompt directly (e.g. `/prompts:extract-wisdom`, `/prompts:analyze-risk`).|
+| Command / trigger       | What it does                                                                              |
+| ----------------------- | ----------------------------------------------------------------------------------------- |
+| "Find a prompt about X" | **Search** — QMD query across all 257 dormant prompts, returns top matches + status.      |
+| "Promote `<slug>`"      | **Promote** — flips `status: active`, generates `/prompts:<slug>` command stub.           |
+| "Demote `<slug>`"       | **Demote** — deletes the command stub, flips back to `status: dormant`.                   |
+| `/prompts:<slug>`       | Run a promoted prompt directly (e.g. `/prompts:extract-wisdom`, `/prompts:analyze-risk`). |
 
 ### Sample use cases
 
