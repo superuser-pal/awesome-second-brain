@@ -9,18 +9,31 @@ tags:
 
 # Decision: {{title}}
 
+> [!abstract] TL;DR
+> _One sentence — what was decided and what outcome it drives._
+
 ## Context
-What is the situation that requires a decision?
+
+_What situation or problem requires a decision? What constraints apply?_
 
 ## Options Considered
-1.
-2.
+
+| Option | Pros | Cons |
+| :----- | :--- | :--- |
+| Option 1 | | |
+| Option 2 | | |
 
 ## Decision
-What was decided and why.
+
+_What was decided and why this option over the others._
 
 ## Consequences
-What follows from this decision.
+
+_What follows from this decision — expected outcomes, risks, and trade-offs._
+
+> [!warning]- Risks & Watch-outs
+> _Known risks or things to monitor after this decision._
 
 ## Related
--
+
+- 

@@ -269,6 +269,61 @@ tags:
 
 ---
 
+## 11. Prompt (Dormant or Active)
+
+**Location:** `docs/prompts/<category>/<slug>.md` | `docs/prompts/<category>/<slug>.md`
+
+Atomic pattern pages. Dormant prompts are searchable but invisible in `/` autocomplete. Promoting a prompt flips `status: active` in-place and generates a command stub.
+
+```yaml
+type: prompt
+status: dormant             # dormant | active
+category: "<category>"      # verb-prefix category (analysis, extraction, synthesis, etc.)
+description: "..."          # ~150 char one-line summary of what this prompt does
+tags:
+  - prompt
+  - <category>
+```
+
+**Body requirements:**
+- Original pattern content under `## Prompt`
+- `## Usage` section explaining when to use
+- `## Related` section with `[[wikilinks]]` to related prompts or strategies
+
+**Status lifecycle:**
+- `dormant` — in library, searchable, no command stub
+- `active` — promoted; a matching `.claude/commands/prompts/<slug>.md` stub exists
+
+---
+
+## 12. Strategy (Dormant or Active)
+
+**Location:** `docs/strategies/<slug>.md` | `docs/strategies/<slug>.md`
+
+Atomic reasoning strategy pages. Active strategies have a matching `/thinking:<slug>` command stub. One strategy — `cot` — is pre-promoted at setup.
+
+```yaml
+type: strategy
+status: dormant             # dormant | active
+description: "..."          # ~150 char one-line summary of the strategy
+tags:
+  - strategy
+  - reasoning
+  - <technique>             # e.g. chain-of-thought, reflexion, tree-of-thought
+```
+
+**Body requirements:**
+- Strategy instruction text under `## Strategy`
+- `## When to apply` section
+- `## Trade-offs` section
+- `## Related` section with `[[wikilinks]]`
+
+**Status lifecycle:**
+- `dormant` — in library, searchable, no command stub
+- `active` — promoted; a matching `.claude/commands/thinking/<slug>.md` stub exists
+
+---
+
 ## Validation Rules
 
 - Property order must match schemas above

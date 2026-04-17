@@ -1,0 +1,42 @@
+filters:
+  and:
+    - file.inFolder("docs/prompts")
+    - '!file.hasTag("index")'
+properties:
+  file.name:
+    displayName: Prompt
+  status:
+    displayName: Status
+  category:
+    displayName: Category
+  description:
+    displayName: Description
+  file.mtime:
+    displayName: Last Modified
+views:
+  - type: table
+    name: All
+    order:
+      - status
+      - category
+      - file.name
+      - description
+      - file.mtime
+  - type: table
+    name: Dormant by Category
+    filters:
+      and:
+        - status == "dormant"
+    order:
+      - category
+      - file.name
+      - description
+  - type: table
+    name: Active
+    filters:
+      and:
+        - status == "active"
+    order:
+      - file.name
+      - category
+      - description

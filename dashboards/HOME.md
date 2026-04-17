@@ -11,9 +11,6 @@ tags:
 
 ![[NORTH_STAR#Current Focus]]
 
-## Active Work
-
-![[Work Dashboard.base#Active Work]]
 
 ## Incidents
 
@@ -21,7 +18,7 @@ tags:
 
 ## Quick Links
 
-- [[Index|Work Notes]] | [[People & Context]] | [[Brag Doc]]
+- [[work/INDEX|Work Notes]] | [[People & Context]] | [[Brag Doc]]
 - [[MEMORIES]] | [[NORTH_STAR]] | [[REFERENCE]]
 
 ## Recent 1:1s

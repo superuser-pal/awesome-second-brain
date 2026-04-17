@@ -68,32 +68,41 @@ A powerful local search engine for everything you need to remember.
 
 ## 🚀 Quick Start
 
-1. **Clone this repo**:
+### Automatic Install (recommended)
 
+**Mac / Linux:**
+```bash
+curl -fsSL https://raw.githubusercontent.com/superuser-pal/awesome-second-brain/main/install.sh | bash
+```
+
+**Windows (PowerShell):**
+```powershell
+irm https://raw.githubusercontent.com/superuser-pal/awesome-second-brain/main/install.ps1 | iex
+```
+
+The installer checks prerequisites, asks where you want your vault, installs dependencies, and configures hooks automatically. Then:
+
+1. **Open** the vault folder in Obsidian (_File → Open Vault → Open Folder as Vault_)
+2. **Enable the Obsidian CLI** in Settings → General (requires Obsidian 1.12+)
+3. **Run your agent** in the vault directory:
    ```bash
-   git clone https://github.com/superuser-pal/awesome-second-brain
-   cd awesome-second-brain
+   cd ~/second-brain && claude
    ```
-
-2. **Open the folder as an Obsidian vault**.
-
-3. **Install dependencies**:
-
-   ```bash
-   bun install
+4. **Run the setup wizard:**
    ```
-
-   _(Required for system hooks and scripts)_
-
-4. **Enable the Obsidian CLI** in Settings → General (requires Obsidian 1.12+).
-
-5. **Run your agent** in the vault directory: **`claude`** or **`gemini`**.
-
-   ```bash
    /setup-context
    ```
+   Choose Level 2 for a guided first-time setup — it walks you through goals, your first domain, and your dashboard.
 
-6. **Fill in `brain/North Star.md`** with your goals — this grounds every session.
+> **New to Terminal?** See [SETUP.md](SETUP.md) for a step-by-step guide with troubleshooting, covering both Mac and Windows.
+
+### Manual Install
+
+```bash
+git clone https://github.com/superuser-pal/awesome-second-brain
+cd awesome-second-brain
+npm run setup   # installs hook dependencies (Bun)
+```
 
 ### Optional: QMD Semantic Search
 
@@ -113,11 +122,29 @@ qmd update && qmd embed
 
 ## 📋 Prerequisites
 
-- [Obsidian](https://obsidian.md) 1.12+ (for CLI support)
-- An AI coding agent: [Claude Code](https://docs.anthropic.com/en/docs/claude-code) (full support), or [Gemini CLI](https://github.com/google-gemini/gemini-cli)
-- [Python 3.8+](https://python.org/downloads) (for hook scripts)
-- Git (for version history)
-- [QMD](https://github.com/tobi/qmd) (optional, for semantic search)
+### Minimum setup (Starter tier)
+
+You only need two things to get started:
+
+| What | Why |
+|------|-----|
+| [Obsidian](https://obsidian.md) 1.12+ | Note UI and vault management |
+| [Claude Code](https://docs.anthropic.com/en/docs/claude-code) | AI agent that powers the system |
+
+### Full setup (Standard tier — recommended)
+
+| What | Why |
+|------|-----|
+| Everything above | — |
+| [Bun](https://bun.sh) | Activates hook scripts: security, write validation, message classification |
+| Git | Version history and zero-data-loss file operations |
+
+### Power tier
+
+| What | Why |
+|------|-----|
+| Everything above | — |
+| [QMD](https://github.com/tobi/qmd) | Semantic search across your vault |
 
 ---
 

@@ -13,17 +13,30 @@ tags:
 
 ## Definition
 
-What this competency means for your role.
+_What this competency means for your role. Where does it show up day-to-day?_
 
 ## Proficiency Levels
 
 | Level | Description |
-|-------|-------------|
-| ... | ... |
+| :---- | :---------- |
+| 1 — Developing | |
+| 2 — Proficient | |
+| 3 — Advanced | |
+| 4 — Expert | |
+
+## Evidence
+
+_Work notes and specific examples demonstrating this competency._
+
+- 
 
 ## Growth Notes
 
-What are you doing to grow this? What should you focus on?
+_What are you doing to grow this? What concrete actions are you taking?_
+
+- 
 
 ## Related
--
+
+- [[COMPETENCIES]]
+- 

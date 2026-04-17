@@ -1,0 +1,37 @@
+filters:
+  and:
+    - file.inFolder("docs/strategies")
+    - '!file.hasTag("index")'
+properties:
+  file.name:
+    displayName: Strategy
+  status:
+    displayName: Status
+  description:
+    displayName: Description
+  file.mtime:
+    displayName: Last Modified
+views:
+  - type: table
+    name: All
+    order:
+      - status
+      - file.name
+      - description
+      - file.mtime
+  - type: table
+    name: Active
+    filters:
+      and:
+        - status == "active"
+    order:
+      - file.name
+      - description
+  - type: table
+    name: Dormant
+    filters:
+      and:
+        - status == "dormant"
+    order:
+      - file.name
+      - description

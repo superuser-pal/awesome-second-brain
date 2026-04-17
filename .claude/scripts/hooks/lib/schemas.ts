@@ -108,6 +108,23 @@ export const WeeklyPlanSchema = z.object({
   }),
 });
 
+/** docs/prompts/<slug>.md — flat single folder, status in frontmatter */
+export const PromptSchema = z.object({
+  type: z.literal("prompt"),
+  status: z.enum(["dormant", "active"]),
+  category: z.string(),
+  description: z.string(),
+  tags: z.array(z.string()),
+});
+
+/** docs/strategies/<slug>.md — flat single folder, status in frontmatter */
+export const StrategySchema = z.object({
+  type: z.literal("strategy"),
+  status: z.enum(["dormant", "active"]),
+  description: z.string(),
+  tags: z.array(z.string()),
+});
+
 // ── Resolution ────────────────────────────────────────────────────────────────
 
 export interface SchemaEntry {
@@ -121,6 +138,13 @@ export function resolveSchema(filePath: string): SchemaEntry | null {
   const normalized = filePath.replace(/\\/g, "/");
   const basename = path.basename(normalized);
 
+  // Prompt/strategy matchers — single folder each, status encoded in frontmatter
+  if (normalized.includes("docs/prompts/") && basename !== "INDEX.md") {
+    return { label: "Prompt", schema: PromptSchema };
+  }
+  if (normalized.includes("docs/strategies/") && basename !== "INDEX.md") {
+    return { label: "Strategy", schema: StrategySchema };
+  }
   if (normalized.includes("inbox/raw/")) {
     return { label: "Inbox Raw", schema: InboxRawSchema };
   }

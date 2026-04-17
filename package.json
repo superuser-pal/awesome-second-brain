@@ -4,7 +4,9 @@
   "description": "The AI-assisted second brain that connects your notes, ideas, and tasks into persistent context for agentic workflows.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "setup": "cd .claude/scripts && bun install",
+    "test": "cd .claude/scripts && bun test tests/",
+    "check": "node .claude/scripts/check-prerequisites.js"
   },
   "repository": {
     "type": "git",
@@ -14,7 +16,6 @@
     "second-brain",
     "obsidian",
     "claude",
-    "gemini",
     "ai",
     "pkm"
   ],
@@ -26,3 +27,4 @@
   "homepage": "https://github.com/superuser-pal/awesome-second-brain#readme",
   "dependencies": {}
 }
+

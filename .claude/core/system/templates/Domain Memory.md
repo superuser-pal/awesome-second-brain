@@ -10,7 +10,17 @@ last_updated: "{{date}}"
 
 # {{title}}
 
+> [!info] Domain Memory
+> Persistent knowledge Claude should carry across sessions in this domain — facts, patterns, and decisions.
+
 ## Content
 
+## Patterns
+
+_Recurring behaviors or principles observed in this domain._
+
+- 
+
 ## Related
--
+
+- 

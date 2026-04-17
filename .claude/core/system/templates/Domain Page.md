@@ -13,9 +13,15 @@ last_updated: "{{date}}"
 
 # {{title}}
 
+_One paragraph — what this concept is and why it matters._
+
 ## Content
 
 ## Observations
 
+- [insight] 
+- [question] 
+
 ## Related
--
+
+- 

@@ -12,10 +12,14 @@ tags:
 
 ## Context
 
+_What's the background? What triggered this note? Link the relevant project or ticket._
+
 ## Notes
 
 ## Action Items
-- [ ]
+
+- [ ] 
 
 ## Related
--
+
+- 

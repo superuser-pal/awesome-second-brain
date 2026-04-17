@@ -44,6 +44,13 @@ For full intent routing logic, see `ORCHESTRATION.md`. For subagent details, see
 | Import content from another vault | `/upgrade` |
 | Archive a completed project | `/project-archive` |
 | Edit text to sound human, not AI | `/humanize` |
+| Search or promote a dormant prompt | `prompts` skill |
+| Demote an active prompt | `prompts` skill |
+| Search or promote a reasoning strategy | `strategy` skill |
+| Demote an active strategy | `strategy` skill |
+| Apply CoT reasoning to current session | `/thinking:cot` |
+| Evaluate which active strategy fits a task | `/thinking:eval` |
+| Clear the active strategy from session | `/thinking:reset` |
 
 ---
 

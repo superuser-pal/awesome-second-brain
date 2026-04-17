@@ -1,7 +1,7 @@
 {
   "template": "awesome-second-brain",
-  "version": "1.0.0",
-  "released": "2026-04-12",
+  "version": "1.1.0",
+  "released": "2026-04-16",
   "infrastructure": [
     "CLAUDE.md",
     "dashboards/HOME.md",
@@ -18,7 +18,9 @@
     "vault-manifest.json",
     ".claude/core/user/SKILLS.md",
     "work/review/competencies/README.md",
-    "thinking/README.md"
+    "thinking/README.md",
+    "docs/prompts/**",
+    "docs/strategies/**"
   ],
   "scaffold": {
     ".claude/core/user/NORTH_STAR.md": "Personal goals — replace if source has real content",
@@ -72,7 +74,11 @@
       "missing": ["vault-manifest.json"]
     },
     "v3.3": {
-      "exists": ["vault-manifest.json"]
+      "exists": ["vault-manifest.json"],
+      "missing": ["docs/strategies/cot.md"]
+    },
+    "v1.1": {
+      "exists": ["docs/strategies/cot.md", ".claude/skills/prompts/SKILL.md", ".claude/skills/strategy/SKILL.md"]
     }
   },
   "frontmatter_required": {

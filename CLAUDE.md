@@ -15,6 +15,16 @@ This vault has [obsidian-skills](https://github.com/kepano/obsidian-skills) inst
 - **project-management**: Create, track, and archive domain-scoped projects. Aggregates tasks from all sources into `dashboards/TASKS.md` with bidirectional sync. See `.claude/skills/project-management/`.
 - **daily-rituals**: Structured daily and weekly planning cycle. Enhances `/standup` and `/wrap-up` with daily notes in `plan/`. Adds `/week-prep`, `/week-close`, `/week-cycle`. See `.claude/skills/daily-rituals/`.
 - **create-agent**: Create and validate Domain Agents — interactive, domain-bound agents for focused context work. See `.claude/skills/create-agent/`. Base behavior in `.claude/core/system/AGENT-BASE.md`.
+- **prompts**: Search, promote, and demote atomic prompt pages. Dormant prompts live in `docs/prompts/`; promoted ones move to `docs/prompts/` and get a `/prompts:<slug>` command. See `.claude/skills/prompts/`.
+- **strategy**: Search, promote, and demote reasoning strategy pages. Dormant strategies live in `docs/strategies/`; promoted ones move to `docs/strategies/` and get a `/thinking:<slug>` command. See `.claude/skills/strategy/`.
+
+### Prompts & Strategies
+
+The vault includes a dormant prompt library and reasoning strategy library under `docs/`. Neither bloats `.claude/commands/` by default.
+
+- **Prompt library** (`docs/prompts/`, `docs/prompts/`): 240+ atomic prompt pages. Use `prompts` skill to search and promote. Use `bases/Prompts.base` to browse.
+- **Strategy library** (`docs/strategies/`, `docs/strategies/`): 9 reasoning strategy pages. CoT is pre-promoted. Use `strategy` skill to promote others. Use `/thinking:eval` to pick the right strategy for a task. Use `/thinking:reset` to clear.
+- **Standing commands**: `/thinking:reset`, `/thinking:eval`, `/thinking:cot` are always available regardless of promotion state.
 
 ### Custom Slash Commands
 
@@ -36,7 +46,7 @@ Defined in `.claude/commands/`. See [[SKILLS]] for full documentation.
 | `domains/[Name]/01_PROJECTS/`     | Active project files                                                                                                       | `PROJECT_UPPER_SNAKE.md`                                                                                                              |
 | `domains/[Name]/02_PAGES/`        | Permanent domain **pages** — knowledge items promoted from inbox notes via `/distribute`                                   | `kebab-case.md`                                                                                                                       |
 | `domains/[Name]/05_ARCHIVE/`      | Completed/deprecated content                                                                                               | Preserve original name                                                                                                                |
-| `bases/`                          | **All Bases centralized** -- dynamic views for navigation                                                                  | `Work Dashboard`, `Incidents`, `People Directory`, `1-1 History`, `Review Evidence`, `Competency Map`, `Domain Overview`, `Templates` |
+| `bases/`                          | **All Bases centralized** -- dynamic views for navigation                                                                  | `Incidents`, `People Directory`, `1-1 History`, `Domains`, `Templates` |
 | `work/`                           | **Cross-domain work** -- incidents, 1-1s, decisions that span domains                                                      | `INDEX.md` (detailed MOC)                                                                                                             |
 | `work/CONNECTIONS.yaml`           | External integrations config (APIs, docs, data sources)                                                                    | One per work area                                                                                                                     |
 | `work/01_PROJECTS/`               | **Current projects and ad-hoc tasks**                                                                                      | `PROJECT_NAME.md`, `AD_HOC_TASKS.md`                                                                                                  |
@@ -263,7 +273,7 @@ Beyond tags, use these frontmatter properties to enable search and Bases views:
 - `person: "Jane Smith"` -- find all evidence related to a person
 - `team: Backend` -- find all notes related to a team
 - `status: active` -- find active projects
-- `quarter: Q1-2026` -- find all work for a quarter (used by Work Dashboard Base)
+- `quarter: Q1-2026` -- find all work for a quarter
 - `ticket: TICKET-123` -- find incident by ticket number
 - `severity: high` -- incident severity
 - `role: incident-lead` -- your role in an incident

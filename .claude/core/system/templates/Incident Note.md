@@ -14,31 +14,44 @@ tags:
 
 # Incident: {{title}}
 
+> [!danger] Severity: {{severity}}
+> **Ticket:** {{ticket}} | **Role:** {{role}}
+
 ## Context
-{{context}}
+
+_What was happening when this incident started? What system or feature was affected?_
 
 ## Root Cause
-{{root_cause}}
+
+_What was the underlying cause, not just the symptom?_
 
 ## Resolution
-{{resolution}}
+
+> [!success] Fix Applied
+> _One sentence summary of what resolved the incident._
 
 ## Timeline
-| Time | Person | Action/Event |
-| :--- | :--- | :--- |
+
+| Time | Person | Action / Event |
+| :--- | :----- | :------------- |
 | {{time}} | {{person}} | {{event}} |
 
 ## Impact
-{{impact}}
+
+_Who was affected? How many users, systems, or teams? How long?_
 
 ## Involved Personnel
+
 - 
 
 ## Notes
+
 - 
 
 ## Analysis
+
 - 
 
 ## Related
+
 - 

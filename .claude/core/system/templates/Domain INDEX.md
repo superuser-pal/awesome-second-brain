@@ -8,25 +8,33 @@ last_updated: "{{date}}"
 
 # {{domain-name}}
 
+> [!tip]- How to use this INDEX
+> This is your domain's entry point. Keep it updated as projects start, complete, or archive. All domain notes should link back here.
+
 ## Current State
+
+_What is this domain focused on right now?_
 
 ## Key Facts
 
-- **Created:** {{date}}
-- **Purpose:**
-- **Status:** Active
+| Field | Value |
+| :---- | :---- |
+| **Created** | {{date}} |
+| **Purpose** | |
+| **Status** | Active |
 
 ## Active Work
 
 | Project | Status | Last Updated |
-|---------|--------|--------------|
-| _No active projects yet_ | - | - |
+| :------ | :----- | :----------- |
+| _No active projects yet_ | — | — |
 
 ## Quick Links
 
 - [[{{domain-name}}/01_PROJECTS/|Projects]]
 - [[{{domain-name}}/02_PAGES/|Pages]]
-- [[{{domain-name}}/03_ARCHIVE/|Archive]]
+- [[{{domain-name}}/05_ARCHIVE/|Archive]]
 
 ## Related
--
+
+- 

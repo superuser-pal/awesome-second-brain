@@ -15,12 +15,16 @@ last_updated: "{{date}}"
 
 # PROJECT_{{title}}
 
+> [!abstract] Goal
+> _What does done look like? One clear, measurable sentence._
+
 ## Objective
 
 ## Tasks
 
 ### To Do
-- [ ] #todo
+
+- [ ] #todo 
 
 ### In Progress
 
@@ -29,4 +33,5 @@ last_updated: "{{date}}"
 ## Notes
 
 ## Related
--
+
+- 

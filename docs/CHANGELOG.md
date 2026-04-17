@@ -1,5 +1,28 @@
 # Changelog
 
+## v1.1.0 — Dormant Prompts & Strategic Reasoning
+
+Adds a dual-lifecycle prompt integration: a searchable dormant-prompt library and a reasoning-strategy layer, both available on demand without polluting the command menu.
+
+### New Capabilities
+
+- **Prompt library** (`docs/prompts/`, `docs/prompts/`): 240+ atomic prompt pattern pages with `type: prompt` frontmatter. Dormant until promoted; promotion generates a `/prompts:<slug>` slash command.
+- **Strategy library** (`docs/strategies/`, `docs/strategies/`): 9 reasoning strategy pages. CoT is pre-promoted. Promote others via the `strategy` skill.
+- **`prompts` skill**: search, promote, and demote prompt pages. Three workflows: `search`, `promote`, `demote`.
+- **`strategy` skill**: search, promote, and demote strategy pages. Three workflows: `search`, `promote`, `demote`.
+- **`/thinking:cot`**: injects Chain-of-Thought reasoning for the session.
+- **`/thinking:eval`**: evaluates which active strategy best fits the user's current task.
+- **`/thinking:reset`**: clears the active strategy from the session.
+- **`bases/Prompts.base`**: Active / Dormant by Category / All views for the prompt library.
+- **`bases/Strategies.base`**: Active / Dormant / All views for the strategy library.
+
+### Schema additions
+
+- `type: prompt` and `type: strategy` added to `ASSET-CLASSES.md` and `schemas.ts`.
+- `resolveSchema()` extended with 4 exact-prefix matchers (`docs/prompts/`, `docs/prompts/`, `docs/strategies/`, `docs/strategies/`).
+
+---
+
 ## v1.0.0 — Launch Release
 
 Welcome to **Awesome Second Brain**! 
@@ -9,7 +32,7 @@ This launch release introduces a robust, cohesive architecture powered by Claude
 ### Core Features
 - **Vault-First Memory System**: All project memories live internally inside the vault (`user/`), and CLAUDE connects to them implicitly, turning Obsidian into an automated knowledge graph.
 - **Hook Lifecycle Management**: 5 intelligent hooks (SessionStart, UserPromptSubmit, PostToolUse, PreCompact, Stop) that intercept workflows, classify intents, automatically validate notes for clean formatting, and backup transcripts safely.
-- **7 Centralized Bases**: Structured dashboards containing Work Dashboard, Incidents, People Directory, 1-1 History, Review Evidence, Competency Map, and Templates.
+- **4 Centralized Bases**: Structured dashboards containing Incidents, People Directory, 1-1 History, and Templates.
 
 ### System Capacities
 

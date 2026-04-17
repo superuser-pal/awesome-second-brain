@@ -59,8 +59,10 @@ Interactive persona agents invoked BY the user. No `maxTurns` — conversational
 | `create-agent` | Creating and validating Domain Agents | `.claude/skills/create-agent/SKILL.md` |
 | `create-domain` | Creating, validating, mapping, and archiving domains | `.claude/skills/create-domain/SKILL.md` |
 | `create-skill` | Creating and validating vault skills | `.claude/skills/create-skill/SKILL.md` |
+| `prompts` | Searching, promoting, and demoting dormant atomic prompt pages | `.claude/skills/prompts/SKILL.md` |
+| `strategy` | Searching, promoting, and demoting dormant atomic strategy pages | `.claude/skills/strategy/SKILL.md` |
 
-**Total: 11 skills**
+**Total: 13 skills**
 
 ---
 
@@ -95,8 +97,11 @@ Interactive persona agents invoked BY the user. No `maxTurns` — conversational
 | `/save` | `core/save.md` | — |
 | `/onboard` | `core/onboard.md` | — |
 | `/humanize` | `humanize.md` | — |
+| `/thinking:reset` | `thinking/reset.md` | — |
+| `/thinking:eval` | `thinking/eval.md` | — |
+| `/thinking:cot` | `thinking/cot.md` | — |
 
-**Total: 27 commands**
+**Total: 30 commands**
 
 ---
 

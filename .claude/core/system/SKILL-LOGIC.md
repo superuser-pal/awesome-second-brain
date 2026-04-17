@@ -92,6 +92,8 @@ When a skill is matched:
 | `daily-rituals` | Daily and weekly planning cycle workflows |
 | `create-agent` | Create and validate Domain Agents |
 | `create-domain` | Create, validate, map, and archive domains |
+| `prompts` | Search, promote, and demote atomic prompt pages |
+| `strategy` | Search, promote, and demote reasoning strategy pages |
 
 ---
 

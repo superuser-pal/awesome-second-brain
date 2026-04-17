@@ -1,0 +1,32 @@
+{
+  "_comment": "This file is a template. Run install.sh (Mac/Linux) or install.ps1 (Windows) to generate settings.local.json with your vault's absolute path. Never commit settings.local.json.",
+  "permissions": {
+    "allow": [
+      "Bash(bash {{VAULT_PATH}}/.claude/scripts/session-start.sh)",
+      "Bash(CLAUDE_PROJECT_DIR={{VAULT_PATH}} bash {{VAULT_PATH}}/.claude/scripts/session-start.sh)",
+      "Bash(bash {{VAULT_PATH}}/.claude/scripts/pre-compact.sh)",
+      "Bash(CLAUDE_PROJECT_DIR={{VAULT_PATH}} bash {{VAULT_PATH}}/.claude/scripts/pre-compact.sh)",
+      "Bash(bun run {{VAULT_PATH}}/.claude/scripts/hooks/classify-message.ts)",
+      "Bash(bun run {{VAULT_PATH}}/.claude/scripts/hooks/validate-write.ts)",
+      "Bash(bun run {{VAULT_PATH}}/.claude/scripts/hooks/pre-tool-use.ts)",
+      "Bash(git commit:*)",
+      "Bash(git add:*)",
+      "Bash(git push:*)",
+      "Bash(git pull:*)",
+      "Bash(git log:*)",
+      "Bash(git fetch:*)",
+      "Bash(git checkout:*)",
+      "Bash(git rebase:*)",
+      "Bash(git tag:*)",
+      "Bash(git mv:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(ls:*)",
+      "Bash(command -v qmd)",
+      "Bash(qmd vsearch:*)",
+      "Bash(qmd query:*)",
+      "Bash(qmd search:*)",
+      "Bash(echo:*)"
+    ]
+  }
+}
