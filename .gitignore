@@ -28,6 +28,9 @@ thinking/session-logs/
 TESTING_PLAN.md
 TESTING_PLAN_V2.md
 IMPROVEMENTS.md
+ONBOARDING.md
+docs/ONBOARDING.md
+docs/PERSONAL-DATA-SEPARATION.md
 
 # Hook script dependencies (installed via bun install)
 .claude/scripts/node_modules/

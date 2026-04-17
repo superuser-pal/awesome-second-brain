@@ -23,7 +23,7 @@ For full intent routing logic, see `ORCHESTRATION.md`. For subagent details, see
 | Plan this week, set weekly goals | `/week-prep` |
 | Close the week, weekly retrospective | `/week-close` |
 | Full weekly lifecycle (close + plan) | `/week-cycle` |
-| Weekly synthesis, cross-session patterns | `/weekly` |
+| Weekly synthesis, cross-session patterns | `/week-close` |
 | Save something, capture with light formatting | `/save` |
 | Reflective capture, capture my thoughts, reflection | `/brain-dump` |
 | Quick capture, brain dump, dump this (power) | `/quick-dump` |
@@ -61,7 +61,7 @@ Commands that invoke subagents. Commands not listed here run without subagents.
 | Command | Subagents Called | Notes |
 |---------|-----------------|-------|
 | `/close-day` | `wins-capture` | Scans session for uncaptured wins |
-| `/weekly` | `wins-capture` | Scans week for patterns and wins |
+| `/week-close` | `wins-capture` | Scans week for patterns and wins |
 | `/incident` | `slack-archaeologist`, `contact-importer` | Full Slack reconstruction + person notes |
 | `/slack-scan` | `slack-archaeologist` | Deep Slack scan only |
 | `/brief` | `review-prep` | Aggregates evidence for the review period |

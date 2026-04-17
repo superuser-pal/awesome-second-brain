@@ -163,7 +163,7 @@ Choose **Level 2** for a full guided setup. Claude will:
 After `/setup-context` finishes, try these to confirm everything works:
 
 ```
-/standup
+/open-day
 ```
 → Should load your North Star goals, tasks, and active projects.
 

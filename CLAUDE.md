@@ -13,7 +13,7 @@ This vault has [obsidian-skills](https://github.com/kepano/obsidian-skills) inst
 - **defuddle**: Extract clean markdown from web pages via `defuddle parse <url> --md`.
 - **qmd**: Semantic search across the vault via [QMD](https://github.com/tobi/qmd). Use PROACTIVELY before reading files -- `qmd query "..."` for hybrid search, `qmd search "..."` for keyword, `qmd vsearch "..."` for semantic. Falls back to grep/glob if QMD not installed.
 - **project-management**: Create, track, and archive domain-scoped projects. Aggregates tasks from all sources into `dashboards/TASKS.md` with bidirectional sync. See `.claude/skills/project-management/`.
-- **daily-rituals**: Structured daily and weekly planning cycle. Enhances `/standup` and `/wrap-up` with daily notes in `plan/`. Adds `/week-prep`, `/week-close`, `/week-cycle`. See `.claude/skills/daily-rituals/`.
+- **daily-rituals**: Structured daily and weekly planning cycle. Enhances `/open-day` and `/close-day` with daily notes in `plan/`. Adds `/week-prep`, `/week-close` (with synthesis), and `/week-cycle`. See `.claude/skills/daily-rituals/`.
 - **create-agent**: Create and validate Domain Agents — interactive, domain-bound agents for focused context work. See `.claude/skills/create-agent/`. Base behavior in `.claude/core/system/AGENT-BASE.md`.
 - **prompts**: Search, promote, and demote atomic prompt pages. Dormant prompts live in `docs/prompts/`; promoted ones move to `docs/prompts/` and get a `/prompts:<slug>` command. See `.claude/skills/prompts/`.
 - **strategy**: Search, promote, and demote reasoning strategy pages. Dormant strategies live in `docs/strategies/`; promoted ones move to `docs/strategies/` and get a `/thinking:<slug>` command. See `.claude/skills/strategy/`.
@@ -97,7 +97,7 @@ The vault distinguishes three kinds of content by lifecycle, not by topic.
 | ----------------- | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Note**          | `inbox/raw/`, `inbox/ready/`, `thinking/`    | Temporary. Created by capture commands with `status: unprocessed`. Promoted to pages via `/distribute`, or moved to `thinking/` for ongoing work. |
 | **Page**          | `domains/[Name]/02_PAGES/`, `work/04_PAGES/` | Permanent. Promoted from notes. Atomic — one concept per page. Asset class is determined by location, not by the `type` field.                    |
-| **Planning note** | `plan/`                                      | Separate lifecycle. Created by `/standup`, closed by `/wrap-up`. Never promoted.                                                                  |
+| **Planning note** | `plan/`                                      | Separate lifecycle. Created by `/open-day`, closed by `/close-day`. Never promoted.                                                                  |
 
 ### Promotion Flows (Note → Page)
 
@@ -177,8 +177,8 @@ obsidian orphans                                   # Unlinked notes
 
 ## Session Workflow
 
-- **Start Session**: The `SessionStart` hook injects your context automatically. For a structured morning kickoff, use `/standup`.
-- **End Session**: When you ask to "wrap up", invoke `/wrap-up` to review notes, update indexes, check for orphans, and commit changes.
+- **Start Session**: The `SessionStart` hook injects your context automatically. For a structured morning kickoff, use `/open-day`.
+- **End Session**: When you ask to "wrap up", invoke `/close-day` to review notes, update indexes, check for orphans, and commit changes.
 - **Thinking Notes**: Use `thinking/YYYY-MM-DD-topic.md` for reasoning, ongoing research, and scratchpads (`status: thinking`). When ready to make insights permanent, run `/process` to classify them, then `/distribute` to promote to pages. Alternatively, use `/dump` for direct, high-confidence routing.
 
 ### Creating Notes
@@ -316,7 +316,7 @@ Task-specific agents invoked BY commands. Run in isolated context windows with b
 
 | Agent                 | Purpose                                                          | Invoked by            |
 | --------------------- | ---------------------------------------------------------------- | --------------------- |
-| `wins-capture`        | Finds uncaptured wins and competency gaps                        | `/wrap-up`, `/weekly` |
+| `wins-capture`        | Finds uncaptured wins and competency gaps                        | `/close-day`, `/week-close` |
 | `context-loader`      | Loads all vault context about a person, project, or concept      | Direct                |
 | `cross-linker`        | Finds missing wikilinks, orphans, broken backlinks               | `/audit`              |
 | `contact-importer`    | Bulk creates/updates person notes from Slack profiles            | `/incident`           |

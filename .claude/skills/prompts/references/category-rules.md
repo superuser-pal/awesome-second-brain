@@ -21,6 +21,7 @@ Verb-prefix → category mapping for routing prompt patterns into `docs/prompts/
 | `security_*`, `pentest_*` | `security` | security_review, pentest_findings |
 | `agility_*`, `estimate_*` | `product` | agility_story, estimate_effort |
 | `ai_*` | `ai` | ai_check, ai_conversations |
+| `t_*` | `thinking` | t_analyze_challenge_handling, t_red_team_thinking |
 | *(no prefix match)* | `utility` | catchall for slugs that don't match above rules |
 
 ## Usage

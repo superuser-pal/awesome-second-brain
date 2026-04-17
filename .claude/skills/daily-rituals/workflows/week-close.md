@@ -29,7 +29,15 @@ Show:
 - Task breakdown: [N] done / [N] planned ([velocity]%)
 - Incomplete tasks: list all non-`[x]` committed tasks, grouped by status
 
-### 4. Handle Incomplete Tasks
+### 4. Weekly Synthesis
+
+Run the `weekly-synthesis` workflow to:
+- Detect patterns and themes across the week
+- Check North Star alignment and drift
+- Map competency signals
+- Draft forward-looking priorities
+
+### 5. Handle Incomplete Tasks
 
 For each incomplete task, offer these options based on its current status:
 
@@ -44,30 +52,12 @@ All carried-forward tasks must preserve their `#todo` tag in the source file.
 
 Run `update-tasks` to sync all changes to `dashboards/TASKS.md`.
 
-### 5. Gather Retrospective
+### 6. Gather Retrospective
 
 Ask (can be brief):
 - "What went well this week?"
 - "What would you change?"
 - "Any action items for how you work?"
-
-### 6. Capture Wins & Evidence
-
-Invoke the `wins-capture` subagent. It will scan work notes, incidents, 1:1s, and git history completed this week and surface any uncaptured wins.
-
-For each win the agent finds that the user confirms:
-- Append a new entry under the current quarter section in `work/05_REVIEW/WINS.md`:
-  ```markdown
-  - [Win title] — [[link to work note]] (Impact / Collaboration / Technical Growth / Feedback)
-  ```
-- If the win has strong evidence (shipped feature, resolved incident, stakeholder recognition), also append a line to the relevant period section in `work/05_REVIEW/EVIDENCE.md`.
-
-If `work/05_REVIEW/WINS.md` has no section for the current quarter yet, create one:
-```markdown
-## Q[N] YYYY
-```
-
-Only write entries the user explicitly approves. Skip this step entirely if the agent finds nothing new.
 
 ### 7. Update Week File
 

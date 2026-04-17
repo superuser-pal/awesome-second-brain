@@ -70,7 +70,7 @@ Print a final ✅/❌ summary table. Example:
 ```
 
 If all checks pass: congratulate the user and show them the 3 most useful commands to start:
-`/standup`, `/brain-dump`, `/wrap-up`
+`/open-day`, `/brain-dump`, `/close-day`
 
 ---
 
@@ -130,9 +130,9 @@ Print a clear "you're ready" summary:
 
   You're ready. Your 3 most important commands:
 
-  /standup      → Morning kickoff. Loads your goals, tasks, and context.
+  /open-day     → Morning kickoff. Loads your goals, tasks, and context.
   /brain-dump   → Capture any thought, idea, or decision. AI routes it.
-  /wrap-up      → End of day. Review notes, verify links, commit.
+  /close-day    → End of day. Review notes, verify links, commit.
 
   Tip: Just talk to Claude naturally. The /brain-dump command is implicit —
   if you describe something worth remembering, it gets filed automatically.

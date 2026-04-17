@@ -1,6 +1,6 @@
 ---
 name: prompts-index
-description: "MOC for the atomic prompt library — 251 atomic prompt pages. Status (dormant/active) and category stored in frontmatter."
+description: "MOC for the atomic prompt library — 255 atomic prompt pages. Status (dormant/active) and category stored in frontmatter."
 tags:
   - index
   - prompt
@@ -26,12 +26,13 @@ A searchable library of atomic prompt patterns. Each page has `status: dormant` 
 | Category | Count | Description |
 |---|---|---|
 | `writing` | 69 | `write_*`, `create_*`, `draft_*` |
-| `utility` | 63 | All other patterns (no verb-prefix match) |
 | `extraction` | 44 | `extract_*` |
 | `analysis` | 35 | `analyze_*` |
+| `thinking` | 16 | `t_*` (thinking patterns) |
 | `synthesis` | 14 | `summarize_*`, `create_summary_*` |
 | `discovery` | 10 | `find_*`, `identify_*`, `detect_*` |
 | `explanation` | 6 | `explain_*`, `describe_*`, `define_*` |
+| `utility` | 47 | All other patterns (no verb-prefix match) |
 | `editing` | 4 | `improve_*`, `enhance_*`, `rewrite_*` |
 | `evaluation` | 4 | `rate_*`, `score_*`, `evaluate_*` |
 | `transformation` | 2 | `translate_*`, `convert_*` |

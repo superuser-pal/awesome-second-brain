@@ -6,7 +6,7 @@ version: 1.0.0
 
 # Daily Rituals Skill
 
-Structured planning workflows that layer on top of existing PAL Second Brain commands. Adds a `plan/` folder for daily notes and weekly files, enabling a complete weekly cycle: plan → work → review → close.
+Structured planning workflows that layer on top of existing Awesome Second Brain commands. Adds a `plan/` folder for daily notes and weekly files, enabling a complete weekly cycle: plan → work → review → close.
 
 ## USE WHEN
 
@@ -21,10 +21,10 @@ Structured planning workflows that layer on top of existing PAL Second Brain com
 |---------|------|
 | `/open-day` | **Enhanced** — now also creates today's daily note in `plan/` and marks focus tasks `[/]` |
 | `/close-day` | **Enhanced** — now also appends evening reflection to today's daily note and marks tasks done |
-| `/weekly` | **Unchanged** — analytical synthesis only, no file creation |
+| `/weekly` | **Deprecated** — consolidated into `/week-close` and `/week-cycle` |
 | `/week-prep` | **New** — create weekly plan file, commit tasks |
-| `/week-close` | **New** — close week, consolidate daily notes, archive |
-| `/week-cycle` | **New** — orchestrates: close → weekly review → plan |
+| `/week-close` | **Enhanced** — now includes metrics, analytical synthesis, and archiving |
+| `/week-cycle` | **Enhanced** — orchestrates: close (with synthesis) → plan |
 
 ## File Paths
 
@@ -54,4 +54,5 @@ Structured planning workflows that layer on top of existing PAL Second Brain com
 | `evening-review` | `/close-day` (appended steps) |
 | `week-prep` | `/week-prep` |
 | `week-close` | `/week-close` |
+| `weekly-synthesis` | Internal (called by `week-close`) |
 | `week-cycle` | `/week-cycle` |

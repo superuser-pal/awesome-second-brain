@@ -16,17 +16,11 @@ Detect:
 
 ### 2. Close Current Week (if active)
 
-If an active week exists, run `weekly-closing` workflow.
+If an active week exists, run `weekly-closing` workflow (which now includes `weekly-synthesis`).
 
 If no active week, skip closing — move to step 3.
 
-### 3. Weekly Analysis
-
-Invoke `/weekly` for cross-session synthesis of the past week.
-
-This is the analytical pass — no file creation unless user requests it.
-
-### 4. Plan Next Week
+### 3. Plan Next Week
 
 Run `weekly-planning` workflow to set up the next week.
 

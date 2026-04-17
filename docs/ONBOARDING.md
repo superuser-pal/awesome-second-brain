@@ -277,7 +277,7 @@ Claude then:
 
 ### Stage 6 — Daily Use
 
-> **Canonical commands.** ASB commands are skill-namespaced (e.g. `/rituals:open-day`, `/capture:brain-dump`, `/manage:task-sync`). These are the names surfaced by the skills registry and are authoritative throughout this document. [[README]]'s short marketing aliases (`/standup`, `/wrap-up`, `/brain-dump`, `/task-sync`) map 1:1 onto the namespaced forms and should be treated as nicknames, not separate commands.
+> **Canonical commands.** ASB commands are skill-namespaced (e.g. `/rituals:open-day`, `/capture:brain-dump`, `/manage:task-sync`). These are the names surfaced by the skills registry and are authoritative throughout this document. [[README]]'s short marketing aliases (`/open-day`, `/close-day`, `/brain-dump`, `/task-sync`) map 1:1 onto the namespaced forms and should be treated as nicknames, not separate commands.
 
 **Morning:**
 ```
