@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/assets/asb-github.hero.svg" alt="Awesome Second Brain — AI-assisted personal knowledge system" width="100%" />
+  <img src="docs/assets/asb-github-hero.svg" alt="Awesome Second Brain — AI-assisted personal knowledge system" width="100%" />
 </p>
 
 # 🧠 Awesome Second Brain
