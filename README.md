@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/assets/asb-github.header.svg" alt="Awesome Second Brain — AI-assisted personal knowledge system" width="100%" />
+  <img src="docs/assets/asb-github.hero.svg" alt="Awesome Second Brain — AI-assisted personal knowledge system" width="100%" />
 </p>
 
 # 🧠 Awesome Second Brain
@@ -68,23 +68,8 @@ A powerful local search engine for everything you need to remember.
 
 ## ⚡ See It In Action
 
-<!--
-═══════════════════════════════════════════════════════════════════════════════
-  DEMO GIF PLACEHOLDER — replace with a short loop of ASB running
-───────────────────────────────────────────────────────────────────────────────
-  Specs:
-    • Dimensions    : ~1200 px wide, 16:9 or 16:10 aspect
-    • Length        : 8–15 seconds, seamless loop
-    • Max file size : 5 MB (GitHub inlines up to ~10 MB, but 5 MB loads fast)
-    • Format        : .gif (auto-renders on GitHub) OR .mp4 via <video> tag
-    • Location      : docs/assets/demo.gif
-    • Should show   : terminal running `/open-day` or `/brain-dump` with ASB
-                      loading context, classifying observations, and routing
-    • Alt text      : "ASB terminal demo — /open-day loading project context"
-═══════════════════════════════════════════════════════════════════════════════
--->
 <p align="center">
-  <img src="docs/assets/demo.gif" alt="ASB terminal demo — /open-day loading project context" width="100%" />
+  <img src="docs/assets/asb-gif-demo.gif" alt="ASB terminal demo — /open-day loading project context" width="100%" />
 </p>
 
 **Morning kickoff:**

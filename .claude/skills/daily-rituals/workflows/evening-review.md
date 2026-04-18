@@ -22,7 +22,7 @@ Read the **Tasks → Open** section to understand what was planned.
 
 ### 2. Gather Accomplishments
 
-Ask: "What did you get done today?" (or infer from git log and conversation context).
+Ask: "What did you get done today?" (or infer from the conversation context).
 
 For each accomplished task:
 - Move it from **Tasks → Open** to **Tasks → Closed** in the daily note (change `[/]` → `[x]`, add `✅ YYYY-MM-DD`)

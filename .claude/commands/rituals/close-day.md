@@ -1,6 +1,6 @@
 # Close Day
 
-Full session review before ending. Review context, ways of working, files modified, consistency, and suggest improvements.
+Fast session review and consistency check before ending.
 
 ## Usage
 
@@ -10,88 +10,48 @@ Full session review before ending. Review context, ways of working, files modifi
 
 Triggered when the user says "close day", "wrap up", "let's wrap", "wrapping up", or similar. Claude should invoke this automatically.
 
-## Subagent
-
-- **`wins-capture`** — run at the end to find uncaptured wins and competency gaps from the session
-
 ## Workflow
 
-### 1. Review What Was Done
+### 1. Fast Session Review
 
-Scan the conversation for:
-- Notes created or modified (list them all with paths)
-- People notes created or updated
-- Indexes updated
-- Brag doc entries added
-- Brain notes updated (Patterns, Gotchas, Key Decisions, Memories)
+Scan the conversation for newly created or modified notes:
+- List created/modified notes with paths.
+- **Sanity check**: Ensure each new note has at least one wikilink and a `description` field.
+- **Project sync**: Update status fields of projects touched this session (e.g., `active` -> `completed`).
 
-### 2. Verify Note Quality
+### 2. Update Critical Context
 
-For each note created or modified this session:
-- Frontmatter complete? (`date`, `quarter`, `description`, `tags`, type-specific fields)
-- At least one wikilink to another note?
-- In the correct folder? (`work/01_PROJECTS/` vs `work/07_ARCHIVE/` vs `work/03_INCIDENTS/` etc.)
-- Description accurate and ~150 chars?
-- Status field correct?
+- `work/INDEX.md` — register new notes in "Recent Notes" or "Active Projects".
+- `brain/MEMORIES.md` — if critical new context was learned, ensure it's linked from the "Recent Context" section.
 
-### 3. Check Index Consistency
+### 3. Thinking Notes Clean-up
 
-- `work/INDEX.md` — are new notes linked? Are completed projects in the right section?
-- `brain/MEMORIES.md` — does Recent Context reflect what happened this session?
-- `work/06_ORG/PEOPLE.md` — any new people or relationship changes to capture?
-- `work/05_REVIEW/WINS.md` — any wins or achievements from this session?
-- `dashboards/HOME.md` — are embedded Bases still valid?
+- Scan `thinking/` for unarchived notes with `status: thinking`. If any exist, list them and suggest running `/process` later.
 
-### 4. Check for Orphans and Thinking Notes
+### 4. Ways of Working Reflection
 
-- Any new pages not linked from at least one other page or note?
-- Any new people not added to People & Context?
-- **Thinking notes check**: Scan `thinking/` for unarchived notes with `status: thinking`. If any exist, list them and suggest running `/process` — that command will show a promotion reminder and let you promote or archive each one. Do not interactively process them here.
+Briefly identify if this session revealed a major new pattern or gotcha for:
+- `brain/PATTERNS.md`
+- `brain/GOTCHAS.md`
+- `CLAUDE.md` (e.g., new project convention)
 
-### 5. Archive Check
+### 5. Evening Review (evening-review)
 
-- Are there notes in `work/01_PROJECTS/` that should be moved to `work/07_ARCHIVE/YYYY/`?
-- Any status fields still `active` that should be `completed`?
+Run the `evening-review` workflow from the `daily-rituals` skill:
 
-### 6. Ways of Working Review
+- Read today's daily note from `plan/`.
+- Mark accomplished tasks `[x]` in daily note and project files.
+- Suggest 1 priority for tomorrow.
+- Append the section to the daily note.
 
-Check if this session revealed:
-- A new pattern that should be in `brain/PATTERNS.md`?
-- A new gotcha that should be in `brain/GOTCHAS.md`?
-- A workflow improvement for `brain/SKILLS.md`?
-- A CLAUDE.md update needed (new convention, stale reference)?
-- A new or improved slash command?
-- A hook that should be added or modified?
+### 6. Report
 
-### 7. Suggest Improvements
-
-Based on how the session went:
-- Were there friction points in the workflow?
-- Did we do something manually that could be automated?
-- Did we repeat a pattern that should be a skill?
-- Are there Bases that should be created or updated?
-- Any frontmatter properties that would help future queries?
-
-### 8. Evening Review (evening-review)
-
-After the session quality check, run the `evening-review` workflow from the `daily-rituals` skill:
-
-- Read today's daily note from `plan/` (create minimal one if missing)
-- Ask for accomplishments, learnings, blockers
-- Mark accomplished tasks `[x]` in source files and active week file
-- Suggest tomorrow's priorities
-- Append the evening review section to today's daily note
-
-### 9. Report
-
-Present a concise summary:
-- **Done**: what was captured this session
-- **Fixed**: issues found and resolved
-- **Flagged**: things that need user input
-- **Suggested**: improvements for next time
+Present a lean summary:
+- **Done**: notes captured and projects updated.
+- **Tomorrow**: top priority.
+- **Flagged**: anything requiring immediate user action.
 
 ## Important
 
-- This is a READ + VERIFY pass, not a creation pass. Fix small issues (broken links, missing frontmatter), but flag larger changes for user approval.
-- Be honest about what's missing — the goal is leaving the vault in a better state than you found it.
-- If North Star goals shifted during the session, suggest updating it.
+- This is a light consistency pass, NOT a full audit. Keep it fast.
+- Deep analytical work (wins capture, orphan scans, competency mapping) is deferred to `/week-close`.

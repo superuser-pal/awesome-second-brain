@@ -56,6 +56,8 @@ work/**/*.md
 domains/**/*.md
 !domains/**/INDEX.md
 !domains/**/.gitkeep
+V1CLAUDE.md
+V2CLAUDE.md
 
 # Exclude specific files that were part of original tracked set but are personal
 brain/MASTER_ARCHIVE/
