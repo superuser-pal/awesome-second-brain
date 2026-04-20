@@ -17,17 +17,17 @@ order: 1
 
 ## What is ASB?
 
-ASB (Patterned Agentic Logic) is basically how I handle context. I got tired of repeating myself to Claude every single session—re-explaining my details, the latest progress, and what I was working on ten minutes ago.
+ASB is basically how I handle context and make it useful in subsequent sessions. ions. I got tired of repeating myself to Claude in every session—re-explaining my details, the latest progress, and what I had worked on the previous day. Moreover, all the valuable content generated through my LLM interactions seemed scattered, with no reference to it and no organized place to store it.
 
-So I built ASB on top of Claude Code and Obsidian. It’s a framework that ensures the AI **remembers who you are**, **knows your projects**, and **picks up exactly where you left off**. No more starting from scratch every morning.
+So I built ASB on top of Claude Code and Obsidian. It’s a framework that ensures the AI **remembers what you are working on**, **knows your projects, and **organizes the output from your AI sparring sessions**. 
 
-When you start a session, ASB automatically loads your identity and project context. You just capture ideas, notes and tasks, and ASB handles the distribution to your second brain.
+When you start a session, ASB automatically loads your preferences and project context. You just capture ideas, notes, and tasks, and ASB handles distributing and organizing them in your second brain.
 
 ---
 
 ## The PADA Method: Domains First
 
-ASB uses the **PADA method** to keep things organized. The core idea is simple:
+ASB uses the **PADA method** (avoiding TM infringment here) to keep things organized. The core idea is simple:
 
 > **Start with a Domain.**
 
@@ -52,43 +52,42 @@ You'll learn how to create all three in the [next guide](02-domains-and-projects
 
 ---
 
-## How ASB Is Built (NEEDS UPDATE)
+## How ASB Is Built
 
-Everything in ASB runs on three layers inside `.claude/`:
+Awesome Second Brain operates across three distinct layers, organized to keep your data safe and the AI focused:
 
-| Layer        | Purpose                       | Key Files                              |
-| ------------ | ----------------------------- | -------------------------------------- |
-| **USER**     | Your identity and preferences | ABOUTME.md, DIRECTIVES.md, CONTACTS.md |
-| **SYSTEM**   | How ASB processes requests    | Skills, agents, orchestration          |
-| **SECURITY** | What ASB will never do        | GUARDRAILS.md, REPOS_RULES.md          |
+| Layer      | Purpose                               | Key Paths                                                                                      |
+|------------|---------------------------------------|------------------------------------------------------------------------------------------------ |
+| **VAULT**  | User content — your actual knowledge  | `work/`, `plan/`, `domains/`, `inbox/`, `thinking/`                                             |
+| **CLAUDE** | Behavior layer — how the AI acts      | `.claude/agents/`, `.claude/skills/`, `.claude/commands/`, `.claude/scripts/`, `.claude/core/` |
+| **HOOK**   | Automation layer — lifecycle events   | `session-start.sh`, `classify-message.ts`, `validate-write.ts`, `pre-tool-use.ts`                |
 
-### The Three System Blocks (ADD COMMANDS)
+### The Four System Blocks
 
-**Skills** — Reusable capabilities that activate automatically based on your intent.
-Say "I want to capture some thoughts" → the note-taking skill activates. No commands to memorize.
+**Commands** — Slash commands to trigger specific workflows instantly (e.g., `/open-day`, `/dump`, `/close-day`). Defined in `.claude/commands/`.
 
-**Agents** — Specialized AI personas for focused domain work.
-Load with `/agent-name` (e.g., `/life-coach`). Each agent has deep context about its domain.
+**Skills** — Reusable capabilities the AI leverages automatically or when commanded (e.g., `obsidian-markdown` to format notes, `qmd` for semantic search, or `create-domain` to scaffold folders).
 
-**Domains** — Siloed project workspaces with a standard 6-folder structure.
-Every domain has an `INDEX.md` — the source of truth loaded first when entering that domain.
+**Agents** — Broken down into two types:
+- **Subagents**: Task-bound agents that run silently in the background (like `wins-capture` finding your uncaptured achievements).
+- **Domain Agents**: Interactive personas bounding the AI to a specific domain context (loaded via `/agent:[name]`).
 
-### Hooks: 
+**Domains & Work** — Information is split between siloed workspaces for specific topics (`domains/`) and cross-domain operational notes for day-to-day business (`work/`). Every domain has an `INDEX.md` mapping its contents, and the standard structure is always `01_PROJECTS/`, `02_PAGES/`, `03_ARCHIVE/`.
 
-ASB uses four automated hooks that run without you doing anything:
+### The Core Hooks
 
-| Hook             | When             | What                                              |
-| ---------------- | ---------------- | ------------------------------------------------- |
-| **SessionStart** | Session begins   | Loads your identity, preferences, security rules  |
-| **PreToolUse**   | Before any tool  | Validates against guardrails — blocks or allows   |
-| **PostToolUse**  | After Write/Edit | Validates and auto-heals YAML frontmatter schemas |
-| **Stop**         | Session ends     | Saves transcript, sends notification              |
+ASB uses an automation layer running quietly in the background:
 
-This is why ASB "remembers" you. Before you type anything, the AI already knows your name, style, and rules.
+| Hook                  | Trigger           | Purpose                                                                               |
+| --------------------- | ----------------- | ------------------------------------------------------------------------------------- |
+| `session-start.sh`    | Session begins    | Injects today's context, your North Star goals, open tasks, and recent notes history. |
+| `classify-message.ts` | On prompting      | Evaluates your message for capture intents and hints routing.                         |
+| `pre-tool-use.ts`     | Before any action | Ensures the AI follows Guardrails (doesn't modify settings/secrets).                  |
+| `validate-write.ts`   | After saving      | Automatically enforces correct YAML front matter and alerts for missing wikilinks.    |
 
 ---
 
-## Getting Started (NEEDS UPDATE)
+## Getting Started
 
 ### 1. Install Claude Code
 
@@ -102,31 +101,35 @@ npm install -g @anthropic-ai/claude-code
 
 1. Download [Obsidian](https://obsidian.md)
 2. Open folder as vault → select your `awesome-second-brain` folder
-3. Trust the author when prompted
+3. Trust the author when prompted. The vault has bases and canvas skills ready.
 
 ### 3. Run Your First Session
+
+Open your terminal and navigate to your vault folder, then start Claude:
 
 ```bash
 cd ~/path/to/awesome-second-brain
 claude
 ```
 
-Then run the setup command:
+Because of `session-start.sh`, Claude already has the context of your vault loaded. Try starting your day with the opening ritual:
 
 ```
-/setup-context
+/open-day
 ```
-
-ASB will walk you through questions to populate your identity and preferences. Once complete, your context loads automatically every session.
 
 ### 4. Explore
 
-| Command    | What It Does                 |
-| ---------- | ---------------------------- |
-| `*menu`    | Display available commands   |
-| `*skills`  | List all skills              |
-| `*agents`  | Show domain agents           |
-| `*context` | See what's loaded in context |
+The old `*command` syntax is gone. You now interact via natural language or defined slash commands. Try some of the core capabilities:
+
+| Command        | What It Does                                                               |
+|----------------|----------------------------------------------------------------------------|
+| `/dump`        | The ultimate quick-capture: takes your raw thought, classifies and routes. |
+| `/close-day`   | Finishes your session, verifies links, updates indexes and logs wins.      |
+| `/week-cycle`  | Full weekly review and planning logic in one shot.                         |
+| `/project-create` | Scaffolds a new standard project in a domain.                            |
+
+For a complete list of commands and system capabilities, tell Claude to read the writable registry located at `.claude/core/reference/SYSTEM-INDEX.md`.
 
 ---
 

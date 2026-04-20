@@ -1,8 +1,8 @@
 # Changelog
 
-## v1.1.0 — Dormant Prompts & Strategic Reasoning
+## v2.0.0 — The "Second Brain" Release
 
-Adds a dual-lifecycle prompt integration: a searchable dormant-prompt library and a reasoning-strategy layer, both available on demand without polluting the command menu.
+This release transforms the Awesome Second Brain into a true personal knowledge management system, capable of capturing, connecting, and reasoning over your life and work.
 
 ### New Capabilities
 
