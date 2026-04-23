@@ -15,8 +15,10 @@ import path from "path";
 // ── Shared enums ─────────────────────────────────────────────────────────────
 
 const NoteType = z.enum([
-  "concept", "decision", "reference", "meeting", "idea",
-  "note", "belief", "frame", "lesson", "model", "goal", "plan", "research",
+  // Navigation values — drive folder emergence in 02_PAGES/
+  "concept", "source", "decision", "output", "question", "report",
+  // Non-navigation values — retained for inbox, projects, work notes
+  "goal", "plan", "research", "idea", "meeting",
 ]);
 
 const Origin = z.enum(["braindump", "url", "doc", "manual", "ai-output"]);

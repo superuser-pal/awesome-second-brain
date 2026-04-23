@@ -81,6 +81,7 @@ description: Short action-oriented description of what this achieves.
 | `/general` | `capture/general.md` | Stage 1 — raw capture to `inbox/raw/` |
 | `/process` | `core/process.md` | Stage 2 — frontmatter + domain classification |
 | `/distribute` | `core/distribute.md` | Stage 3 — route to domain, add wikilinks, update indexes |
+| `/ingest-url` | `core/ingest-url.md` | One-command URL ingest: defuddle → process → distribute |
 | `/1-1` | `capture/1-1.md` | Structured 1:1 capture |
 | `/incident` | `capture/incident.md` | Incident from Slack into structured vault note |
 | `/slack-scan` | `capture/slack-scan.md` | Deep scan Slack for evidence |

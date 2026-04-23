@@ -64,8 +64,8 @@ Check these sources for achievements not yet in the wins doc:
 - High-volume periods suggest significant work
 
 **Brain notes:**
-- `brain/PATTERNS.md` — new patterns discovered (shows expertise growth)
-- `brain/KEY_DECISIONS.md` — decisions led (shows leadership)
+- `brain/RULES.md` — new patterns discovered (shows expertise growth)
+- `brain/LOGIC.md` — decisions led (shows leadership)
 
 ### 4. Check Competency Coverage
 

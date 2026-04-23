@@ -171,7 +171,7 @@ Explain: "A Domain Agent is an AI persona that loads your domain's full context 
 
 ### 3.4 Seed Personal Patterns
 
-Explain: "Two files help the AI learn your habits over time: `brain/PATTERNS.md` (recurring things you do) and `brain/GOTCHAS.md` (things to avoid or remember)."
+Explain: "Two files help the AI learn your habits over time: `brain/RULES.md` (recurring things you do) and `brain/CAVEATS.md` (things to avoid or remember)."
 
 - Ask: "Is there anything you always want your AI to keep in mind? Any habits, preferences, or gotchas?"
 - Write the user's answers to the appropriate `brain/` file with wikilinks
@@ -182,7 +182,7 @@ Explain: "Two files help the AI learn your habits over time: `brain/PATTERNS.md`
   ✓ Prompts promoted: /prompts:reflect, /prompts:summarise
   ✓ Strategy promoted: /thinking:tree-of-thought
   ✓ Domain Agent created: Work
-  ✓ brain/PATTERNS.md seeded
+  ✓ brain/RULES.md seeded
 
   Level 3 complete. Your vault is fully personalised.
   Run /audit any time to check vault health.

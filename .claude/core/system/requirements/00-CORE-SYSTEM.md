@@ -138,7 +138,7 @@ Source: [CLAUDE.md](../../../CLAUDE.md)
 **Then** the knowledge is written to the appropriate `brain/` topic note with a wikilink to context — never to `~/.claude/` memory files
 
 Category: Functional
-Verification: Ask "remember that deploy windows are Tuesdays" and confirm it goes to user/GOTCHAS.md
+Verification: Ask "remember that deploy windows are Tuesdays" and confirm it goes to brain/CAVEATS.md
 Source: [CLAUDE.md](../../../CLAUDE.md)
 
 ---

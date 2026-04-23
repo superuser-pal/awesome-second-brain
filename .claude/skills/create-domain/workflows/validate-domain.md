@@ -21,10 +21,55 @@ Verify these components exist:
 | `01_PROJECTS/` | Yes | Directory exists |
 | `02_PAGES/` | Yes | Directory exists |
 | `03_ARCHIVE/` | Yes | Directory exists |
+| `04_CANVAS/` | Yes | Directory exists |
 
 ```bash
 ls -la domains/[Name]/
 ```
+
+## Step 2a: Check type Compliance
+
+Scan all `.md` files in `domains/[Name]/02_PAGES/` and sub-folders:
+
+```bash
+grep -rl "^type:" domains/[Name]/02_PAGES/
+```
+
+For each file with a `type` field, verify the value is one of the 11 valid NoteType values:
+
+**Navigation values** (drive folder emergence): `concept | source | decision | output | question | report`
+**Non-navigation values**: `goal | plan | research | idea | meeting`
+
+**Legacy values that must be migrated** (breaking — these fail validation):
+
+| Legacy value | Migration target |
+|---|---|
+| `note` | `concept` |
+| `belief` | `concept` |
+| `frame` | `concept` |
+| `lesson` | `concept` |
+| `model` | `concept` |
+| `reference` | `source` |
+
+Report format for violations:
+
+```
+⚠️  Type Compliance Issues in [Domain]/02_PAGES/:
+  - path/to/file.md → type: "note" (migrate to "concept")
+  - path/to/other.md → type: "reference" (migrate to "source")
+
+Run /distribute to re-classify, or edit frontmatter manually.
+```
+
+If no violations: `✓ All pages use valid type values`.
+
+Also check that typed sub-folders (e.g., `02_PAGES/concepts/`) contain only files matching that type:
+
+```bash
+# Example: if concepts/ exists, all files inside must have type: concept
+```
+
+Report any mismatches as errors.
 
 ## Step 3: Validate INDEX.md
 
@@ -81,6 +126,12 @@ Maximum depth: 3 levels below domain root.
 - [ ] 01_PROJECTS/ exists
 - [ ] 02_PAGES/ exists
 - [ ] 03_ARCHIVE/ exists
+- [ ] 04_CANVAS/ exists
+
+### Type Compliance
+- [ ] All pages in 02_PAGES/ use valid NoteType values
+- [ ] No legacy type values (note/belief/frame/lesson/model/reference) found
+- [ ] Typed sub-folders contain only matching type pages
 
 ### INDEX.md Check
 - [ ] Valid YAML frontmatter

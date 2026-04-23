@@ -19,7 +19,7 @@ Think step by step to answer the question. Return the final answer in the requir
 - Multi-step reasoning tasks — math, logic, planning, debugging.
 - Architectural or design decisions where the reasoning path matters as much as the conclusion.
 - Any task where showing your work increases trust or helps the user follow along.
-- When drafting `brain/KEY_DECISIONS.md` entries and you want the reasoning to be auditable.
+- When drafting `brain/LOGIC.md` entries and you want the reasoning to be auditable.
 
 ## Trade-offs
 

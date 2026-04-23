@@ -42,12 +42,19 @@ Project tracking rules:
 
 ## Pages Index
 
-| Page                   | Description (AI Context) | Focus/Tags | Last Updated |
-| :--------------------- | :----------------------- | :--------- | :----------- |
-| _No pages indexed yet_ | -                        | -          | -            |
+| Page                   | Type | Description (AI Context) | Focus/Tags | Last Updated |
+| :--------------------- | :--- | :----------------------- | :--------- | :----------- |
+| _No pages indexed yet_ | -    | -                        | -          | -            |
+
+## Canvas
+
+| Canvas | Description | Last Updated |
+| :----- | :---------- | :----------- |
+| _No canvases yet_ | - | - |
 
 ## Quick Links
 
 - [Projects](01_PROJECTS/) - Active project files
 - [Pages](02_PAGES/) - Knowledge processed and archived within the domain, routed from the inbox
+- [Canvas](04_CANVAS/) - Visual maps and diagrams
 - [Archive](03_ARCHIVE/) - Deprecated content

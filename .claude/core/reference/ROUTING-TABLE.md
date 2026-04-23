@@ -31,6 +31,7 @@ For full intent routing logic, see `ORCHESTRATION.md`. For subagent details, see
 | Stage 1 capture only | `/general` |
 | Process inbox notes, add frontmatter | `/process` |
 | Route processed notes to domains | `/distribute` |
+| Ingest a URL into the vault | `/ingest-url` |
 | Capture a 1:1 meeting | `/1-1` |
 | Capture an incident from Slack | `/incident` |
 | Scan Slack channels for evidence | `/slack-scan` |

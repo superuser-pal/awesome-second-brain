@@ -10,6 +10,30 @@ fi
 # Incremental QMD re-index (fast, non-blocking if qmd not installed)
 qmd update 2>/dev/null || true
 
+# Hot mode: if CACHE.md was written within the last 24 hours, emit the cache
+# and exit early (~500 tokens) instead of running the full 3000-token dump.
+# Uses Bun (cross-platform: macOS, Linux, Windows) instead of stat -f %m (macOS-only).
+CACHE_FILE="brain/CACHE.md"
+if [ -f "$CACHE_FILE" ] && command -v bun &>/dev/null; then
+  CACHE_AGE_MS=$(bun -e "process.stdout.write(String(Date.now() - require('fs').statSync('$CACHE_FILE').mtimeMs))" 2>/dev/null || echo "99999999")
+  if [ "$CACHE_AGE_MS" -lt 86400000 ] 2>/dev/null; then
+    echo "## Session Context (hot mode — cache < 24h old)"
+    echo ""
+    cat "$CACHE_FILE"
+    echo ""
+    echo "### Inbox snapshot"
+    RAW_COUNT=$(find inbox/raw -name "*.md" 2>/dev/null | wc -l | tr -d ' ')
+    READY_COUNT=$(find inbox/ready -name "*.md" 2>/dev/null | wc -l | tr -d ' ')
+    echo "- inbox/raw: ${RAW_COUNT} notes"
+    echo "- inbox/ready: ${READY_COUNT} notes awaiting distribute"
+    BLOCKED=$(grep -rl "status: blocked" . --include="*.md" 2>/dev/null | grep -v "^./\." | wc -l | tr -d ' ')
+    [ "$BLOCKED" -gt 0 ] && echo "- blocked tasks: ${BLOCKED}"
+    echo ""
+    echo "> Full context available — ask for full mode if needed."
+    exit 0
+  fi
+fi
+
 # Helper: run a command with a timeout, fall back to alternative
 run_with_timeout() {
   local timeout_sec=$1; shift
@@ -50,10 +74,10 @@ else
 fi
 echo ""
 
-# Load ABOUTME into context quietly (no section header)
+# Load USER into context quietly (no section header)
 # Only show content if user has filled in real data under "# About Me"
-if [ -f "brain/ABOUTME.md" ]; then
-  real_content=$(awk '/^# About Me/{found=1} found{print}' "brain/ABOUTME.md" \
+if [ -f "brain/USER.md" ]; then
+  real_content=$(awk '/^# About Me/{found=1} found{print}' "brain/USER.md" \
     | grep -v '^\s*<!--' \
     | grep -v '^\s*-->' \
     | grep -v '^\s*#' \
@@ -66,12 +90,12 @@ if [ -f "brain/ABOUTME.md" ]; then
   if [ -n "$real_content" ]; then
     echo "---"
     echo "### About Me"
-    cat "brain/ABOUTME.md" | head -80
+    cat "brain/USER.md" | head -80
   else
-    echo "> ABOUTME: not configured — run /setup-context to personalize"
+    echo "> USER: not configured — run /setup-context to personalize"
   fi
 else
-  echo "> ABOUTME: not configured — run /setup-context to personalize"
+  echo "> USER: not configured — run /setup-context to personalize"
 fi
 echo ""
 

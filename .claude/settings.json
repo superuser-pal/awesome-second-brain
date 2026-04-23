@@ -64,7 +64,18 @@
         "hooks": [
           {
             "type": "command",
-            "command": "echo 'Session end checklist:\n- Archive completed projects? (work/01_PROJECTS/ → work/07_ARCHIVE/YYYY/)\n- Update indexes? (INDEX.md, Memories.md, PEOPLE.md, WINS.md)\n- New notes linked? (orphans are bugs)\n- Notes still in Inbox? (inbox/raw/ or inbox/ready/ — run /process or /distribute)\n- Domain indexes up to date? (run map-domain if domain work was done)\n- Run /audit if many notes were created/modified'",
+            "command": "bash .claude/scripts/stop-hook.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PostCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'Context was just compacted. Re-read brain/CACHE.md now to restore session awareness. It contains: Last Updated, Key Recent Facts, Recent Changes, Active Threads, and Deferred Work from the most recent session. Resume with the same context you had before compaction.'",
             "timeout": 2
           }
         ]

@@ -14,9 +14,9 @@ All project memories live in the vault (git-tracked). This file is a lightweight
 
 | Topic                     | Vault Location                       |
 | ------------------------- | ------------------------------------ |
-| Technical gotchas         | `brain/GOTCHAS.md`       |
-| Patterns and conventions  | `brain/PATTERNS.md`      |
-| Key decisions             | `brain/KEY_DECISIONS.md` |
+| Technical gotchas         | `brain/CAVEATS.md`       |
+| Patterns and conventions  | `brain/RULES.md`         |
+| Key decisions             | `brain/LOGIC.md`         |
 | Goals and focus           | `brain/NORTH_STAR.md`    |
 | Slash commands and skills | `brain/SKILLS.md`        |
 | People and org context    | `work/06_ORG/PEOPLE.md`              |

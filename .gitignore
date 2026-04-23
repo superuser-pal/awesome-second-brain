@@ -62,7 +62,9 @@ V2CLAUDE.md
 # Exclude specific files that were part of original tracked set but are personal
 brain/MASTER_ARCHIVE/
 
-# Project specific exclusions
-_spec-kit/
-.claude/commands/spec-kit/
-**/builder.md
+# Session cache and processing queue — personal operational state, not repo-bound
+brain/CACHE.md
+brain/QUEUE.md
+brain/CROSS_PROJECT_REF.md
+brain/AUDIT_REPORTS/
+

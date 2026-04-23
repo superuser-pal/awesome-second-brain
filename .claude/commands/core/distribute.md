@@ -10,13 +10,46 @@ For each `.md` file in `inbox/ready/`:
 
 2. **Validate domain exists** — Check that `domains/[domain]/` exists. If domain is missing or `domain: work` (cross-domain), route to `work/04_PAGES/` instead. If domain does not exist and is not "work", ask user to create it first.
 
-   Use the user context loaded at session start (from ABOUTME.md) to determine whether ambiguous content is work-related vs domain-specific. If content is professional/work-related and no domain clearly fits, offer `work/04_PAGES/` as the default.
+   Use the user context loaded at session start (from USER.md) to determine whether ambiguous content is work-related vs domain-specific. If content is professional/work-related and no domain clearly fits, offer `work/04_PAGES/` as the default.
 
 3. **Determine destination**:
    - Default: `domains/[domain]/02_PAGES/` (or `work/04_PAGES/` for cross-domain content)
    - If `type` is belief, frame, lesson, model, or goal and the domain has relevant memory files: offer to append to existing memory file instead of creating a new page
    - If `project` field is set: link from the project file after placement
    - **If `type: 1-1`**: route to `work/02_1-1/` using the per-person accumulating pattern — see step 3a below.
+   - **For domain pages**: apply steps 3b and 3c to assign a navigation type and sub-folder route.
+
+   **3b. Assign navigation `type` from content analysis**
+
+   If the note is routing to a domain (not `work/`), assign one of the six navigation type values by content analysis:
+
+   | Signals | `type` |
+   |---|---|
+   | "we decided", rationale, trade-offs, outcome | `decision` |
+   | reference material, external source, processed URL | `source` |
+   | idea, framework, mental model, definition | `concept` |
+   | AI brief, synthesis, session output, generated report | `output` |
+   | filed question, answered query, Q&A | `question` |
+   | audit, analysis, health check, status report | `report` |
+
+   If the note already has a valid navigation type set by `/process`, use it (the AI may refine it if the content analysis strongly suggests otherwise). Non-navigation types (`goal | plan | research | idea | meeting`) pass through unchanged and land flat in `02_PAGES/`.
+
+   **3c. Route to typed sub-folder (if exists)**
+
+   Map the assigned `type` to its plural folder name:
+
+   | `type` | Sub-folder |
+   |---|---|
+   | `concept` | `concepts/` |
+   | `source` | `sources/` |
+   | `decision` | `decisions/` |
+   | `output` | `outputs/` |
+   | `question` | `questions/` |
+   | `report` | `reports/` |
+
+   - If `domains/[domain]/02_PAGES/{type_plural}/` **exists** → route there.
+   - If it **does not exist** → land flat in `domains/[domain]/02_PAGES/` (sub-folder emerges later via `/audit` cluster detection).
+   - Non-navigation types always land flat in `02_PAGES/`.
 
    **3a. 1:1 routing (accumulating file pattern)**
 
@@ -81,7 +114,8 @@ For each `.md` file in `inbox/ready/`:
 
 6. **Present routing plan** to user before executing:
    ```
-   inbox/ready/[filename] (note) → domains/[domain]/02_PAGES/[filename] (page)
+   inbox/ready/[filename] (note) → domains/[domain]/02_PAGES/[sub-folder/][filename] (page)
+   type: [assigned-type] | sub-folder: [concepts/ | flat]
    ```
    Wait for user confirmation.
 
@@ -120,7 +154,12 @@ For each `.md` file in `inbox/ready/`:
     - For content appends or contradiction flags, show proposed changes to user for confirmation
     - Skip if the vault has fewer than 5 notes
 
-12. **Report** for each note:
+12. **Update brain/QUEUE.md** — Set the note's Stage to `distributed`:
+    - Find the row matching the note path (may be `inbox/ready/[filename]` or original raw path)
+    - Update Stage to `distributed`, update Last touched to today
+    - If no row exists, add one now with Stage `distributed`
+
+13. **Report** for each note:
     - Source path (note) → Destination path (page)
     - Promotion type: simple | split | absorb
     - Wikilinks added

@@ -49,6 +49,27 @@ Analyze content to detect target domain and themes.
 - **Segment content** by topic shifts (paragraph breaks, explicit markers like "Also...", domain changes).
 - Determine if the content should be split into multiple raw notes.
 
+**Multi-note detection**: if content contains **3 or more distinct topics** that are each independently note-worthy (self-contained, useful on their own), offer to split before writing any files.
+
+Present a split preview:
+
+```
+Detected 3 distinct topics — each could be its own raw note:
+  1. [Topic A] (domain: X, suggested type: concept) → inbox/raw/topic-a-YYYY-MM-DD.md
+  2. [Topic B] (domain: Y, suggested type: decision) → inbox/raw/topic-b-YYYY-MM-DD.md
+  3. [Topic C] (domain: X, suggested type: idea) → inbox/raw/topic-c-YYYY-MM-DD.md
+
+Options:
+  a) Create 3 separate raw notes (recommended)
+  b) Capture as a single note
+```
+
+Wait for user confirmation before writing any files.
+
+- If split confirmed: create N separate files, each with its own frontmatter and atomic content. Report: "Created 3 notes in inbox/raw/".
+- If single confirmed: proceed to Step 5 as normal.
+- Below 3 distinct topics: treat as one note with multiple points — no split prompt.
+
 ### 5. Create the Raw Note
 Save to `inbox/raw/[topic]-[YYYY-MM-DD].md` with:
 - Verbatim raw input (in a collapsible callout)

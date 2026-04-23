@@ -210,7 +210,7 @@ Awesome Second Brain's workspace is organized to keep focus sharp and context co
 - **`domains/`**: Your high-level workspaces (e.g., `Work`, `Personal`). Each domain is a siloed environment.
 - **`work/`**: Cross-domain shared operations — 1:1s, incidents, and reviews.
 - **`inbox/`**: The entry point. Drop raw thoughts or quick tasks here to be processed.
-- **`brain/`**: The "Operating System" — `NORTH_STAR.md`, `MEMORIES.md`, `PATTERNS.md`, and `KEY_DECISIONS.md`.
+- **`brain/`**: The "Operating System" — `NORTH_STAR.md`, `MEMORIES.md`, `RULES.md`, and `LOGIC.md`.
 - **`plan/`**: Your daily and weekly rhythm files.
 - **`bases/`**: Dynamic aggregators and template definitions (e.g., `Prompts.base`, `Strategies.base`).
 - **`thinking/`**: Internal logs, session transcripts, and agent scratchpads.

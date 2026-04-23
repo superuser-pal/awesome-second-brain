@@ -61,7 +61,14 @@ For each `.md` file in `inbox/raw/`:
    git mv inbox/raw/[filename] inbox/ready/[filename]
    ```
 
-10. **Report** for each note:
+10. **Update brain/QUEUE.md** — Record or update the note's processing state:
+    - If the note path is not already in the table: append a new row with Stage `ready`, today's date, and any relevant notes.
+    - If the note path already exists (e.g., it was previously in the queue as `raw`): update the Stage field to `ready` and update Last touched.
+    ```
+    | inbox/ready/[filename] | ready | YYYY-MM-DD | — |
+    ```
+
+11. **Report** for each note:
     - Original filename
     - Detected domain + type
     - Generated description

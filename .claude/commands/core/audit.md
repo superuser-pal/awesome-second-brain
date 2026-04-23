@@ -105,7 +105,7 @@ For each `.base` file in `bases/`:
 
 - Read `brain/MEMORIES.md` "Recent Context" — is anything outdated?
 - Read `work/06_ORG/PEOPLE.md` — any roles or relationships that changed?
-- Check `brain/KEY_DECISIONS.md`, `brain/PATTERNS.md`, `brain/GOTCHAS.md` for outdated claims
+- Check `brain/LOGIC.md`, `brain/RULES.md`, `brain/CAVEATS.md` for outdated claims
 - Check `brain/NORTH_STAR.md` — does Current Focus reflect reality?
 
 ### 10. Check for Mixed Context
@@ -121,7 +121,53 @@ Per vault rules, each note should cover ONE concept. Flag notes that:
 - `.claude/commands/` — do all commands reference correct folder structure?
 - `CLAUDE.md` — any stale instructions that contradict current vault state?
 
-### 12. Fix and Report
+### 12a. Domain Cluster Detection
+
+For each domain in `domains/`:
+
+1. **Count pages by `type`** in `domains/[Name]/02_PAGES/` root (flat only, not sub-folders):
+   ```bash
+   grep -rl "^type:" domains/[Name]/02_PAGES/*.md 2>/dev/null | xargs grep "^type:" | sed 's/.*type: //'
+   ```
+
+2. **Threshold check**: if any navigation type (`concept | source | decision | output | question | report`) reaches ≥5 flat pages, propose creating the typed sub-folder.
+
+3. **Report proposals** before acting:
+   ```
+   Cluster Detection — [DomainName]:
+   - "concept": 7 flat pages → propose: 02_PAGES/concepts/ (move 7 files)
+   - "decision": 5 flat pages → propose: 02_PAGES/decisions/ (move 5 files)
+
+   Confirm to create sub-folders and move files? (Y/N)
+   ```
+
+4. **On confirm (single gate covers all proposals)**:
+   - `mkdir -p domains/[Name]/02_PAGES/{type_plural}/`
+   - `git mv` each matching file into the new sub-folder
+   - Update `domains/[Name]/INDEX.md` Pages Index: switch from flat table to grouped sections (one `### Concepts`, `### Decisions`, etc. per type with sub-tables)
+
+5. **Skip non-navigation types** (`goal | plan | research | idea | meeting`) — they do not trigger cluster detection and stay flat.
+
+6. **Custom topic cluster scan**: also check for 5+ flat pages sharing a common tag that is not already a navigation type value. Propose a kebab-case topic folder (e.g., `api-patterns/`). Topic folders contain mixed types — their INDEX section shows a Type column. Apply same ≥5 threshold, same confirm gate.
+
+### 12b. Project Pulse
+
+After cluster detection, append a domain activity summary to the report:
+
+```
+Domain Pulse (since last audit):
+- [DomainA]: N new pages (X concepts, Y decisions, Z outputs) | Last activity: YYYY-MM-DD
+- [DomainB]: no new pages in 14+ days
+- [DomainC]: N pages flagged for type compliance (legacy values detected)
+
+Emergence candidates:
+- [DomainA]/02_PAGES/: "concept" has 7 flat pages → ready for concepts/ folder
+- [DomainB]/02_PAGES/: no clusters yet
+```
+
+Derive activity from git log (`git log --since="14 days ago" -- domains/`) or file modification dates. "New pages" = files added since last audit or in the past 14 days.
+
+### 12c. Fix and Report
 
 - Fix what's clearly wrong (broken links, missing frontmatter, duplicate tags, wrong folder)
 - For ambiguous issues, list them and ask the user
@@ -129,6 +175,51 @@ Per vault rules, each note should cover ONE concept. Flag notes that:
   - **Fixed**: issues resolved
   - **Flagged**: needs user input
   - **Suggested**: improvements for the vault
+  - **Pulse**: domain activity summary (from §12b)
+
+### 13. Generate Audit Report
+
+After completing all steps above, write a timestamped report to `brain/AUDIT_REPORTS/YYYY-MM-DD.md`.
+
+Report structure:
+```markdown
+---
+title: "Audit Report YYYY-MM-DD"
+description: "Vault health snapshot for YYYY-MM-DD."
+type: brain
+tags:
+  - brain
+  - audit-report
+date: "YYYY-MM-DD"
+---
+
+# Audit Report — YYYY-MM-DD
+
+## Metrics
+
+| Metric | Value |
+|---|---|
+| Inbox age (oldest unprocessed) | N days |
+| Orphan notes | N |
+| Broken wikilinks | N |
+| Empty brain files | N |
+| Stale projects (no activity 30d+) | N |
+| Tag violations | N |
+
+## Issues Fixed
+
+- [list]
+
+## Issues Flagged (user input needed)
+
+- [list]
+
+## Domain Pulse
+
+[paste §12b pulse summary]
+```
+
+Use the metrics gathered during this audit run. Do not re-scan — extract from steps already completed. If a metric was not checked this run, write `N/A`.
 
 ## Important
 

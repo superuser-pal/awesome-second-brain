@@ -54,7 +54,7 @@ For each distinct piece of information:
    - `[question]` → Open Questions
    - `[fact]` → Cascade enrichment
    - `[idea]` → Route to thinking/ or domain page
-   - `[insight]` → PATTERNS.md
+   - `[insight]` → RULES.md
    - `[problem]` + `[solution]` → Pair in note
 
 After processing everything, provide a summary:

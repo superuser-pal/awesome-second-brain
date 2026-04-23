@@ -279,7 +279,7 @@ When the source vault is a known obsidian-mind version, apply these transformati
 ### v1 → current
 
 - Move `claude/` contents to `brain/` (rename `claude/MEMORIES.md` → `brain/MEMORIES.md`, etc.)
-- If `claude/MEMORIES.md` is a monolith (single file with multiple topic sections), split into separate topic files (`brain/KEY_DECISIONS.md`, `brain/PATTERNS.md`, `brain/GOTCHAS.md`)
+- If `claude/MEMORIES.md` is a monolith (single file with multiple topic sections), split into separate topic files (`brain/LOGIC.md`, `brain/RULES.md`, `brain/CAVEATS.md`)
 - Move flat `work/*.md` notes into `work/01_PROJECTS/` or `work/07_ARCHIVE/YYYY/` based on status
 - Strip full-path wikilinks (`[[claude/Memories]]` → `[[Memories]]`)
 

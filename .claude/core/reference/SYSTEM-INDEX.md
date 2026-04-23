@@ -80,6 +80,7 @@ Interactive persona agents invoked BY the user. No `maxTurns` — conversational
 | `/general` | `capture/general.md` | — |
 | `/process` | `core/process.md` | — |
 | `/distribute` | `core/distribute.md` | — |
+| `/ingest-url` | `core/ingest-url.md` | — |
 | `/1-1` | `capture/1-1.md` | — |
 | `/incident` | `capture/incident.md` | `slack-archaeologist`, `contact-importer` |
 | `/slack-scan` | `capture/slack-scan.md` | `slack-archaeologist` |
@@ -100,7 +101,7 @@ Interactive persona agents invoked BY the user. No `maxTurns` — conversational
 | `/thinking:eval` | `thinking/eval.md` | — |
 | `/thinking:cot` | `thinking/cot.md` | — |
 
-**Total: 29 commands**
+**Total: 30 commands**
 
 ---
 

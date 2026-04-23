@@ -32,7 +32,7 @@ date: YYYY-MM-DD
 created: YYYY-MM-DD
 status: ready               # ready after /process; processed after /distribute
 origin: braindump           # braindump | url | doc | manual
-type: note                  # concept | decision | reference | meeting | idea | note | belief | frame | lesson | model | goal | plan | research
+type: concept               # concept | source | decision | output | question | report | goal | plan | research | idea | meeting
 domain: "DomainName"        # target domain; 'work' for cross-domain content
 description: "..."          # ~150 char summary
 tags: []
@@ -116,15 +116,15 @@ last_updated: YYYY-MM-DD
 
 ## 3. Domain Page
 
-**Location:** `domains/[Name]/02_PAGES/*.md`
+**Location:** `domains/[Name]/02_PAGES/**/*.md`
 
-> **Asset class vs content type:** Asset class is determined by WHERE a file lives, NOT by the `type` field. A Domain Page with `type: note` is still a **page** (permanent). The `type` field describes what the page is about. It does NOT change when a note is promoted — a note of `type: concept` becomes a page of `type: concept`.
+> **Asset class vs content type:** Asset class is determined by WHERE a file lives, NOT by the `type` field. A Domain Page is still a **page** (permanent) regardless of type value. The `type` field describes what the page is about. It does NOT change when a note is promoted — a note of `type: concept` becomes a page of `type: concept`.
 
 ```yaml
 name: "page_name"           # kebab-case
 domain: "DomainName"        # PascalCase, matches parent directory
 origin: manual              # braindump | ai-output | manual
-type: note                  # concept | decision | reference | meeting | idea | note | belief | frame | lesson | model | goal | plan | research
+type: concept               # see NoteType enum below
 # When type is "concept", also include: synthesized-from: []
 status: processed           # processed | archived
 description: "..."          # ~150 char summary of content and key value
@@ -132,6 +132,18 @@ tags: []
 created: YYYY-MM-DD
 last_updated: YYYY-MM-DD
 ```
+
+> **NoteType enum (11 values)**
+>
+> **Navigation values** — drive folder emergence in `02_PAGES/` at ≥5 page threshold:
+> `concept` → `concepts/` | `source` → `sources/` | `decision` → `decisions/` | `output` → `outputs/` | `question` → `questions/` | `report` → `reports/`
+>
+> **Non-navigation values** — retained for inbox, projects, and work notes; pages stay flat:
+> `goal | plan | research | idea | meeting`
+>
+> **Removed values** (breaking — existing pages must be backfilled before next edit):
+> `note | belief | frame | lesson | model | reference`
+> Migration: `note/belief/frame/lesson/model` → `concept` · `reference` → `source`
 
 ---
 
@@ -180,7 +192,7 @@ Full schema — processed and awaiting distribution to a domain.
 name: "descriptive_name"    # kebab-case
 domain: "target-domain"     # PascalCase — destination domain
 origin: braindump           # braindump | ai-output | manual
-type: note                  # see Domain Page type enum
+type: concept               # see Domain Page NoteType enum (11 values)
 status: ready               # unprocessed | thinking | ready | processed
 description: "..."          # ~150 char summary
 tags: []

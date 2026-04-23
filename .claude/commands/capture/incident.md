@@ -35,7 +35,7 @@ Create `work/03_INCIDENTS/<Incident Name>.md` using the **`templates/Incident No
 ### 4. Update References & People
 
 - Update key personnel sections in `work/06_ORG/PEOPLE.md` with incident context.
-- Update `brain/MEMORIES.md`, `brain/PATTERNS.md`, and `brain/GOTCHAS.md` if new lessons emerged.
+- Update `brain/MEMORIES.md`, `brain/RULES.md`, and `brain/CAVEATS.md` if new lessons emerged.
 - Add to `work/05_REVIEW/WINS.md` if applicable.
 
 ## Important

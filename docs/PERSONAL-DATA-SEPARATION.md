@@ -42,13 +42,13 @@ Files currently marked skip-worktree:
 
 | File | Why |
 |------|-----|
-| `brain/ABOUTME.md` | Personal identity |
+| `brain/USER.md` | Personal identity |
 | `brain/CONTACTS.md` | Personal contacts |
-| `brain/GOTCHAS.md` | Accumulated personal knowledge |
-| `brain/KEY_DECISIONS.md` | Personal decisions |
+| `brain/CAVEATS.md` | Accumulated personal knowledge |
+| `brain/LOGIC.md` | Personal decisions |
 | `brain/MEMORIES.md` | Personal memories |
 | `brain/NORTH_STAR.md` | Personal goals |
-| `brain/PATTERNS.md` | Personal patterns |
+| `brain/RULES.md` | Personal patterns |
 | `brain/RESUME.md` | Personal resume |
 | `work/INDEX.md` | Work index with personal project refs |
 | `work/CONNECTIONS.yaml` | Personal external integrations |

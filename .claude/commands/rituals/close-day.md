@@ -31,8 +31,8 @@ Scan the conversation for newly created or modified notes:
 ### 4. Ways of Working Reflection
 
 Briefly identify if this session revealed a major new pattern or gotcha for:
-- `brain/PATTERNS.md`
-- `brain/GOTCHAS.md`
+- `brain/RULES.md`
+- `brain/CAVEATS.md`
 - `CLAUDE.md` (e.g., new project convention)
 
 ### 5. Evening Review (evening-review)

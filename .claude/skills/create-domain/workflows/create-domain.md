@@ -27,6 +27,7 @@ Check that `domains/[Name]/` does not already exist.
 mkdir -p domains/[Name]/01_PROJECTS
 mkdir -p domains/[Name]/02_PAGES
 mkdir -p domains/[Name]/03_ARCHIVE
+mkdir -p domains/[Name]/04_CANVAS
 ```
 ### Step 3a: Create AD_HOC_TASKS.md
 
@@ -122,6 +123,7 @@ Expected:
 - `01_PROJECTS/`
 - `02_PAGES/`
 - `03_ARCHIVE/`
+- `04_CANVAS/`
 
 ## Step 7: Register Domain
 
@@ -167,7 +169,7 @@ Print reminder:
 - [ ] INDEX.md has at least one wikilink
 - [ ] INDEX.md has Knowledge Baseline, Active Work, Pages Index, Quick Links, and Related sections
 - [ ] CONNECTIONS.yaml exists at domain root
-- [ ] 01_PROJECTS/, 02_PAGES/, 03_ARCHIVE/ directories exist
+- [ ] 01_PROJECTS/, 02_PAGES/, 03_ARCHIVE/, 04_CANVAS/ directories exist
 - [ ] Domain registered in CLAUDE.md
 
 ## Done

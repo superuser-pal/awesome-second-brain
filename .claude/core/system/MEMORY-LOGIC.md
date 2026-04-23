@@ -27,9 +27,9 @@ All files live in `brain/`:
 |------|---------|
 | `MEMORIES.md` | Index of memory topics — pointers to topic notes. Add new topics here. |
 | `NORTH_STAR.md` | Living goals document — read at session start, update when goals shift. |
-| `KEY_DECISIONS.md` | Significant decisions with context and rationale. |
-| `PATTERNS.md` | Recurring behaviors, workflows, codebase patterns observed over time. |
-| `GOTCHAS.md` | Specific gotchas, pitfalls, "remember not to" items. |
+| `LOGIC.md` | Significant decisions with context and rationale. |
+| `RULES.md` | Recurring behaviors, workflows, codebase patterns observed over time. |
+| `CAVEATS.md` | Specific gotchas, pitfalls, "remember not to" items. |
 | `SKILLS.md` | Vault-specific workflows, slash commands, and Claude capabilities registered here. |
 
 **Usage rules:**

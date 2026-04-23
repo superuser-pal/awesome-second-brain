@@ -49,7 +49,7 @@ Defined in `.claude/commands/`. See [[SKILLS]] for full documentation.
 | `domains/`                    | **Organized knowledge areas** — each domain has `01_PROJECTS/`, `02_PAGES/`, `05_ARCHIVE/`          | Created via create-domain skill                                                   |
 | `bases/`                      | **All Bases centralized** -- dynamic views for navigation                                            | `Incidents`, `People Directory`, `1-1 History`, `Domains`, `Templates`            |
 | `work/`                       | **Cross-domain work** -- incidents, 1-1s, decisions that span domains                               | `INDEX.md`, `01_PROJECTS/`, `02_1-1/`, `03_INCIDENTS/`, `04_PAGES/`, `05_REVIEW/`, `06_ORG/`, `07_ARCHIVE/` |
-| `brain/`                      | Claude's operational knowledge                                                                       | `MEMORIES.md`, `KEY_DECISIONS.md`, `PATTERNS.md`, `GOTCHAS.md`, `SKILLS.md`, `NORTH_STAR.md` |
+| `brain/`                      | Claude's operational knowledge                                                                       | `MEMORIES.md`, `LOGIC.md`, `RULES.md`, `CAVEATS.md`, `SKILLS.md`, `NORTH_STAR.md`, `USER.md`, `CACHE.md` |
 | `thinking/`                   | Temporary **notes** — reasoning scratchpads, ongoing research, agent outputs (`status: thinking`)    | Named `YYYY-MM-DD-topic.md`                                                       |
 | `plan/`                       | Daily notes and weekly planning files                                                                | `DD-MM-YY.md` (daily), `W[x]_YYYY-MM-DD.md` (weekly), `archive/` (closed weeks) |
 
@@ -156,7 +156,7 @@ Update these when creating or archiving notes:
 1. Create in `work/` using the Decision Record template
 2. Link from the work note(s) that led to the decision
 3. Add to the Decisions Log table in `work/INDEX.md`
-4. If significant, note in `brain/KEY_DECISIONS.md`
+4. If significant, note in `brain/LOGIC.md`
 
 ### Wins & Achievements
 
@@ -168,7 +168,8 @@ Use tags in frontmatter (not inline):
 
 | Property | Values / Format | Used on |
 |---|---|---|
-| `type` (tag) | `work-note`, `decision`, `perf`, `thinking`, `north-star`, `competency`, `person`, `team`, `brain` | All notes |
+| `type` (NoteType) | **Navigation** (drive folder emergence in `02_PAGES/`): `concept \| source \| decision \| output \| question \| report` — **Non-navigation** (stay flat): `goal \| plan \| research \| idea \| meeting` | Domain pages, inbox notes |
+| `type` (tag) | `work-note`, `decision`, `perf`, `thinking`, `north-star`, `competency`, `person`, `team`, `brain` | Work notes, brain notes |
 | `index` (tag) | `index`, `moc` | Index files |
 | `status` | `active`, `completed`, `archived`, `proposed`, `accepted`, `deprecated` | Projects, decisions |
 | `team` | e.g. `Backend`, `Platform`, `Mobile` | People + work notes |
@@ -182,10 +183,56 @@ Use tags in frontmatter (not inline):
 
 ## Memory System
 
-When explicitly asked to "remember" something:
+When explicitly asked to "remember" something, or when a session ends and durable learnings have emerged:
 
-1. Find or create the appropriate `brain/` topic note (e.g., `GOTCHAS.md`, `PATTERNS.md`, `KEY_DECISIONS.md`).
+1. Identify the content type and use the Brain File Routing Table below to select the destination.
 2. Add the knowledge there with a wikilink pointing to the original source or context.
+3. Mark new entries as `[observation]` (see Content Promotion Lifecycle below).
+
+### Brain File Routing Table
+
+Apply this table before any session ends. Every durable learning goes to exactly one file.
+
+| What was learned | Destination |
+|---|---|
+| A decision was made with rationale | `brain/LOGIC.md` |
+| A recurring pattern confirmed | `brain/RULES.md` |
+| Something broke or was surprising | `brain/CAVEATS.md` |
+| A new skill or workflow discovered | `brain/SKILLS.md` |
+| User preferences or context updated | `brain/USER.md` |
+| Goals or focus shifted | `brain/NORTH_STAR.md` |
+| New contact or person referenced | `brain/CONTACTS.md` |
+| An ingested source | `brain/INGEST_LOG.md` |
+| Durable but doesn't fit above | New `brain/` topic note + add to `MEMORIES.md` |
+
+### Memory Routing Decision Tree
+
+```
+Is this information durable across sessions?
+├── No → Don't persist. It will appear in CACHE.md if needed next session.
+└── Yes →
+    ├── About user identity / preferences? → brain/USER.md
+    ├── About goals / focus / direction? → brain/NORTH_STAR.md
+    ├── A decision with rationale? → brain/LOGIC.md
+    ├── A pattern confirmed by experience? → brain/RULES.md
+    ├── Something that went wrong or was surprising? → brain/CAVEATS.md
+    ├── A new skill or workflow? → brain/SKILLS.md
+    ├── A person or contact? → brain/CONTACTS.md
+    ├── An ingested source? → brain/INGEST_LOG.md
+    └── None of the above? → New brain/ topic note + MEMORIES.md index
+```
+
+### Content Promotion Lifecycle
+
+Brain note entries carry an optional inline maturity marker. Add it at the end of the entry line.
+
+| Marker | Meaning | When to use |
+|---|---|---|
+| `[observation]` | Learned in a single session, not yet validated | Default for all new entries |
+| `[confirmed]` | Referenced or upheld across 3+ sessions | Promote manually during weekly review |
+| `[canonical]` | Survived a full quarter; core system pattern | Promote manually during quarterly review |
+
+New entries default to `[observation]`. Promote to `[confirmed]` or `[canonical]` manually during `/close-day` or weekly review. Maturity is inline text — not a frontmatter field.
 
 ## Agent Guidelines
 
