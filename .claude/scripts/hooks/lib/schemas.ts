@@ -80,8 +80,14 @@ export const DomainPageSchema = z.object({
 
 /** work/03_INCIDENTS/*.md */
 export const IncidentSchema = z.object({
-  severity: z.string(),
-  status: z.string(),
+  date: z.string(),
+  quarter: z.string(),
+  description: z.string(),
+  ticket: z.string().optional(),
+  severity: z.enum(["low", "medium", "high"]),
+  role: z.string().optional(),
+  status: z.enum(["active", "resolved", "closed"]),
+  tags: z.array(z.string()),
 });
 
 /** work/02_1-1/<Person>.md */
