@@ -1,9 +1,9 @@
 ---
-title: PAL Second Brain Skills System
+title: Awesome Second Brain Skills System
 version: 1.0.0
 layer: SYSTEM
 purpose: Skill structure, SKILL.md format, and invocation rules
-last_updated: 2026-04-05
+last_updated: 2026-05-01
 ---
 
 ## 1. Naming Conventions
@@ -69,12 +69,14 @@ Brief description.
 
 ## 4. Invocation
 
-Skills are invoked via the Skill tool. Claude matches user intent against the `USE WHEN` clause in `description` — conceptual matching, not keyword matching.
+## 4. Invocation
+
+Skills are invoked via the Skill tool. The AI Agent matches user intent against the `USE WHEN` clause in `description` — conceptual matching, not keyword matching.
 
 When a skill is matched:
-1. Claude loads `SKILL.md` to get the workflow routing table.
-2. Claude selects the workflow file matching the sub-intent.
-3. Claude executes the workflow per `WORKFLOWS.md` rules.
+1. The AI Agent loads `SKILL.md` to get the workflow routing table.
+2. The AI Agent selects the workflow file matching the sub-intent.
+3. The AI Agent executes the workflow per `WORKFLOWS.md` rules.
 
 ---
 

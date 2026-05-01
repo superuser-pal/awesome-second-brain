@@ -1,9 +1,9 @@
 ---
-title: PAL Second Brain Memory System
+title: Awesome Second Brain Memory System
 version: 1.0.0
 layer: SYSTEM
 purpose: Vault-first memory model, brain files, hook lifecycle, and session state
-last_updated: 2026-04-05
+last_updated: 2026-05-01
 ---
 
 ## 1. Vault-First Memory Principle
@@ -30,7 +30,7 @@ All files live in `brain/`:
 | `LOGIC.md` | Significant decisions with context and rationale. |
 | `RULES.md` | Recurring behaviors, workflows, codebase patterns observed over time. |
 | `CAVEATS.md` | Specific gotchas, pitfalls, "remember not to" items. |
-| `SKILLS.md` | Vault-specific workflows, slash commands, and Claude capabilities registered here. |
+| `SKILLS.md` | Vault-specific workflows, slash commands, and AI Agent capabilities registered here. |
 
 **Usage rules:**
 - `NORTH_STAR.md` is read at every substantial session start (injected by `session-start.sh`).
@@ -72,7 +72,7 @@ Wikilink check: every note in a content area (not thinking/, not .claude/) must 
 
 ## 5. Session State
 
-PAL Second Brain does not use a `.current-session` file (unlike PAL). Domain Agent sessions are informal:
+Awesome Second Brain does not use a `.current-session` file (unlike earlier iterations). Domain Agent sessions are informal:
 - On `*dismiss`, the agent asks if a session note should be saved.
 - If yes: write `thinking/sessions/YYYY-MM-DD-[domain]-[topic].md`.
 - Session notes are scratchpad quality — promote durable findings to proper vault notes.

@@ -1,7 +1,7 @@
-# PAL Second Brain - Command Requirements
+# Awesome Second Brain - Command Requirements
 
 **Version:** 1.0.0
-**Last Updated:** 2026-04-04
+**Last Updated:** 2026-05-01
 
 ---
 
@@ -236,7 +236,7 @@ Source: [.claude/core/system/AGENT-BASE.md](../AGENT-BASE.md)
 ### 4.6.3 Domain Agent Scope Confinement
 
 **Given** a user sends a request outside the Domain Agent's domain while in an agent session
-**When** Claude detects the out-of-scope request
+**When** the AI Agent detects the out-of-scope request
 **Then** the agent declines to handle it, states it's outside the domain scope, and suggests issuing `*dismiss` to return to normal vault mode
 
 Category: Functional

@@ -1,7 +1,7 @@
-# PAL Second Brain - Inbox Requirements
+# Awesome Second Brain - Inbox Requirements
 
 **Version:** 1.0.0
-**Last Updated:** 2026-04-04
+**Last Updated:** 2026-05-01
 
 ---
 
@@ -109,7 +109,7 @@ Source: [process.md](../../commands/process.md)
 
 **Given** a raw note is being processed
 **When** domain and type are determined
-**Then** full YAML frontmatter is added: name, domain, origin, type, status (set to "ready"), description (~150 chars), tags, created, last_updated
+**Then** full YAML frontmatter is added: name, domain, origin, type, status (set to "unprocessed"), description (~150 chars), tags, date, created, last_updated (date strings must be quoted)
 
 Category: Functional
 Verification: Process a raw note and confirm all frontmatter fields are present
@@ -121,7 +121,7 @@ Source: [process.md](../../commands/process.md)
 
 **Given** a note has been processed
 **When** frontmatter is complete
-**Then** the note is moved from inbox/raw/ to inbox/ready/ using `git mv`
+**Then** the note is moved from inbox/raw/ to inbox/ready/ using a two-step process (`mv` then edit `status: ready`)
 
 Category: Functional
 Verification: Process a note and confirm it moves to inbox/ready/
@@ -145,9 +145,9 @@ Source: [process.md](../../commands/process.md)
 
 ### 2.3.1 Route to Domain
 
-**Given** processed notes exist in inbox/ready/
+**Given** processed notes exist in inbox/ready/ or thinking/ (with status: ready)
 **When** the user invokes /distribute
-**Then** each note is routed to `domains/[domain]/02_PAGES/` based on its frontmatter `domain` field
+**Then** any note in inbox/ready/ with `status: thinking` is moved to `thinking/` and skipped. Each ready note is then routed to `domains/[domain]/02_PAGES/` based on its frontmatter `domain` field
 
 Category: Functional
 Verification: Distribute a note with domain: laralou and confirm it moves to domains/laralou/02_PAGES/
@@ -208,9 +208,10 @@ Source: [distribute.md](../../commands/distribute.md)
 **Given** a note in `inbox/ready/` covers 3+ independently page-worthy topics (each self-contained and useful on its own)
 **When** /distribute processes it
 **Then** /distribute MUST detect this and offer to split into separate pages, each with:
-  - `synthesized-from: ["[[source-note]]"]` in frontmatter
-  - Bidirectional `## Related` cross-links between all split pages
-  - `status: processed` on the source note
+
+- `synthesized-from: ["[[source-note]]"]` in frontmatter
+- Bidirectional `## Related` cross-links between all split pages
+- `status: processed` on the source note
 
 Category: Functional
 Verification: Create a multi-topic note and run /distribute; confirm split offer appears
@@ -226,6 +227,7 @@ Source: [distribute.md](../../commands/distribute.md)
   - The existing page title
   - The specific content that would be appended
   - Which section it goes under
+Upon execution, it must copy the source to `brain/MASTER_ARCHIVE/`, delete the original from `inbox/ready/`, and log to `brain/INGEST_LOG.md`.
 
 Category: Functional
 Verification: Create a note that duplicates existing page content and run /distribute; confirm absorb offer

@@ -126,6 +126,10 @@ git rm plan/W[week]_YYYY-MM-DD.md
 
 The only remaining copy must be `plan/archive/W[week]_YYYY.md`.
 
-### 10. Confirm
+### 10. Reindex Knowledge Base
+
+Run `qmd embed` silently in the background (if QMD is installed) to ensure all newly archived weekly notes, daily notes, and updated projects from this week are permanently vectorized.
+
+### 11. Confirm
 
 Report: Week W[x] closed. Velocity: [N]%. [N] tasks carried forward, [N] dropped. Archived to `plan/archive/W[week]_YYYY.md`.

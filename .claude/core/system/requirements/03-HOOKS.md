@@ -1,7 +1,7 @@
-# PAL Second Brain - Hook Requirements
+# Awesome Second Brain - Hook Requirements
 
 **Version:** 1.0.0
-**Last Updated:** 2026-04-04
+**Last Updated:** 2026-05-01
 
 ---
 

@@ -1,9 +1,9 @@
 ---
-title: PAL Second Brain Toolbox
+title: Awesome Second Brain Toolbox
 version: 1.0.0
 layer: SYSTEM
 purpose: Scripts inventory, hook responsibilities, and tool creation rules
-last_updated: 2026-04-05
+last_updated: 2026-05-01
 ---
 
 ## 1. Scripts Location

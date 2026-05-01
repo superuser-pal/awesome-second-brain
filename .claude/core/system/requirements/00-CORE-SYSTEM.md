@@ -1,7 +1,7 @@
-# PAL Second Brain - Core System Requirements
+# Awesome Second Brain - Core System Requirements
 
 **Version:** 1.0.0
-**Last Updated:** 2026-04-04
+**Last Updated:** 2026-05-01
 
 ---
 
@@ -10,7 +10,7 @@
 ### 0.1.1 Graph-First Organization
 
 **Given** notes exist in the vault
-**When** a user or Claude creates or edits a note
+**When** a user or the AI Agent creates or edits a note
 **Then** the note must contain at least one `[[wikilink]]` to another existing note — orphan notes are bugs
 
 Category: Functional
@@ -34,7 +34,7 @@ Source: [CLAUDE.md](../../../CLAUDE.md)
 ### 0.1.3 Dashboards Folder
 
 **Given** the vault has a `dashboards/` root folder
-**When** a user or Claude looks for vault navigation entry points or the master task list
+**When** a user or the AI Agent looks for vault navigation entry points or the master task list
 **Then** `dashboards/HOME.md` is the vault entry point (embedded Base views, quick links) and `dashboards/TASKS.md` is the aggregated task list — no user notes live at vault root
 
 Category: Functional
@@ -70,7 +70,7 @@ Source: [CLAUDE.md](../../../CLAUDE.md)
 ### 0.1.6 Atomic Notes
 
 **Given** a note covers 3+ independent concepts
-**When** Claude detects multi-topic content
+**When** the AI Agent detects multi-topic content
 **Then** the content must be split into separate atomic notes that link to each other
 
 Category: Functional
@@ -120,7 +120,7 @@ Source: [classify-message.ts](../../scripts/hooks/classify-message.ts)
 ### 0.2.3 Close Day on Session End
 
 **Given** the user says "close day", "wrap up", "let's wrap", or similar
-**When** Claude detects the close-day signal
+**When** the AI Agent detects the close-day signal
 **Then** the /close-day command is automatically invoked to verify notes, indexes, links, and suggest improvements
 
 Category: Functional
@@ -134,8 +134,8 @@ Source: [CLAUDE.md](../../../CLAUDE.md)
 ### 0.3.1 Vault-First Memory
 
 **Given** durable knowledge needs to be persisted
-**When** the user asks Claude to remember something
-**Then** the knowledge is written to the appropriate `brain/` topic note with a wikilink to context — never to `~/.claude/` memory files
+**When** the user asks the AI Agent to remember something
+**Then** the knowledge is written to the appropriate `brain/` topic note with a wikilink to context — never to `~/.claude/` or other system-specific memory files
 
 Category: Functional
 Verification: Ask "remember that deploy windows are Tuesdays" and confirm it goes to brain/CAVEATS.md
@@ -208,7 +208,7 @@ Source: [pre-tool-use.ts](../../scripts/hooks/pre-tool-use.ts)
 ### 0.4.5 Zero Data Loss
 
 **Given** files are being reorganized or moved
-**When** Claude moves or renames files
+**When** the AI Agent moves or renames files
 **Then** `git mv` must be used — never raw delete + recreate
 
 Category: Functional

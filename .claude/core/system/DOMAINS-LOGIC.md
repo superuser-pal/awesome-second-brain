@@ -1,9 +1,9 @@
 ---
-title: PAL Second Brain Domains System
+title: Awesome Second Brain Domains System
 version: 1.0.0
 layer: SYSTEM
 purpose: Domain structure, INDEX.md format, frontmatter schemas, and Domain vs Work rules
-last_updated: 2026-04-05
+last_updated: 2026-05-01
 ---
 
 ## 1. Domain Definition

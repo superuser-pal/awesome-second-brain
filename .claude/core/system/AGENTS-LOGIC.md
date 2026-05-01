@@ -1,9 +1,9 @@
 ---
-title: PAL Second Brain Agents System
+title: Awesome Second Brain Agents System
 version: 1.0.0
 layer: SYSTEM
 purpose: Agent types, naming conventions, schemas, and lifecycle rules
-last_updated: 2026-04-05
+last_updated: 2026-05-01
 ---
 
 ## 1. Two Agent Types

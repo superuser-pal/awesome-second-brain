@@ -37,11 +37,12 @@ For each `.md` file in `inbox/raw/`:
    domain: "[detected-domain]"
    origin: braindump
    type: "[detected-type]"
-   status: ready
+   status: unprocessed
    description: "[~150 char summary]"
    tags: []
-   created: "[original date from raw note]"
-   last_updated: "[today]"
+   date: "[original date from raw note, quoted string]"
+   created: "[original date from raw note, quoted string]"
+   last_updated: "[today, quoted string]"
    ---
    ```
 
@@ -56,10 +57,13 @@ For each `.md` file in `inbox/raw/`:
 
 8. **Preserve observation categories** — Keep any `[fact]`, `[idea]`, `[decision]`, etc. syntax from the raw capture.
 
-9. **Move to inbox/ready/** — Use `git mv` to move the processed note:
-   ```bash
-   git mv inbox/raw/[filename] inbox/ready/[filename]
-   ```
+9. **Move to inbox/ready/** — Use a two-step process to move and update status:
+   9a. Move the file:
+       ```bash
+       mv inbox/raw/[filename] inbox/ready/[filename]
+       ```
+       *(Use plain `mv` for untracked files, `git mv` if tracked)*
+   9b. Edit `inbox/ready/[filename]`: change `status: unprocessed` → `status: ready`
 
 10. **Update brain/QUEUE.md** — Record or update the note's processing state:
     - If the note path is not already in the table: append a new row with Stage `ready`, today's date, and any relevant notes.

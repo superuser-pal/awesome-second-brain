@@ -7,6 +7,14 @@ description: "Search the vault using QMD semantic search. Use PROACTIVELY before
 
 Before reading vault files directly, search with QMD first. It returns relevant snippets without burning context on full file reads.
 
+## Workflow Routing
+| Workflow | Trigger | File |
+|----------|---------|------|
+| ask | When user runs `/ask` or asks a complex question needing direct answers | `../commands/qmd/ask.md` |
+| search | When user runs `/search` or asks for a list of results | `../commands/qmd/search.md` |
+| context | When user runs `/context` or asks for all context on a topic | `../commands/qmd/context.md` |
+| reindex | When user runs `/reindex` or needs to refresh the QMD index manually | `../commands/qmd/reindex.md` |
+
 ## Commands
 
 ### Search (pick one per query)

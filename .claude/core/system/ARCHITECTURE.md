@@ -1,19 +1,19 @@
 ---
-title: PAL Second Brain Architecture
+title: Awesome Second Brain Architecture
 version: 1.0.0
 layer: SYSTEM
 purpose: System layers, vault map, and extension points
-last_updated: 2026-04-05
+last_updated: 2026-05-01
 ---
 
 ## 1. System Layers
 
-PAL Second Brain operates across 3 layers:
+Awesome Second Brain operates across 3 layers:
 
 | Layer | Purpose | Key Paths |
 |-------|---------|-----------|
 | **VAULT** | User content — notes, projects, decisions, reviews | `work/`, `plan/`, `domains/`, `inbox/`, `thinking/`, `dashboards/`, `bases/` |
-| **CLAUDE** | Behavior layer — agents, skills, commands, scripts, core docs | `.claude/agents/`, `.claude/skills/`, `.claude/commands/`, `.claude/scripts/`, `.claude/core/` |
+| **AI AGENT** | Behavior layer — agents, skills, commands, scripts, core docs | `.claude/agents/`, `.claude/skills/`, `.claude/commands/`, `.claude/scripts/`, `.claude/core/` |
 | **HOOK** | Automation layer — lifecycle scripts that fire at events | `.claude/scripts/` (session-start.sh, hooks/classify-message.ts, hooks/validate-write.ts, hooks/pre-tool-use.ts, pre-compact.sh) |
 
 ---
@@ -31,7 +31,7 @@ PAL Second Brain operates across 3 layers:
 └─────────────────────────────────────────────────────────────────────┘
                                   ↓
 ┌─────────────────────────────────────────────────────────────────────┐
-│                         CLAUDE ROUTING                              │
+│                       AI AGENT ROUTING                              │
 │  Intent → Command / Skill / Domain Agent / Direct Response          │
 └─────────────────────────────────────────────────────────────────────┘
                                   ↓
@@ -68,7 +68,7 @@ PAL Second Brain operates across 3 layers:
 ## 3. Vault Structure
 
 ```text
-PAL Second Brain vault/
+Awesome Second Brain vault/
 ├── dashboards/          # Navigation (HOME.md, TASKS.md)
 ├── inbox/               # Capture entry point
 │   ├── raw/             # Stage 1 — unprocessed captures
@@ -85,7 +85,7 @@ PAL Second Brain vault/
 ├── plan/                # Daily notes + weekly planning files
 ├── thinking/            # Scratchpad — drafts, reasoning
 ├── bases/               # Obsidian Bases views
-└── .claude/             # Claude behavior layer
+└── .claude/             # AI Agent behavior layer
 ```
 
 ---

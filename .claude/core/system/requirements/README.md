@@ -1,13 +1,13 @@
-# PAL Second Brain - Requirements Documentation
+# Awesome Second Brain - Requirements Documentation
 
 **Version:** 1.1.0
-**Last Updated:** 2026-04-05
+**Last Updated:** 2026-05-01
 
 ---
 
 ## Overview
 
-Functional requirements for the PAL Second Brain vault system. Written for developers extending the system and users understanding expected behavior.
+Functional requirements for the Awesome Second Brain vault system. Written for developers extending the system and users understanding expected behavior.
 
 All requirements use the **Given-When-Then** format (BDD/Gherkin style).
 

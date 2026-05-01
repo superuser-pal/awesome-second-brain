@@ -2,9 +2,15 @@
 description: "Stage 3 distribution. Promote processed notes from inbox/ready/ to permanent pages in domain or work folders. Supports simple promotion, split into multiple pages, and absorb into existing pages."
 ---
 
-Promote all processed notes from `inbox/ready/` to their final locations as permanent **pages**.
+Promote all processed notes to their final locations as permanent **pages**.
 
-For each `.md` file in `inbox/ready/`:
+Sources to scan (both):
+- `inbox/ready/` — all `.md` files
+- `thinking/` — `.md` files with `status: ready` only (exclude `thinking/archive/` and `thinking/README.md`)
+
+For each `.md` file found in the above sources:
+
+1a. **Route thinking notes** — If a file in `inbox/ready/` has `status: thinking`, move it to `thinking/[YYYY-MM-DD]-[name].md` and skip it from distribution.
 
 1. **Read frontmatter** — Extract `domain`, `type`, `name`, and `project` fields.
 
@@ -23,14 +29,14 @@ For each `.md` file in `inbox/ready/`:
 
    If the note is routing to a domain (not `work/`), assign one of the six navigation type values by content analysis:
 
-   | Signals | `type` |
-   |---|---|
-   | "we decided", rationale, trade-offs, outcome | `decision` |
-   | reference material, external source, processed URL | `source` |
-   | idea, framework, mental model, definition | `concept` |
-   | AI brief, synthesis, session output, generated report | `output` |
-   | filed question, answered query, Q&A | `question` |
-   | audit, analysis, health check, status report | `report` |
+   | Signals                                               | `type`     |
+   | ----------------------------------------------------- | ---------- |
+   | "we decided", rationale, trade-offs, outcome          | `decision` |
+   | reference material, external source, processed URL    | `source`   |
+   | idea, framework, mental model, definition             | `concept`  |
+   | AI brief, synthesis, session output, generated report | `output`   |
+   | filed question, answered query, Q&A                   | `question` |
+   | audit, analysis, health check, status report          | `report`   |
 
    If the note already has a valid navigation type set by `/process`, use it (the AI may refine it if the content analysis strongly suggests otherwise). Non-navigation types (`goal | plan | research | idea | meeting`) pass through unchanged and land flat in `02_PAGES/`.
 
@@ -38,15 +44,14 @@ For each `.md` file in `inbox/ready/`:
 
    Map the assigned `type` to its plural folder name:
 
-   | `type` | Sub-folder |
-   |---|---|
-   | `concept` | `concepts/` |
-   | `source` | `sources/` |
+   | `type`     | Sub-folder   |
+   | ---------- | ------------ |
+   | `concept`  | `concepts/`  |
+   | `source`   | `sources/`   |
    | `decision` | `decisions/` |
-   | `output` | `outputs/` |
+   | `output`   | `outputs/`   |
    | `question` | `questions/` |
-   | `report` | `reports/` |
-
+   | `report`   | `reports/`   |
    - If `domains/[domain]/02_PAGES/{type_plural}/` **exists** → route there.
    - If it **does not exist** → land flat in `domains/[domain]/02_PAGES/` (sub-folder emerges later via `/audit` cluster detection).
    - Non-navigation types always land flat in `02_PAGES/`.
@@ -58,22 +63,23 @@ For each `.md` file in `inbox/ready/`:
    a. Extract `person` field from frontmatter (e.g., `"Babis Pagonis"`).
    b. Check if `work/02_1-1/[Person].md` already exists.
    c. If the file **exists** — absorb mode:
-      - Extract the meeting date and topic from the note content
-      - Prepend a new `### [date] — [topic]` section immediately after `## Meetings` heading
-      - Update `## Latest Summary` with the new meeting context
-      - Update the `date` frontmatter field to the new meeting date
-      - Update `description` frontmatter with a fresh ~150-char rolling summary
-      - Mark source note `status: processed`
-      - Archive source to `brain/MASTER_ARCHIVE/` and log to `brain/INGEST_LOG.md` with destination `[[work/02_1-1/[Person]|[Person]]] ([date] section)`
-      - Skip the file-move steps (file already exists at destination)
-   d. If the file **does not exist** — create mode:
-      - Create `work/02_1-1/[Person].md` using the 1:1 Note schema from ASSET-CLASSES.md
-      - Structure: `## Latest Summary` + `## Meetings` with the first `### [date] — [topic]` section + `## Related` with PEOPLE.md wikilink
-      - Proceed with normal archive + log steps
+   - Extract the meeting date and topic from the note content
+   - Prepend a new `### [date] — [topic]` section immediately after `## Meetings` heading
+   - Update `## Latest Summary` with the new meeting context
+   - Update the `date` frontmatter field to the new meeting date
+   - Update `description` frontmatter with a fresh ~150-char rolling summary
+   - Mark source note `status: processed`
+   - Archive source to `brain/MASTER_ARCHIVE/` and log to `brain/INGEST_LOG.md` with destination `[[work/02_1-1/[Person]|[Person]]] ([date] section)`
+   - Skip the file-move steps (file already exists at destination)
+     d. If the file **does not exist** — create mode:
+   - Create `work/02_1-1/[Person].md` using the 1:1 Note schema from ASSET-CLASSES.md
+   - Structure: `## Latest Summary` + `## Meetings` with the first `### [date] — [topic]` section + `## Related` with PEOPLE.md wikilink
+   - Proceed with normal archive + log steps
 
 4. **Check for split-worthy content** — Scan the note for 3+ independent H2 sections or clearly unrelated topic blocks. Only offer to split if each topic is independently page-worthy (self-contained, atomic, useful on its own without the others). Tightly related sections that build on each other should stay as one page.
 
    If split-worthy topics detected, present:
+
    ```
    This note covers [N] independent topics — each could be its own page:
      1. [Topic A] → suggested page: `topic-a.md`
@@ -96,6 +102,7 @@ For each `.md` file in `inbox/ready/`:
 5. **Search for duplicates** — Use `qmd vsearch` (or `obsidian search` if QMD unavailable) to check if a closely related page already exists in the target domain.
 
    If a duplicate is found, present explicitly:
+
    ```
    Similar page found: [[existing-page-name]]
 
@@ -109,35 +116,45 @@ For each `.md` file in `inbox/ready/`:
    - Show the user what content will be appended and which section it goes under
    - Use `obsidian append` to add the content
    - Add a `## Related` backlink in the existing page to the source note
-   - Mark source note `status: processed`
-   - Skip steps 6–8
+   - Archive: `cp [source] brain/MASTER_ARCHIVE/[filename]`
+   - Delete original from `inbox/ready/`
+   - Log to `brain/INGEST_LOG.md`
+   - Skip step 7b only (no domain file to move — content absorbed)
 
 6. **Present routing plan** to user before executing:
+
    ```
    inbox/ready/[filename] (note) → domains/[domain]/02_PAGES/[sub-folder/][filename] (page)
    type: [assigned-type] | sub-folder: [concepts/ | flat]
    ```
+
    Wait for user confirmation.
 
 7. **On confirmation, promote and archive**:
 
    a. **Copy source to archive** — preserve the processed note as provenance:
-      ```bash
-      cp inbox/ready/[filename] brain/MASTER_ARCHIVE/[filename]
-      ```
-      Add `distributed_to` and `distributed_at` fields to the archive copy's frontmatter.
+
+   ```bash
+   cp inbox/ready/[filename] brain/MASTER_ARCHIVE/[filename]
+   ```
+
+   Add `distributed_to` and `distributed_at` fields to the archive copy's frontmatter.
 
    b. **Move file to destination** — this is when the note becomes a page:
-      ```bash
-      git mv inbox/ready/[filename] domains/[domain]/02_PAGES/[filename]
-      ```
-      (or `work/04_PAGES/[filename]`, `work/02_1-1/`, `work/03_INCIDENTS/` as appropriate)
+
+   ```bash
+   git mv inbox/ready/[filename] domains/[domain]/02_PAGES/[filename]
+   ```
+
+   (or `work/04_PAGES/[filename]`, `work/02_1-1/`, `work/03_INCIDENTS/` as appropriate)
 
    c. **Log to ingest log** — prepend a new row (newest first) to the table in `brain/INGEST_LOG.md`:
-      ```
-      | [date] | [type] | [domain] | [source filename] | [[destination|Display Name]] | |
-      ```
-      The `Notes` column is always left blank — it is reserved for user input only.
+
+   ```
+   | [date] | [type] | [domain] | [source filename] | [[destination|Display Name]] | |
+   ```
+
+   The `Notes` column is always left blank — it is reserved for user input only.
 
 8. **Add wikilinks** to the new page:
    - Add `[[domains/[domain]/INDEX|[domain]]]` link to the page's `## Related` section

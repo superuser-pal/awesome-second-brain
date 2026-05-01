@@ -1,7 +1,7 @@
-# PAL Second Brain - Domain Requirements
+# Awesome Second Brain - Domain Requirements
 
 **Version:** 1.0.0
-**Last Updated:** 2026-04-04
+**Last Updated:** 2026-05-01
 
 ---
 

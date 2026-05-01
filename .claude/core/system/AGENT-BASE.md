@@ -2,8 +2,8 @@
 title: Agent Base Behavior
 version: 1.0.0
 layer: SYSTEM
-purpose: Shared behavioral constraints inherited by all PAL Second Brain Domain Agents
-last_updated: 2026-04-05
+purpose: Shared behavioral constraints inherited by all Awesome Second Brain Domain Agents
+last_updated: 2026-05-01
 ---
 
 # Agent Base Behavior

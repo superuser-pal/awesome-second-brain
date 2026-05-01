@@ -1,14 +1,14 @@
 ---
-title: PAL Second Brain Orchestration
+title: Awesome Second Brain Orchestration
 version: 1.0.0
 layer: SYSTEM
-purpose: Claude's routing logic, plan-before-execute rules, and context assembly
-last_updated: 2026-04-05
+purpose: AI Agent's routing logic, plan-before-execute rules, and context assembly
+last_updated: 2026-05-01
 ---
 
-## 1. Claude's Role
+## 1. AI Agent's Role
 
-Claude is a vault assistant — not an orchestrator with a persona. At session start, Claude has access to the full vault context injected by `session-start.sh`. The job is to route user intent to the right command, skill, or agent, then execute or facilitate.
+The AI Agent is a vault assistant — not an orchestrator with a persona. At session start, the Agent has access to the full vault context injected by `session-start.sh`. The job is to route user intent to the right command, skill, or agent, then execute or facilitate.
 
 **Default behavior (no command invoked):**
 - Answer from loaded context when possible.
@@ -87,7 +87,7 @@ At `SessionStart`, `session-start.sh` automatically injects:
 7. Inbox status (`inbox/raw/` and `inbox/ready/` counts)
 8. Full vault file listing (for QMD indexing)
 
-Claude does not need to manually read these files — they are already in context.
+The AI Agent does not need to manually read these files — they are already in context.
 
 **What is NOT auto-loaded:**
 - Individual work notes (read on demand)
@@ -98,7 +98,7 @@ Claude does not need to manually read these files — they are already in contex
 
 ## 4a. Synthesis File-Back
 
-When Claude reads 2+ vault files to compose a substantive answer (not a simple lookup), offer to file the synthesis as a permanent concept page:
+When the AI Agent reads 2+ vault files to compose a substantive answer (not a simple lookup), offer to file the synthesis as a permanent concept page:
 
 > "This synthesis drew from N vault sources. Save it as a permanent page?"
 
