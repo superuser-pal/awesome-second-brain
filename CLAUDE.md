@@ -9,7 +9,7 @@ Awesome Second Brain vault — Obsidian-based personal knowledge system for work
 - Git sync is handled by the user's preferred method (obsidian-git, manual commits, etc.) -- don't configure git hooks or auto-commit.
 - When asked to "remember" something, write to the relevant `brain/` topic note with a link to context. Never create memory files in `~/.claude/` -- they are not version-controlled.
 - Prefer Obsidian CLI over filesystem when Obsidian is running.
-- **Always invoke Obsidian skills via the Skill tool** before doing vault work. Load `obsidian-markdown` when creating/editing `.md` files. Load `obsidian-cli` when running vault commands. Load `obsidian-bases` or `json-canvas` when working with those file types.
+- Skills are in `.claude/skills/`. Load a skill's `SKILL.md` on demand when the relevant operation is needed — do not preload all skills.
 - Always check for and suggest connections between notes.
 - Every note must have a `description` field (~150 chars). Claude fills this automatically.
 - **Zero data loss**: when reorganizing, always use `git mv` (or your file manager if not using git). Never delete without explicit user confirmation.
@@ -37,75 +37,32 @@ The vault includes a dormant prompt library (240+ pages) and reasoning strategy 
 
 ### Custom Slash Commands
 
-Defined in `.claude/commands/`. See [[SKILLS]] for full documentation.
+Defined in `.claude/commands/`. See `.claude/core/reference/SYSTEM-INDEX.md` for the full registry.
 
 ## Vault Structure
 
-| Folder                        | Purpose                                                                                              | Key Files                                                                         |
-| ----------------------------- | ---------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| `dashboards/`                 | **Navigation dashboards**                                                                            | `HOME.md` (vault entry point), `TASKS.md` (master task list)                     |
-| `inbox/raw/`                  | Unprocessed captures (braindumps, URLs, docs)                                                        | Minimal metadata (date only)                                                      |
-| `inbox/ready/`                | Processed notes awaiting distribution                                                                | Full frontmatter, domain classified                                               |
-| `domains/`                    | **Organized knowledge areas** — each domain has `01_PROJECTS/`, `02_PAGES/`, `05_ARCHIVE/`          | Created via create-domain skill                                                   |
-| `bases/`                      | **All Bases centralized** -- dynamic views for navigation                                            | `Incidents`, `People Directory`, `1-1 History`, `Domains`, `Templates`            |
-| `work/`                       | **Cross-domain work** -- incidents, 1-1s, decisions that span domains                               | `INDEX.md`, `01_PROJECTS/`, `02_1-1/`, `03_INCIDENTS/`, `04_PAGES/`, `05_REVIEW/`, `06_ORG/`, `07_ARCHIVE/` |
-| `brain/`                      | Claude's operational knowledge                                                                       | `MEMORIES.md`, `LOGIC.md`, `RULES.md`, `CAVEATS.md`, `SKILLS.md`, `NORTH_STAR.md`, `USER.md`, `CACHE.md` |
-| `thinking/`                   | Temporary **notes** — reasoning scratchpads, ongoing research, agent outputs (`status: thinking`)    | Named `YYYY-MM-DD-topic.md`                                                       |
-| `plan/`                       | Daily notes and weekly planning files                                                                | `DD-MM-YY.md` (daily), `W[x]_YYYY-MM-DD.md` (weekly), `archive/` (closed weeks) |
+| Folder            | Purpose                                                                                     | Key Subfolders / Files                                                                        |
+| ----------------- | ------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `dashboards/`     | Navigation dashboards                                                                       | `HOME.md`, `TASKS.md`                                                                        |
+| `inbox/`          | Capture entry point                                                                         | `raw/` (unprocessed), `ready/` (classified, awaiting distribution)                            |
+| `domains/`        | Organized knowledge areas — each domain has its own projects, pages, archive                | `[Name]/INDEX.md`, `01_PROJECTS/`, `02_PAGES/`, `05_ARCHIVE/`                                |
+| `work/`           | Cross-domain work — incidents, 1-1s, decisions that span domains                            | `INDEX.md`, `01_PROJECTS/`, `02_1-1/`, `03_INCIDENTS/`, `04_PAGES/`, `05_REVIEW/`, `06_ORG/`, `07_ARCHIVE/` |
+| `brain/`          | Agent's operational knowledge                                                               | `MEMORIES.md`, `LOGIC.md`, `RULES.md`, `CAVEATS.md`, `SKILLS.md`, `NORTH_STAR.md`, `USER.md`, `CACHE.md` |
+| `thinking/`       | Temporary notes — reasoning scratchpads, ongoing research (`status: thinking`)              | `YYYY-MM-DD-topic.md`                                                                        |
+| `plan/`           | Daily notes and weekly planning files                                                       | `DD-MM-YY.md` (daily), `W[x]_YYYY-MM-DD.md` (weekly), `archive/`                            |
+| `bases/`          | Obsidian Bases — dynamic views for navigation                                               | `Incidents`, `People Directory`, `1-1 History`, `Domains`, `Templates`                        |
 
-## Domains
-
-Domains are isolated knowledge areas under `domains/`. Each domain has its own projects, pages, and archive. Create new domains with the `create-domain` skill.
-
-### Domain vs work/
-
-- **Domain-scoped**: Projects, knowledge, and notes that belong to one area go in `domains/[name]/`
-- **Cross-domain**: Incidents, 1-1s, decisions that span multiple areas stay in `work/`
-- When unsure, default to the domain. Move to `work/` only if it genuinely spans domains.
+Domain-scoped content goes in `domains/[Name]/`. Cross-domain work (incidents, 1-1s, multi-area decisions) stays in `work/`. When unsure, default to domain.
 
 ---
 
-## Content Types
+## Content Lifecycle
 
-The vault distinguishes three kinds of content by lifecycle, not by topic.
-
-| Type              | Where it lives                               | Lifecycle                                                                                                                                         |
-| ----------------- | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Note**          | `inbox/raw/`, `inbox/ready/`, `thinking/`    | Temporary. Created by capture commands with `status: unprocessed`. Promoted to pages via `/distribute`, or moved to `thinking/` for ongoing work. |
-| **Page**          | `domains/[Name]/02_PAGES/`, `work/04_PAGES/` | Permanent. Promoted from notes. Atomic — one concept per page. Asset class is determined by location, not by the `type` field.                    |
-| **Planning note** | `plan/`                                      | Separate lifecycle. Created by `/open-day`, closed by `/close-day`. Never promoted.                                                               |
-
-### Promotion Flows (Note → Page)
-
-1. **Simple** — 1 note → 1 new page (default path via `/distribute`)
-2. **Split** — 1 note → multiple pages (when the note covers 3+ independently page-worthy topics)
-3. **Absorb** — 1 note → merged into an existing page (when a closely related page already exists)
-4. **Thinking** — Note moved to `thinking/` (`status: thinking`) for ongoing work — promoted later via `/process` → `/distribute`
-
-### Note Status Lifecycle
-
-| Status        | Set by                   | Meaning                                                          |
-| ------------- | ------------------------ | ---------------------------------------------------------------- |
-| `unprocessed` | Any capture command      | Newly captured, no frontmatter classification yet                |
-| `thinking`    | `/capture` or `/process` | Moved to `thinking/` for ongoing work                            |
-| `ready`       | `/process`               | Frontmatter complete, awaiting distribution                      |
-| `processed`   | `/distribute`            | Promoted to a page in a domain (source note kept for provenance) |
-
----
+Three content types: **Notes** (temporary, in `inbox/` or `thinking/`), **Pages** (permanent, in `domains/` or `work/`), **Planning notes** (in `plan/`, never promoted). Notes promote to pages via `/distribute` (simple, split, absorb, or thinking). Status flow: `unprocessed` → `thinking` or `ready` → `processed`.
 
 ## Inbox & Capture Flow
 
-All user input enters through `inbox/`. Three stages move notes from raw capture to their final domain location.
-
-### Stages
-
-| Stage         | Command       | Location                                                         | What happens                                                                                                                                                                    |
-| ------------- | ------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1. Capture    | `/capture`    | `inbox/raw/` (or `thinking/`)                                    | Raw note saved with `status: unprocessed`. No classification yet.                                                                                                               |
-| 2. Process    | `/process`    | `inbox/raw/` → `inbox/ready/` (or `thinking/`)                   | Frontmatter added (domain, type, tags, description). Multi-topic notes flagged. Thinking notes offered `status: thinking`. Also scans `thinking/` and shows promotion reminder. |
-| 3. Distribute | `/distribute` | `inbox/ready/` → `domains/[Name]/02_PAGES/` or `work/04_PAGES/` | Note promoted to a **page**. Split offered for multi-topic notes. Absorb offered if duplicate found. Wikilinks added. User confirms.                                            |
-
-`/dump` is a power shortcut that does all 3 stages in one shot for high-confidence routing.
+All input enters through `inbox/`. Three stages: (1) `/capture` → `inbox/raw/` (unprocessed), (2) `/process` → `inbox/ready/` (classified), (3) `/distribute` → `domains/` or `work/` (promoted to page). `/dump` does all 3 in one shot.
 
 ---
 
@@ -122,23 +79,14 @@ All user input enters through `inbox/`. Three stages move notes from raw capture
 3. **Place files correctly**: Adhere strictly to the Vault Structure table defined above.
 4. **Naming conventions**: Use descriptive titles for normal notes. For projects, use `PROJECT_UPPER_SNAKE.md`. For ad-hoc tasks not tied to a project, use `AD_HOC_TASKS.md`. For index/review files, use `ALL_CAPS.md` (e.g. `WINS.md`).
 
-### Linking -- This Is Critical
+### Linking
 
-**A note without links is a bug.** When creating a note, the FIRST thing to do after writing content is add wikilinks. Every new note must link to at least one existing note.
+**A note without links is a bug.** Every new note must link to at least one existing note. Prefer bidirectional links. Before writing, ask: "Does this cover 3+ independent concepts?" — if so, split into atomic pages.
 
-**Atomicity rule**: Before writing or appending to any page, ask: "Does this cover multiple distinct concepts that could be separate pages?" If a page has or would have 3+ independent sections that are each useful on their own, split into atomic pages that link to each other.
-
-#### When to Link
-
-- **Work note <-> Decision**: bidirectional links
-- **Work note -> Competency**: in `## Related`, link to competencies demonstrated
-- **Work note -> Team**: in `## Related`, link to team(s) involved
-- **Work note -> Person**: link people involved (especially in 1:1 notes)
-- **Person -> Work evidence**: link to their evidence file if one exists
-- **WINS -> Work note**: every entry links to evidence
-- **Memories -> Source**: every memory links to where it was learned
-- **Index -> Everything**: `work/INDEX.md` links to all work notes
-- **North Star -> Projects**: active focus areas link to project work notes
+Key linking patterns:
+- **Work ↔ Decision**: bidirectional. **Work → Person/Team/Competency**: in `## Related`.
+- **WINS → Work note**: every entry links to evidence. **Memories → Source**: every memory links to context.
+- **Index → Everything**: `work/INDEX.md` links to all work notes. **North Star → Projects**: active focus areas link to project notes.
 
 ### Maintaining Indexes
 
@@ -162,32 +110,17 @@ Update these when creating or archiving notes:
 
 When significant work is completed, add a new entry to `work/05_REVIEW/WINS.md` (in the relevant quarter section) with links to the work note(s). Categorize under Impact, Technical Growth, Collaboration, or Feedback.
 
-## Frontmatter Schema
+## Frontmatter
 
-Use tags in frontmatter (not inline):
-
-| Property | Values / Format | Used on |
-|---|---|---|
-| `type` (NoteType) | **Navigation** (drive folder emergence in `02_PAGES/`): `concept \| source \| decision \| output \| question \| report` — **Non-navigation** (stay flat): `goal \| plan \| research \| idea \| meeting` | Domain pages, inbox notes |
-| `type` (tag) | `work-note`, `decision`, `perf`, `thinking`, `north-star`, `competency`, `person`, `team`, `brain` | Work notes, brain notes |
-| `index` (tag) | `index`, `moc` | Index files |
-| `status` | `active`, `completed`, `archived`, `proposed`, `accepted`, `deprecated` | Projects, decisions |
-| `team` | e.g. `Backend`, `Platform`, `Mobile` | People + work notes |
-| `cycle` | e.g. `h2-2024`, `h1-2025` | Review-related notes |
-| `person` | Full name, e.g. `"Jane Smith"` | Evidence notes |
-| `quarter` | e.g. `Q1-2026` | Work notes |
-| `ticket` | e.g. `TICKET-123` | Incidents |
-| `severity` | `high`, `medium`, `low` | Incidents |
-| `role` | e.g. `incident-lead` | Incidents |
-| `project` | e.g. `project/auth-refactor` | As needed |
+Frontmatter schemas are enforced by `validate-write.ts` via Zod. See `.claude/core/reference/ASSET-CLASSES.md` for canonical schemas per asset class.
 
 ## Memory System
 
 When explicitly asked to "remember" something, or when a session ends and durable learnings have emerged:
 
-1. Identify the content type and use the Brain File Routing Table below to select the destination.
-2. Add the knowledge there with a wikilink pointing to the original source or context.
-3. Mark new entries as `[observation]` (see Content Promotion Lifecycle below).
+1. Use the routing table to select the destination.
+2. Write with a `[[wikilink]]` to the source context.
+3. Mark new entries as `[observation]`.
 
 ### Brain File Routing Table
 
@@ -205,74 +138,15 @@ Apply this table before any session ends. Every durable learning goes to exactly
 | An ingested source | `brain/INGEST_LOG.md` |
 | Durable but doesn't fit above | New `brain/` topic note + add to `MEMORIES.md` |
 
-### Memory Routing Decision Tree
-
-```
-Is this information durable across sessions?
-├── No → Don't persist. It will appear in CACHE.md if needed next session.
-└── Yes →
-    ├── About user identity / preferences? → brain/USER.md
-    ├── About goals / focus / direction? → brain/NORTH_STAR.md
-    ├── A decision with rationale? → brain/LOGIC.md
-    ├── A pattern confirmed by experience? → brain/RULES.md
-    ├── Something that went wrong or was surprising? → brain/CAVEATS.md
-    ├── A new skill or workflow? → brain/SKILLS.md
-    ├── A person or contact? → brain/CONTACTS.md
-    ├── An ingested source? → brain/INGEST_LOG.md
-    └── None of the above? → New brain/ topic note + MEMORIES.md index
-```
-
 ### Content Promotion Lifecycle
 
-Brain note entries carry an optional inline maturity marker. Add it at the end of the entry line.
-
-| Marker | Meaning | When to use |
-|---|---|---|
-| `[observation]` | Learned in a single session, not yet validated | Default for all new entries |
-| `[confirmed]` | Referenced or upheld across 3+ sessions | Promote manually during weekly review |
-| `[canonical]` | Survived a full quarter; core system pattern | Promote manually during quarterly review |
-
-New entries default to `[observation]`. Promote to `[confirmed]` or `[canonical]` manually during `/close-day` or weekly review. Maturity is inline text — not a frontmatter field.
+Brain note entries carry an optional inline maturity marker: `[observation]` (default, single session) → `[confirmed]` (3+ sessions) → `[canonical]` (survived a quarter). Promote during `/close-day` or weekly review.
 
 ## Agent Guidelines
 
-### Graph-First Thinking
-
-- **Folders group by purpose, links group by meaning.** A note lives in ONE folder (its home) but links to MANY notes (its context).
-- When creating a note, add wikilinks FIRST. A note without links is a bug.
-- Prefer bidirectional links: if A links to B, B should link back to A (unless B is a concept node that receives backlinks passively).
-- Before creating a new subfolder, ask: "Can I solve this with a tag, a property, or a link instead?" Folders are for browsing convenience, not for categorization.
-- After every substantial session, verify new notes have at least one inbound link.
-
-### Don't Mix Contexts
-
-When capturing data from Slack, DMs, or meetings:
-
-- **Project evidence** (work contributions, decisions, deliverables) -- goes to the relevant `work/` note
-- **Review prep** (peer selection, manager strategy, wins framing) -- goes to review-related notes in `work/05_REVIEW/`
-- **People dynamics** (feedback, relationships, career) -- goes to the relevant section in `work/06_ORG/PEOPLE.md`
-- **Personal conversations** -- only capture if review-relevant; otherwise skip
+- **Graph-first**: Folders group by purpose, links group by meaning. Prefer bidirectional links. Before creating subfolders, ask: "Can I solve this with a tag or link?"
+- **Don't mix contexts**: Project evidence → `work/` notes. Review prep → `work/05_REVIEW/`. People dynamics → `work/06_ORG/PEOPLE.md`. Skip non-review-relevant personal conversations.
 
 ## Agent System
 
-Two types of agents live in `.claude/agents/`.
-
-### Subagents
-
-Task-specific agents invoked BY commands. Run in isolated context windows with bounded turns.
-
-| Agent                 | Purpose                                                          | Invoked by                  |
-| --------------------- | ---------------------------------------------------------------- | --------------------------- |
-| `wins-capture`        | Finds uncaptured wins and competency gaps                        | `/week-close`               |
-| `context-loader`      | Loads all vault context about a person, project, or concept      | Direct                      |
-| `cross-linker`        | Finds missing wikilinks, orphans, broken backlinks               | `/audit`                    |
-| `contact-importer`    | Bulk creates/updates person notes from Slack profiles            | `/incident`                 |
-| `review-prep`         | Aggregates all performance evidence for a review period          | `/brief`                    |
-| `slack-archaeologist` | Full Slack reconstruction -- every message, thread, profile      | `/incident`                 |
-| `vault-librarian`     | Deep vault maintenance -- orphans, broken links, stale notes     | `/audit`                    |
-| `review-fact-checker` | Verifies every claim in a review draft against vault sources     | `/self`, `/peer`            |
-| `vault-migrator`      | Classifies, transforms, and migrates content from a source vault | `/upgrade`                  |
-
-### Domain Agents
-
-Interactive, domain-bound agents invoked by the USER. Activated via `/agent:[name]` commands. Create new with the `create-agent` skill. No domain agents configured yet.
+Two agent types in `.claude/agents/`: **Subagents** (task-bound, have `maxTurns`, invoked by commands) and **Domain Agents** (interactive, no `maxTurns`, invoked by user via `/agent:[name]`). See `.claude/core/reference/SYSTEM-INDEX.md` for the full registry.

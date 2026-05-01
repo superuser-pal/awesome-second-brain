@@ -216,5 +216,12 @@ if [ "$blocked_count" -gt 0 ]; then
 fi
 
 echo "### Recently Modified (Last 10 Days)"
-find . -type f -name "*.md" -not -path "./.git/*" -not -path "./.obsidian/*" -not -path "./thinking/*" -not -path "./.claude/*" -mtime -10 | sort
+RECENT_FILES=$(find . -type f -name "*.md" -not -path "./.git/*" -not -path "./.obsidian/*" -not -path "./thinking/*" -not -path "./.claude/*" -mtime -10 | sort)
+RECENT_COUNT=$(echo "$RECENT_FILES" | grep -c '.' 2>/dev/null || echo "0")
+if [ "$RECENT_COUNT" -gt 0 ]; then
+  echo "$RECENT_FILES" | head -10
+  [ "$RECENT_COUNT" -gt 10 ] && echo "  ... and $((RECENT_COUNT - 10)) more files"
+else
+  echo "(no recent changes)"
+fi
 
