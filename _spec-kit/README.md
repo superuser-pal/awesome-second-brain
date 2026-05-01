@@ -28,7 +28,7 @@ Trivial edits — just edit and commit directly.
 ```
 
 1. `/spec-kit:specify <description>` — creates `features/NNN-<slug>/spec.md`
-2. `/agent:builder NNN-<slug>` — activates the builder agent; loads constitution + feature files into context for all remaining phases
+2. `/agent:builder NNN-<slug>` — activates the builder agent; loads CONSTITUTION + feature files into context for all remaining phases
 3. `/spec-kit:plan` — produces `plan.md` + mandatory `impact.md`; gate review before build
 4. `/spec-kit:build` — generates `tasks.md` and executes every impact row
 5. `/spec-kit:test` — mandatory staged user-test (V2-style); ship gate at score < 3

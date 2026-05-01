@@ -114,10 +114,10 @@ When any `/spec-kit:*` command is invoked, the agent must:
 1. Confirm the active feature (from `_spec-kit/features/NNN-*/`). Refuse if none is selected.
 2. Refuse edits that would violate §4 (impact discipline) or §5 (testing discipline).
 3. Refuse to run `/spec-kit:ship` while `test-results.md` has any stage scored <3 or missing a score.
-4. When proposing edits to `.claude/core/`, always cite the specific rule in this constitution that motivates the change.
+4. When proposing edits to `.claude/core/`, always cite the specific rule in this CONSTITUTION that motivates the change.
 
 ---
 
 ## 9. Amendments
 
-This file is human-edited. Updates are themselves a non-trivial change and should go through the cycle (use feature name `constitution-amendment-NNN`). Bump `version` in the frontmatter on every amendment.
+This file is human-edited. Updates are themselves a non-trivial change and should go through the cycle (use feature name `CONSTITUTION-amendment-NNN`). Bump `version` in the frontmatter on every amendment.
