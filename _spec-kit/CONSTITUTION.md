@@ -1,11 +1,11 @@
 ---
-title: Spec-Kit Constitution
+title: Spec-Kit CONSTITUTION
 version: 1.0.0
 layer: SPEC-KIT
-description: Central constitution for the ASB enhancement cycle — principles, phase gates, impact and testing discipline, and enforcement rules for the builder agent.
+description: Central CONSTITUTION for the ASB enhancement cycle — principles, phase gates, impact and testing discipline, and enforcement rules for the builder agent.
 tags:
   - spec-kit
-  - constitution
+  - CONSTITUTION
   - index
 last_updated: 2026-04-15
 ---
